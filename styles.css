@@ -716,6 +716,30 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .engagement-continuation { margin-inline: auto; text-align: center; }
 .engagement-continuation p { margin-inline: auto; }
 
+/* Edit #46: left-align the body-length ledes for a fixed return sweep, at a
+   readable measure, block kept centered under the headline (not pinned left). */
+.proof-section > .shell > .section-lede.dark,
+.connectivity > .shell > .section-lede.dark {
+  text-align: left;
+  max-width: 660px;
+  margin-inline: auto;
+}
+.deployment .split .section-lede.dark {
+  text-align: left;
+  max-width: 700px;
+  margin-inline: auto;
+}
+.outcome-heading p {
+  text-align: left;
+  max-width: 580px;
+  margin-inline: auto;
+}
+.about-hero .lede {
+  text-align: left;
+  max-width: 690px;
+  margin-inline: auto;
+}
+
 /* 8. Fit, trust, and authority: centered statement above centered trust points */
 .trust .trust-grid { display: block; }
 .trust .trust-grid > div:first-child { text-align: center; }
