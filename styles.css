@@ -748,6 +748,55 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
   .fragments-visual { margin-bottom: 0; aspect-ratio: auto; }
 }
 
+/* 4b. Operating reality (Section 4): full-width left-aligned header over an
+   equal-height content-LEFT / image-RIGHT split — Section 2's locked template
+   mirrored (edit #55). Section-scoped (.world-*) so the global centered
+   editorial axis never reaches the header or lede (neither is a direct .shell
+   child); no global rule is weakened. Light (paper) section, so the
+   placeholder is a quiet light panel: a faint ink tint over paper with a
+   --line hairline border. */
+.world-head { text-align: left; }
+.world-head h2 { max-width: 900px; }
+.world-split { display: block; margin-top: 44px; }
+.world-content { text-align: left; }
+.world-content .section-lede { margin-top: 0; }
+.world-content .editorial-grid { margin-top: 34px; }
+.world-content .editorial-grid.six { grid-template-columns: 1fr; }
+.world-content .editorial-grid h3, .world-content .editorial-grid p { text-wrap: pretty; }
+.world-visual {
+  aspect-ratio: 4 / 5;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  margin-top: 40px;
+  border: 1px solid var(--line);
+  background: rgba(11, 26, 43, 0.04);
+}
+.world-visual span {
+  max-width: 78%;
+  color: var(--text-soft);
+  opacity: .75;
+  font-size: 13px;
+  letter-spacing: .04em;
+  line-height: 1.5;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .world-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+    gap: clamp(40px, 5vw, 72px);
+    align-items: stretch;
+  }
+  /* Image column fills the full content-stack height, no fixed ratio. */
+  .world-visual { margin-top: 0; aspect-ratio: auto; }
+}
+/* The six facets stay a single stacked column until the content column is
+   wide enough to hold two without stranding words; then they read as 2×3. */
+@media (min-width: 1024px) {
+  .world-content .editorial-grid.six { grid-template-columns: 1fr 1fr; }
+}
+
 /* 5. Outcomes: retire the 1.2/.8 end-aligned grid that stranded the right column */
 .outcome-heading { display: block; text-align: center; }
 .outcome-heading h2 { max-width: 1060px; margin-inline: auto; font-size: clamp(44px, 5.6vw, 72px); }
