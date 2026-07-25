@@ -309,13 +309,30 @@ blockquote { margin: 0; }
 
 .connectivity h2 { max-width: 990px; }
 .connectivity > .shell > .section-lede { margin-top: 30px; }
-.compound-map { display: grid; grid-template-columns: 1fr 92px 1fr; margin-top: 68px; border: 1px solid rgba(23,33,45,.25); background: rgba(255,255,255,.2); }
-.compound-map section { padding: clamp(32px, 5vw, 58px); }
-.compound-map h3 { font-size: clamp(28px, 3vw, 39px); }
-.compound-map ul { margin: 28px 0 0; padding: 0; list-style: none; }
-.compound-map li { padding: 14px 0; border-top: 1px solid rgba(23,33,45,.17); }
-.compound-axis { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; border-inline: 1px solid rgba(23,33,45,.2); color: var(--copper-dark); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; writing-mode: vertical-rl; }
-.compound-axis i { height: 90px; width: 1px; background: var(--copper-dark); }
+/* Section 5 compressed to a tight left-aligned passage (edit #56): the
+   two-panel compound-map moved to Applications. Header, both paragraphs, and
+   the governance line now share one left axis. */
+.section.connectivity > .shell > .section-number,
+.section.connectivity > .shell > h2,
+.section.connectivity > .shell > .section-lede { margin-inline: 0; text-align: left; }
+.connectivity .governance-line { margin-inline: 0; text-align: left; }
+.connectivity h2 { text-wrap: pretty; }
+.connectivity .section-number, .connectivity .section-lede, .connectivity .governance-line { text-wrap: pretty; }
+/* At the narrowest widths the display h2 can't hold "compounding begins." on
+   one line; trim it a touch so the closing word never strands. */
+@media (max-width: 400px) {
+  .connectivity h2 { font-size: clamp(30px, 8.3vw, 34px); }
+}
+/* Applications: the connectivity detail migrated from the homepage (edit #56).
+   Left-aligned header (wrapped so the global centered axis does not reach it,
+   matching the adjacent bridge/close headers) over the page's unmodified
+   two-column .split; the two inventories keep their hairline-separated look. */
+.foundation-head { text-align: left; }
+.foundation-head h2 { max-width: 760px; }
+.foundation-split { margin-top: 44px; }
+.foundation-split h3 { margin: 0 0 16px; font-size: clamp(22px, 2.2vw, 29px); text-wrap: balance; }
+.foundation-split ul { margin: 0; padding: 0; list-style: none; }
+.foundation-split li { padding: 13px 0; border-top: 1px solid rgba(23,33,45,.16); color: var(--text-soft); text-wrap: pretty; }
 .signature-line { max-width: 940px; margin: 58px 0 0; font: italic 500 clamp(26px, 3.2vw, 42px)/1.35 var(--serif); }
 .governance-line { max-width: 840px; margin: 30px 0 0; padding-top: 26px; border-top: 1px solid rgba(23,33,45,.24); color: var(--text-soft); }
 
@@ -585,9 +602,6 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
   .continuity-chain { grid-template-columns: repeat(2, 1fr); }
   .continuity-chain div { border-bottom: 1px solid var(--line-dark); }
   .continuity-chain div:nth-child(2n) { border-right: 0; }
-  .compound-map { grid-template-columns: 1fr; }
-  .compound-axis { min-height: 72px; flex-direction: row; border-inline: 0; border-block: 1px solid rgba(23,33,45,.2); writing-mode: horizontal-tb; }
-  .compound-axis i { width: 90px; height: 1px; }
   .case-feature { grid-template-columns: 1fr; gap: 34px; }
   .outcome-heading { grid-template-columns: 1fr; gap: 30px; }
   .trust-points { gap: 34px; }
@@ -649,7 +663,6 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
   .editorial-grid.three, .editorial-grid.six, .system-grid, .trust-progression { grid-template-columns: 1fr; }
   .continuity-chain { grid-template-columns: 1fr; }
   .continuity-chain div { border-right: 0; }
-  .compound-map section { padding: 28px 22px; }
   .day-steps li { grid-template-columns: 1fr; gap: 6px; }
   .case-feature { padding: 32px 24px; }
   .proof-actions { align-items: stretch; flex-direction: column; }
@@ -821,9 +834,10 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .engagement-continuation p { margin-inline: auto; }
 
 /* Edit #46: left-align the body-length ledes for a fixed return sweep, at a
-   readable measure, block kept centered under the headline (not pinned left). */
-.proof-section > .shell > .section-lede.dark,
-.connectivity > .shell > .section-lede.dark {
+   readable measure, block kept centered under the headline (not pinned left).
+   Connectivity dropped here in edit #56 — its passage now pins to the left
+   axis via the .section.connectivity rule above. */
+.proof-section > .shell > .section-lede.dark {
   text-align: left;
   max-width: 660px;
   margin-inline: auto;
