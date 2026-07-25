@@ -501,6 +501,24 @@ blockquote { margin: 0; }
 .invitation-grid h3 { color: var(--copper); font: 650 15px var(--sans); text-transform: uppercase; letter-spacing: .08em; }
 .invitation-grid p { margin: 15px 0 0; color: var(--light-soft); font-size: 15px; }
 .invitation-action { margin-top: auto; }
+/* Homepage invitation: bring it to the client-stories closing-invitation pattern
+   (edit #61B). The armchairs were a tight cover crop with the CTA pushed onto
+   them by margin-top:auto. Instead: top-align the content, keep the CTA with the
+   text block (above the image), and render the armchairs as a defined band at
+   the bottom with breathing room. Borrows from .invitation-compact: the
+   auto-height image band at center bottom, the top-heavy gradient, and
+   flex-start + padding-top. */
+#invitation .invitation-inner { justify-content: flex-start; }
+#invitation .invitation-action { margin-top: clamp(32px, 3vw, 44px); }
+@media (min-width: 901px) {
+  #invitation.invitation {
+    min-height: 1400px;
+    background:
+      linear-gradient(180deg, rgba(9,20,32,.98) 0%, rgba(9,20,32,.92) 30%, rgba(9,20,32,.5) 47%, rgba(9,20,32,.06) 66%, rgba(9,20,32,.2) 100%),
+      var(--ink-950) url("assets/invitation-desktop.jpg") center bottom 64px / auto 720px no-repeat;
+  }
+  #invitation .invitation-inner { min-height: 1400px; padding-top: clamp(84px, 10vw, 130px); }
+}
 .fit-gate { max-width: 700px; margin: 18px auto 0; color: var(--light-soft); font-size: 14px; }
 .site-footer { padding-block: 42px; border-top: 1px solid var(--line-dark); background: var(--ink-950); color: var(--light-soft); font-size: 13px; }
 .footer-grid { display: grid; grid-template-columns: .8fr 1.4fr .8fr; align-items: center; gap: 30px; }
