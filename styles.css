@@ -208,10 +208,9 @@ blockquote { margin: 0; }
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-block: 0 72px;
+    padding-block: 0 60px;
     text-align: left;
   }
-  .hero-content .eyebrow { margin-bottom: 18px; }
   .hero h1 {
     max-width: 600px;
     font-size: clamp(42px, 4.2vw, 48px);
@@ -219,7 +218,7 @@ blockquote { margin: 0; }
   }
   .hero-lede {
     max-width: 540px;
-    margin: 20px 0 24px;
+    margin: 20px 0 34px;
     font-size: clamp(18px, 1.4vw, 19px);
     line-height: 1.48;
   }
@@ -965,8 +964,6 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .case-feature blockquote p { margin: 0; }
 .case-feature blockquote p + p { margin-top: 14px; }
 .chain-lead { max-width: 900px; margin: 60px auto 0; text-align: center; color: var(--copper); font: 500 clamp(20px, 2.2vw, 27px)/1.4 var(--serif); }
-.hero-founder { margin: 18px 0 0; color: rgba(255,255,255,.72); font-size: 14px; letter-spacing: .04em; }
-@media (min-width: 901px) { .hero-founder { text-align: center; } }
 .early-proof { max-width: 860px; margin: 64px auto 0; padding: 30px 34px; border: 1px solid var(--line-dark); border-left: 4px solid var(--copper); }
 .early-proof blockquote p { margin: 0; color: var(--light); font: italic 500 clamp(21px, 2.3vw, 28px)/1.4 var(--serif); }
 .early-proof figcaption { margin-top: 14px; color: var(--copper); font-size: 14px; font-weight: 650; }
