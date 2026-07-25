@@ -276,7 +276,14 @@ blockquote { margin: 0; }
    single left axis of Section 2. */
 .section.distinction > .shell > .section-number,
 .section.distinction > .shell > h2 { margin-inline: 0; text-align: left; }
-.distinction .doctrine { margin-inline: 0; max-width: none; text-align: left; }
+.distinction .doctrine { margin-inline: 0; max-width: none; text-align: left; text-wrap: pretty; }
+/* Section 3 close: a quiet hierarchy between the two closing lines, built
+   from space + weight + brightness only (no divider). The cost line is the
+   consequence of the progression, so it sits close beneath it as a lighter,
+   dimmer lead-in; the doctrine line is the section's resolution, set apart
+   with more air above and carrying full weight and brightness. */
+.distinction .doctrine.compact { margin-top: clamp(22px, 2.6vw, 34px); font-weight: 400; color: rgba(255, 255, 255, .8); }
+.distinction .doctrine:not(.compact) { margin-top: clamp(62px, 6.4vw, 92px); font-weight: 500; color: #ffffff; }
 
 .progression-grid { display: block; margin-top: 56px; }
 .progression-grid article {
