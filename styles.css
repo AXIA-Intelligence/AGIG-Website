@@ -252,11 +252,7 @@ blockquote { margin: 0; }
 .editorial-grid article { min-width: 0; padding: 32px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .editorial-grid h3 { margin: 0 0 12px; }
 .editorial-grid p:last-child { margin-bottom: 0; color: var(--text-soft); }
-.inverse-grid { border-color: var(--line-dark); }
-.inverse-grid article { border-color: var(--line-dark); }
-.inverse-grid p:last-child { color: var(--light-soft); }
 .item-number { margin: 0; color: var(--copper-dark); font: 650 12px/1 var(--sans); letter-spacing: .14em; }
-.inverse-grid .item-number { color: var(--copper); }
 .continuity-chain { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 66px; border-block: 1px solid var(--line-dark); }
 .continuity-chain div { padding: 24px 20px; border-right: 1px solid var(--line-dark); }
 .continuity-chain div:last-child { border: 0; }
@@ -716,49 +712,24 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 /* 3. Center max-width content blocks that read as lists */
 .weight-ladder { margin-inline: auto; }
 
-/* 4. The continuity problem: full-width header over an equal-height
-   image-left / cards-right split (edits #48, #50). Section-scoped so the
-   global centering does not reach the header (it is not a direct .shell
-   child); the trailing lines are left-aligned back to the shell edge so
-   one left margin runs down the whole section. */
+/* 4. The problem, demoted to a short naming beat (edit #60): a left-aligned
+   header, a two-paragraph definition passage at a readable measure, then the
+   doctrine line, chain lead, and Larry's proof quote. No split, no cards, no
+   image. Section-scoped so the global centering does not reach the header
+   (it is not a direct .shell child); every line shares the shell's left edge
+   so one left margin runs down the whole section. */
 .fragments-head { text-align: left; }
-.fragments-head h2 { max-width: 900px; }
-.fragments-split { display: block; margin-top: 44px; }
-.fragments-content { text-align: left; }
-.fragments-content .editorial-grid { margin-top: 0; }
-.fragments-content .editorial-grid.three { grid-template-columns: 1fr; }
-.fragments-visual {
-  aspect-ratio: 4 / 5;
-  display: grid;
-  place-items: center;
-  padding: 24px;
-  margin-bottom: 40px;
-  border: 1px solid var(--line-dark);
-  background: rgba(255, 255, 255, 0.03);
-}
-.fragments-visual span {
-  max-width: 78%;
-  color: var(--light-soft);
-  opacity: .55;
-  font-size: 13px;
-  letter-spacing: .04em;
-  line-height: 1.5;
-  text-align: center;
-}
+.fragments-head h2 { max-width: 900px; text-wrap: balance; }
+/* At the narrowest widths the display h2 can't hold "constant reassembly." on
+   one line; trim it a touch so the closing word never strands. */
+@media (max-width: 400px) { .fragments-head h2 { font-size: clamp(28px, 7.9vw, 34px); } }
+.fragments-passage { margin-top: 36px; max-width: 640px; text-align: left; }
+.fragments-passage p { margin: 0; color: var(--light-soft); font-size: clamp(19px, 2vw, 24px); line-height: 1.5; }
+.fragments-passage p + p { margin-top: 22px; }
 /* Trailing lines share the shell's left edge (not recentered). */
 .fragments .doctrine { margin-inline: 0; max-width: none; text-align: left; }
 .fragments .chain-lead { margin-inline: 0; max-width: none; text-align: left; }
 .fragments .early-proof { margin-inline: 0; }
-@media (min-width: 768px) {
-  .fragments-split {
-    display: grid;
-    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-    gap: clamp(40px, 5vw, 72px);
-    align-items: stretch;
-  }
-  /* Image column fills the full card-stack height, no fixed ratio. */
-  .fragments-visual { margin-bottom: 0; aspect-ratio: auto; }
-}
 
 /* 4b. Operating reality (Section 4): full-width left-aligned header over an
    equal-height content-LEFT / image-RIGHT split — Section 2's locked template
