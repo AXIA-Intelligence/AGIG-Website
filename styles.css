@@ -487,6 +487,14 @@ blockquote { margin: 0; }
 .invitation-heading { max-width: 900px; }
 .invitation h2 { font-size: clamp(42px, 6vw, 76px); }
 .invitation > .invitation-inner > p:not(.eyebrow):not(.fit-gate) { max-width: 700px; margin: 28px auto 34px; color: var(--light-soft); font-size: 19px; }
+/* Applications closing invitation: a compact CTA band. The base .invitation is
+   built to give the armchairs image a full field; here the section carried
+   roughly half a viewport of dead dark space below the button. Reduce the
+   height and center the content so it sits with deliberate space, not floating.
+   Scoped with .invitation.invitation-slim so it overrides the base and the
+   mobile min-height without touching the homepage or client-stories versions. */
+.invitation.invitation-slim, .invitation-slim .invitation-inner { min-height: 620px; }
+.invitation-slim .invitation-inner { justify-content: center; padding-block: 96px; }
 .invitation-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
