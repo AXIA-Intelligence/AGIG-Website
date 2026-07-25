@@ -268,14 +268,37 @@ blockquote { margin: 0; }
 .doctrine.compact { margin-top: 54px; font-size: clamp(26px, 3.3vw, 42px); }
 
 .distinction h2 { max-width: 900px; }
-.progression-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 62px; border: 1px solid var(--line-dark); }
-.progression-grid article { min-width: 0; padding: clamp(30px, 4vw, 52px); }
-.progression-grid article + article { border-left: 1px solid var(--line-dark); }
-.progression-grid .progression-emphasis { background: rgba(200,126,70,.12); box-shadow: inset 0 4px 0 var(--copper); }
-.comparison-label { margin-bottom: 18px; color: var(--copper); }
-/* balances line lengths across the three comparison headings; prevents a single-word final line */
-.progression-grid h3 { min-height: 3.6em; margin-bottom: 22px; font-size: clamp(24px, 2.3vw, 32px); text-wrap: balance; }
-.progression-grid p:last-child { color: var(--light-soft); }
+/* Section 3 — the three levels read as a vertical ascending progression,
+   not a parallel column grid (edit #51). Tiers stack top-to-bottom and
+   gain rail weight, brightness, size, and indent as they rise, so the
+   third tier lands as the destination rather than one of three equals.
+   Header and trailing lines share the shell's left edge, matching the
+   single left axis of Section 2. */
+.section.distinction > .shell > .section-number,
+.section.distinction > .shell > h2 { margin-inline: 0; text-align: left; }
+.distinction .doctrine { margin-inline: 0; max-width: none; text-align: left; }
+
+.progression-grid { display: block; margin-top: 56px; }
+.progression-grid article {
+  min-width: 0;
+  padding: clamp(22px, 3vw, 34px) clamp(22px, 3vw, 38px);
+  border-left: 2px solid rgba(255, 255, 255, .16);
+}
+.progression-grid article + article { margin-top: clamp(14px, 1.8vw, 22px); }
+.comparison-label { margin-bottom: 14px; color: var(--copper); }
+.progression-grid h3 { margin-bottom: 16px; font-size: clamp(24px, 2.3vw, 32px); text-wrap: pretty; color: rgba(255, 255, 255, .74); }
+.progression-grid p:last-child { color: rgba(255, 255, 255, .56); text-wrap: pretty; }
+
+/* Tier 2 — heavier rail, brighter, stepped in from the base line. */
+.progression-grid article:nth-child(2) { margin-left: clamp(14px, 2.6vw, 36px); border-left-width: 3px; border-left-color: rgba(200, 126, 70, .55); }
+.progression-grid article:nth-child(2) h3 { color: rgba(255, 255, 255, .88); }
+.progression-grid article:nth-child(2) p:last-child { color: rgba(255, 255, 255, .7); }
+
+/* Tier 3 — the destination: furthest in, copper-lit fill, heaviest rail,
+   brightest and largest heading. */
+.progression-grid .progression-emphasis { margin-left: clamp(28px, 5vw, 70px); border-left: 4px solid var(--copper); background: rgba(200, 126, 70, .12); }
+.progression-emphasis h3 { font-size: clamp(28px, 3vw, 40px); color: #ffffff; }
+.progression-emphasis p:last-child { color: rgba(255, 255, 255, .82); }
 .prompt-close { margin: 34px 0 0; max-width: 850px; color: var(--copper); font: 500 clamp(20px, 2.3vw, 29px)/1.4 var(--serif); }
 .doctrine-note { max-width: 900px; margin: 30px 0 0; color: var(--light-soft); }
 .proof-line { max-width: 920px; margin: 58px 0 0; padding-top: 28px; border-top: 1px solid var(--line); font: italic 500 clamp(24px, 3vw, 39px)/1.36 var(--serif); }
@@ -554,8 +577,7 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
   .hero-content { padding-block: 50px 62px; }
   .hero h1 { max-width: none; }
   .split, .trust-grid, .story-layout { grid-template-columns: 1fr; gap: 48px; }
-  .progression-grid, .editorial-grid.three, .editorial-grid.six, .system-grid, .trust-progression { grid-template-columns: repeat(2, 1fr); }
-  .progression-grid article:nth-child(3) { grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--line-dark); }
+  .editorial-grid.three, .editorial-grid.six, .system-grid, .trust-progression { grid-template-columns: repeat(2, 1fr); }
   .continuity-chain { grid-template-columns: repeat(2, 1fr); }
   .continuity-chain div { border-bottom: 1px solid var(--line-dark); }
   .continuity-chain div:nth-child(2n) { border-right: 0; }
@@ -584,6 +606,17 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
   .invitation-grid article + article { border-left: 0; border-top: 1px solid var(--line-dark); }
 }
 
+/* Narrow screens: drop the indent stagger (it only crowds the column here)
+   and let the ascending read come from the escalating left rail, the copper
+   fill, and rising brightness. Flush tiers give the tier-3 heading the full
+   width it needs to break without stranding a lone word. */
+@media (max-width: 560px) {
+  .progression-grid article { padding: clamp(20px, 4vw, 26px) 12px; }
+  .progression-grid article:nth-child(2) { margin-left: 0; }
+  .progression-grid .progression-emphasis { margin-left: 0; }
+  .progression-emphasis h3 { font-size: 24px; }
+}
+
 @media (max-width: 640px) {
   body { font-size: 16px; }
   .shell, .container, .nav-shell { width: min(calc(100% - 32px), var(--shell)); }
@@ -609,9 +642,7 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
   .section { padding-block: 72px; }
   .weight-ladder { margin-top: 42px; grid-template-columns: 1fr; }
   .weight-ladder li { grid-template-columns: 36px 1fr; gap: 10px; }
-  .editorial-grid.three, .editorial-grid.six, .progression-grid, .system-grid, .trust-progression { grid-template-columns: 1fr; }
-  .progression-grid article + article, .progression-grid article:nth-child(3) { grid-column: auto; border-left: 0; border-top: 1px solid var(--line-dark); }
-  .progression-grid h3 { min-height: 0; }
+  .editorial-grid.three, .editorial-grid.six, .system-grid, .trust-progression { grid-template-columns: 1fr; }
   .continuity-chain { grid-template-columns: 1fr; }
   .continuity-chain div { border-right: 0; }
   .compound-map section { padding: 28px 22px; }
