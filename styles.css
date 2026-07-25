@@ -712,25 +712,6 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 /* 3. Center max-width content blocks that read as lists */
 .weight-ladder { margin-inline: auto; }
 
-/* 4. The problem, demoted to a short naming beat (edit #60): a left-aligned
-   header, a two-paragraph definition passage at a readable measure, then the
-   doctrine line, chain lead, and Larry's proof quote. No split, no cards, no
-   image. Section-scoped so the global centering does not reach the header
-   (it is not a direct .shell child); every line shares the shell's left edge
-   so one left margin runs down the whole section. */
-.fragments-head { text-align: left; }
-.fragments-head h2 { max-width: 900px; text-wrap: balance; }
-/* At the narrowest widths the display h2 can't hold "constant reassembly." on
-   one line; trim it a touch so the closing word never strands. */
-@media (max-width: 400px) { .fragments-head h2 { font-size: clamp(28px, 7.9vw, 34px); } }
-.fragments-passage { margin-top: 36px; max-width: 640px; text-align: left; }
-.fragments-passage p { margin: 0; color: var(--light-soft); font-size: clamp(19px, 2vw, 24px); line-height: 1.5; }
-.fragments-passage p + p { margin-top: 22px; }
-/* Trailing lines share the shell's left edge (not recentered). */
-.fragments .doctrine { margin-inline: 0; max-width: none; text-align: left; }
-.fragments .chain-lead { margin-inline: 0; max-width: none; text-align: left; }
-.fragments .early-proof { margin-inline: 0; }
-
 /* 4b. Operating reality (Section 4): full-width left-aligned header over an
    equal-height content-LEFT / image-RIGHT split — Section 2's locked template
    mirrored (edit #55). Section-scoped (.world-*) so the global centered
@@ -908,6 +889,15 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .weight-ladder li strong { color: var(--light); }
 .weight-ladder .weight-final { color: var(--light); }
 .weight-section .recognition-close { margin-inline: 0; text-align: left; max-width: 620px; color: var(--light); }
+/* Appended problem statement (edit #61): the definition passage, doctrine line,
+   and chain lead join the ladder's left axis and column so they sit over the
+   permanently-dark left field of the scrim, not the lit right side of the
+   image. Readable measure, near-white for legibility over the footage. */
+.weight-passage { max-width: 620px; margin: 38px 0 0; }
+.weight-passage p { margin: 0; font-size: clamp(19px, 2vw, 24px); line-height: 1.5; color: rgba(233, 239, 246, .92); text-wrap: pretty; }
+.weight-passage p + p { margin-top: 22px; }
+.weight-section .doctrine { margin-inline: 0; max-width: 620px; text-align: left; color: var(--light); }
+.weight-section .chain-lead { margin-inline: 0; max-width: 620px; text-align: left; }
 
 @media (max-width: 900px) {
   /* Stack: media strip on top (man intact), copy below on solid ink */
@@ -935,9 +925,13 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .case-feature blockquote p { margin: 0; }
 .case-feature blockquote p + p { margin-top: 14px; }
 .chain-lead { max-width: 900px; margin: 60px auto 0; text-align: center; color: var(--copper); font: 500 clamp(20px, 2.2vw, 27px)/1.4 var(--serif); }
-.early-proof { max-width: 860px; margin: 64px auto 0; padding: 30px 34px; border: 1px solid var(--line-dark); border-left: 4px solid var(--copper); }
-.early-proof blockquote p { margin: 0; color: var(--light); font: italic 500 clamp(21px, 2.3vw, 28px)/1.4 var(--serif); }
-.early-proof figcaption { margin-top: 14px; color: var(--copper); font-size: 14px; font-weight: 650; }
+/* Larry's testimonial, migrated into the warm client-proof section (edit #61):
+   a bordered pull-quote landing his own words after his case-feature. Light
+   palette to sit on the warm field. */
+.early-proof { max-width: 860px; margin: 44px 0 0; padding: 30px 34px; border: 1px solid var(--line); border-left: 4px solid var(--copper); }
+.early-proof blockquote { margin: 0; }
+.early-proof blockquote p { margin: 0; color: var(--text); font: italic 500 clamp(21px, 2.3vw, 28px)/1.4 var(--serif); }
+.early-proof figcaption { margin-top: 14px; color: var(--copper-dark); font-size: 14px; font-weight: 650; }
 .pci-portability { margin: 18px 0 0; font-size: 15px; color: var(--light-soft); }
 .pci-portability strong { display: block; color: var(--copper); margin-bottom: 6px; }
 .canonical-statement { max-width: 680px; margin: 26px 0 0; color: var(--light-soft); font-size: clamp(17px, 1.6vw, 20px); line-height: 1.6; }
