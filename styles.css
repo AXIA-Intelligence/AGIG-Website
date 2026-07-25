@@ -245,7 +245,6 @@ blockquote { margin: 0; }
 .weight-ladder li p { margin: 0; }
 .weight-ladder li strong { color: var(--text); font-weight: 650; }
 .weight-ladder .weight-final { grid-column: 1 / -1; font-size: clamp(20px, 2vw, 26px); color: var(--text); }
-.recognition-close { max-width: 820px; margin: 36px 0 0; font: italic 500 clamp(24px, 3vw, 38px)/1.35 var(--serif); }
 .editorial-grid { display: grid; margin-top: 64px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
 .editorial-grid.three { grid-template-columns: repeat(3, 1fr); }
 .editorial-grid.six { grid-template-columns: repeat(3, 1fr); }
@@ -701,7 +700,7 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 }
 
 /* 2. Closing / doctrine lines */
-.recognition-close, .doctrine, .prompt-close, .doctrine-note,
+.doctrine, .prompt-close, .doctrine-note,
 .proof-line, .signature-line, .governance-line, .boundary-line,
 .system-close, .trust-subhead, .trust-line, .privacy-note {
   margin-inline: auto;
@@ -888,16 +887,15 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .weight-ladder li::before { color: var(--copper); }
 .weight-ladder li strong { color: var(--light); }
 .weight-ladder .weight-final { color: var(--light); }
-.weight-section .recognition-close { margin-inline: 0; text-align: left; max-width: 620px; color: var(--light); }
-/* Appended problem statement (edit #61): the definition passage, doctrine line,
-   and chain lead join the ladder's left axis and column so they sit over the
-   permanently-dark left field of the scrim, not the lit right side of the
-   image. Readable measure, near-white for legibility over the footage. */
-.weight-passage { max-width: 620px; margin: 38px 0 0; }
+/* The complete problem statement, ending on diagnosis (edits #61, #62): the
+   reassembly passage follows the ladder directly and the doctrine line is the
+   section's final word. Both join the ladder's left axis and column so they sit
+   over the permanently-dark left field of the scrim, not the lit right side of
+   the image. Readable measure, near-white for legibility over the footage. */
+.weight-passage { max-width: 620px; margin: 46px 0 0; }
 .weight-passage p { margin: 0; font-size: clamp(19px, 2vw, 24px); line-height: 1.5; color: rgba(233, 239, 246, .92); text-wrap: pretty; }
 .weight-passage p + p { margin-top: 22px; }
-.weight-section .doctrine { margin-inline: 0; max-width: 620px; text-align: left; color: var(--light); }
-.weight-section .chain-lead { margin-inline: 0; max-width: 620px; text-align: left; }
+.weight-section .doctrine { margin: 52px 0 0; max-width: 620px; text-align: left; color: var(--light); text-wrap: balance; }
 
 @media (max-width: 900px) {
   /* Stack: media strip on top (man intact), copy below on solid ink */
@@ -924,7 +922,6 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .ia-definition p { margin: 0; color: var(--light-soft); font: 400 clamp(17px, 1.5vw, 20px)/1.65 var(--sans); }
 .case-feature blockquote p { margin: 0; }
 .case-feature blockquote p + p { margin-top: 14px; }
-.chain-lead { max-width: 900px; margin: 60px auto 0; text-align: center; color: var(--copper); font: 500 clamp(20px, 2.2vw, 27px)/1.4 var(--serif); }
 /* Larry's testimonial, migrated into the warm client-proof section (edit #61):
    a bordered pull-quote landing his own words after his case-feature. Light
    palette to sit on the warm field. */
