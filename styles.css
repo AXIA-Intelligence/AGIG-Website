@@ -364,6 +364,38 @@ blockquote { margin: 0; }
 .day-attribution { margin: 22px 0 0; color: var(--copper); font-size: 14px; font-weight: 650; }
 .day-boundary { margin: 12px 0 0; color: var(--text-soft); font-size: 13px; }
 
+/* Section 6 outcome groups, now cardless (edit #57): the nine capability cards
+   moved to Applications, so the three outcomes read as a ruled vertical sequence
+   — each a promoted serif claim over its supporting line — rather than an
+   emptied grid. Scoped to .practical so the migrated Applications copies keep
+   the original grouped-card treatment. */
+.practical .system-groups { max-width: 900px; }
+.practical .system-group { border-top: 1px solid var(--line); padding-top: 30px; }
+.practical .system-group + .system-group { margin-top: 40px; }
+.practical .group-claim { margin-bottom: 12px; color: var(--text); font: 500 clamp(24px, 2.6vw, 33px)/1.22 var(--serif); text-wrap: balance; }
+.practical .group-line { max-width: 760px; margin-bottom: 0; font-size: clamp(16px, 1.5vw, 18px); }
+.practical .breadcrumb-link { margin-top: 44px; }
+
+/* The permit artifact migrated into Larry's story (edit #57): restore its own
+   header, kicker, and step styling over the generic .story-body h3/p rules. */
+.story-body .case-day { margin-block: 44px; }
+.story-body .case-day > header h3 { font: 500 clamp(25px, 2.7vw, 34px)/1.16 var(--serif); color: var(--text); text-transform: none; letter-spacing: normal; }
+.story-body .case-day .proof-kicker { color: var(--copper-dark); }
+.story-body .case-day .day-lead { color: var(--text); }
+.story-body .case-day .day-close { color: var(--text); }
+
+/* Widow control on the migrated / surviving copy (edit #57). */
+.practical h2, .in-practice h2 { text-wrap: balance; }
+.practical .section-number, .practical .group-line, .practical .boundary-line, .practical .system-close,
+.in-practice .section-number, .in-practice .group-line,
+.system-grid p, .day-steps p, .day-close { text-wrap: pretty; }
+/* Narrowest widths: trim the display H2 and the boundary line so their long
+   closing words ("impressive.", "judgment.") never strand. */
+@media (max-width: 400px) {
+  .practical h2 { font-size: clamp(27px, 8vw, 34px); }
+  .practical .boundary-line { font-size: 20px; }
+}
+
 .proof-section h2 { max-width: 960px; }
 .proof-section > .shell > .section-lede { margin-top: 30px; }
 .case-feature { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; margin-top: 68px; padding: clamp(38px, 6vw, 72px); background: var(--ink-900); color: var(--light); }
