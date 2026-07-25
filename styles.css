@@ -203,12 +203,17 @@ blockquote { margin: 0; }
 .hero-lede, .lede { max-width: 690px; margin: 32px 0; color: var(--light); font-size: clamp(19px, 2vw, 24px); line-height: 1.5; }
 .hero-actions { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
 @media (min-width: 901px) {
+  /* Raise the text block to the subject's eyeline (edit #64): anchor to the top
+     instead of the bottom and offset the H1's top edge to ~36svh, which tracks
+     the eyeline (a fixed fraction of the top-pinned cover image) across viewport
+     heights. Horizontal position and the dark left column are unchanged. */
+  .hero { align-items: flex-start; }
   .hero-content {
     z-index: 3;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-block: 0 60px;
+    padding-block: 36svh 60px;
     text-align: left;
   }
   .hero h1 {
