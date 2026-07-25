@@ -669,14 +669,16 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 /* 3. Center max-width content blocks that read as lists */
 .weight-ladder { margin-inline: auto; }
 
-/* 4. The continuity problem: genuine image-left / content-right split (edit #48).
-   Section-scoped (.fragments-split), so the global .section > .shell > h2
-   centering never applies (header/doctrine are no longer direct .shell
-   children) and this is untouched by the .split display:block overrides. */
-.fragments-split { display: block; }
+/* 4. The continuity problem: full-width header over an equal-height
+   image-left / cards-right split (edits #48, #50). Section-scoped so the
+   global centering does not reach the header (it is not a direct .shell
+   child); the trailing lines are left-aligned back to the shell edge so
+   one left margin runs down the whole section. */
+.fragments-head { text-align: left; }
+.fragments-head h2 { max-width: 900px; }
+.fragments-split { display: block; margin-top: 44px; }
 .fragments-content { text-align: left; }
-.fragments-content .doctrine { margin-inline: 0; max-width: none; text-align: left; }
-.fragments-content .editorial-grid { margin-top: 40px; }
+.fragments-content .editorial-grid { margin-top: 0; }
 .fragments-content .editorial-grid.three { grid-template-columns: 1fr; }
 .fragments-visual {
   aspect-ratio: 4 / 5;
@@ -696,14 +698,19 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
   line-height: 1.5;
   text-align: center;
 }
+/* Trailing lines share the shell's left edge (not recentered). */
+.fragments .doctrine { margin-inline: 0; max-width: none; text-align: left; }
+.fragments .chain-lead { margin-inline: 0; max-width: none; text-align: left; }
+.fragments .early-proof { margin-inline: 0; }
 @media (min-width: 768px) {
   .fragments-split {
     display: grid;
     grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
     gap: clamp(40px, 5vw, 72px);
-    align-items: start;
+    align-items: stretch;
   }
-  .fragments-visual { margin-bottom: 0; }
+  /* Image column fills the full card-stack height, no fixed ratio. */
+  .fragments-visual { margin-bottom: 0; aspect-ratio: auto; }
 }
 
 /* 5. Outcomes: retire the 1.2/.8 end-aligned grid that stranded the right column */
