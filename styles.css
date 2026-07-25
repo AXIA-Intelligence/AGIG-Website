@@ -525,8 +525,11 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .pathway-list article > div:last-child > p, .pathway-list li { color: var(--text-soft); }
 
 /* Client stories */
-.privacy-statement { padding-block: 28px; background: var(--copper); color: var(--ink-950); }
-.privacy-statement p { max-width: 980px; margin: 0; font-weight: 550; }
+/* The editorial/privacy statement, moved to fine print at the page close
+   (edit #59B): reuse the claims-boundary treatment in its dark-surface variant
+   so it reads as a footnote below the invitation CTA, not as its own section. */
+.invitation .stories-privacy-note { max-width: 720px; margin: 40px auto 0; text-align: left; border-color: var(--line-dark); background: rgba(200, 126, 70, .1); }
+.invitation .stories-privacy-note p { margin: 0; color: var(--light-soft); font-size: 15px; line-height: 1.6; text-wrap: pretty; }
 .story-index { position: sticky; top: 0; z-index: 10; background: var(--paper-light); border-bottom: 1px solid var(--line); }
 .story-index .shell { display: grid; grid-template-columns: repeat(4, 1fr); }
 .story-index a { min-height: 72px; display: flex; flex-direction: column; justify-content: center; padding: 12px 18px; text-decoration: none; font-weight: 650; }
