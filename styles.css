@@ -894,8 +894,11 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
    the image. Readable measure, near-white for legibility over the footage. */
 .weight-passage { max-width: 620px; margin: 46px 0 0; }
 .weight-passage p { margin: 0; font-size: clamp(19px, 2vw, 24px); line-height: 1.5; color: rgba(233, 239, 246, .92); text-wrap: pretty; }
-.weight-passage p + p { margin-top: 22px; }
-.weight-section .doctrine { margin: 52px 0 0; max-width: 620px; text-align: left; color: var(--light); text-wrap: balance; }
+/* The second paragraph lands the cost: promoted to the italic serif display
+   treatment the doctrine line vacated (edit #65), and set apart with more air so
+   it reads as the section's deliberate close, not a continuation of the body
+   paragraph above it. Same treatment the weight doctrine used. */
+.weight-passage p:last-child { margin-top: 42px; color: var(--light); font: italic 500 clamp(26px, 3.3vw, 42px)/1.25 var(--serif); text-wrap: balance; }
 
 @media (max-width: 900px) {
   /* Stack: media strip on top (man intact), copy below on solid ink */
