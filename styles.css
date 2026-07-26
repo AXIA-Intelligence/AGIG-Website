@@ -629,19 +629,6 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .quote-founder { margin-top: 36px; font: italic 500 clamp(25px, 3vw, 38px)/1.4 var(--serif); }
 .attribution-name { margin: 22px 0 0; font-weight: 700; }
 .attribution-title { color: var(--text-soft); font-size: 14px; }
-/* Earned reliance ladder, migrated from the homepage trust section. Warm so it
-   alternates against the light editorial section above and the dark lineage
-   section below; laid out with the site's editorial-grid card pattern. */
-.reliance-ladder { padding-block: var(--section); background: var(--warm); }
-.reliance-ladder .reliance-grid span { display: block; margin-bottom: 14px; color: var(--copper-dark); font-size: 12px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
-.reliance-grid h3 { text-wrap: balance; }
-.reliance-grid p { text-wrap: pretty; }
-.reliance-ladder .trust-line { text-wrap: pretty; }
-@media (max-width: 340px) {
-  /* Trim the ladder headings on the narrowest screens so "environment" doesn't
-     strand alone. */
-  .reliance-grid h3 { font-size: 21px; }
-}
 .lineage { padding-block: var(--section); background: var(--ink-900); color: var(--light); }
 .lineage-intro { max-width: 760px; }
 .lede-small { color: var(--light-soft); font-size: 18px; }
