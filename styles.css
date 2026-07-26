@@ -202,6 +202,10 @@ blockquote { margin: 0; }
      subject sits to the right (partly off-frame on narrow viewports). */
   object-position: 30% center;
 }
+/* Ambient hero loop: poster-backed video over the still, same object-position
+   as .hero-media img so the poster-to-video handoff has no jump. Sits below the
+   scrim (z-index 1 vs the scrim's 2) so the left text zone stays dark. */
+.hero-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 30% center; z-index: 1; border: 0; }
 .hero-scrim { background: linear-gradient(90deg, rgba(9,20,32,.98) 0%, rgba(9,20,32,.88) 45%, rgba(9,20,32,.52) 62%, rgba(9,20,32,.1) 88%), linear-gradient(0deg, rgba(9,20,32,.92) 0%, transparent 58%); }
 .hero-content { position: relative; z-index: 1; padding-block: 0 48px; }
 .hero h1 { max-width: 820px; }
@@ -741,6 +745,7 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
   .hero-media img {
     object-position: 18% center;
   }
+  .hero-media video { display: none; }
   .hero-scrim {
     top: 78px;
     height: 340px;
@@ -780,6 +785,7 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
   }
+  .hero-media video { display: none; }
 }
 
 /* ===== v18 CANDIDATE — Alignment unification =====
