@@ -462,8 +462,7 @@ blockquote { margin: 0; }
 .accordion details > div { padding: 0 44px 22px 0; color: var(--text-soft); }
 .accordion details > div p { margin: 0; }
 .trust { background: var(--ink-900); color: var(--light); }
-.trust-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 100px; }
-.trust-points { display: grid; grid-template-columns: 1fr 1fr; gap: 42px 34px; }
+.trust-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 42px 34px; }
 .trust-points h3 { font: 650 17px var(--sans); color: var(--copper); }
 .trust-points p { margin-top: 9px; color: var(--light-soft); font-size: 15px; text-wrap: pretty; }
 .trust-points .text-button { grid-column: 1 / -1; justify-self: start; }
@@ -687,7 +686,7 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
   }
   .hero-content { padding-block: 50px 62px; }
   .hero h1 { max-width: none; }
-  .split, .trust-grid, .story-layout { grid-template-columns: 1fr; gap: 48px; }
+  .split, .story-layout { grid-template-columns: 1fr; gap: 48px; }
   .editorial-grid.three, .editorial-grid.six, .system-grid { grid-template-columns: repeat(2, 1fr); }
   .continuity-chain { grid-template-columns: repeat(2, 1fr); }
   .continuity-chain div { border-bottom: 1px solid var(--line-dark); }
@@ -902,10 +901,12 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
   margin-inline: auto;
 }
 
-/* 8. Fit, trust, and authority: centered statement above centered trust points */
+/* 8. Authority and privacy: one centered axis — eyebrow, headline, and canonical
+   statement all centered; three trust points in one centered row beneath. */
 .trust .trust-grid { display: block; }
 .trust .trust-grid > div:first-child { text-align: center; }
 .trust .trust-grid h2 { max-width: 900px; margin-inline: auto; }
+.trust .canonical-statement { margin-inline: auto; text-align: center; }
 .trust-points { max-width: 900px; margin: 58px auto 0; text-align: left; }
 .trust-points .text-button { justify-self: center; }
 
