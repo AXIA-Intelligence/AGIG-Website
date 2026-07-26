@@ -380,6 +380,7 @@ blockquote { margin: 0; }
 .practical .group-claim { margin-bottom: 12px; color: var(--text); font: 500 clamp(24px, 2.6vw, 33px)/1.22 var(--serif); text-wrap: balance; }
 .practical .group-line { max-width: 760px; margin-bottom: 0; font-size: clamp(16px, 1.5vw, 18px); }
 .practical .breadcrumb-link { margin-top: 44px; }
+.practical .breadcrumb-link { display: flex; width: fit-content; margin-inline: auto; }
 
 /* The permit artifact migrated into Larry's story (edit #57): restore its own
    header, kicker, and step styling over the generic .story-body h3/p rules. */
