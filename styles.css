@@ -257,7 +257,6 @@ blockquote { margin: 0; }
 .weight-ladder .weight-final { grid-column: 1 / -1; font-size: clamp(20px, 2vw, 26px); color: var(--text); }
 .editorial-grid { display: grid; margin-top: 64px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
 .editorial-grid.three { grid-template-columns: repeat(3, 1fr); }
-.editorial-grid.six { grid-template-columns: repeat(3, 1fr); }
 .editorial-grid article { min-width: 0; padding: 32px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .editorial-grid h3 { margin: 0 0 12px; }
 .editorial-grid p:last-child { margin-bottom: 0; color: var(--text-soft); }
@@ -646,7 +645,7 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
   .hero-content { padding-block: 50px 62px; }
   .hero h1 { max-width: none; }
   .split, .story-layout { grid-template-columns: 1fr; gap: 48px; }
-  .editorial-grid.three, .editorial-grid.six { grid-template-columns: repeat(2, 1fr); }
+  .editorial-grid.three { grid-template-columns: repeat(2, 1fr); }
   .continuity-chain { grid-template-columns: repeat(2, 1fr); }
   .continuity-chain div { border-bottom: 1px solid var(--line-dark); }
   .continuity-chain div:nth-child(2n) { border-right: 0; }
@@ -707,7 +706,7 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
   .section { padding-block: 72px; }
   .weight-ladder { margin-top: 42px; grid-template-columns: 1fr; }
   .weight-ladder li { grid-template-columns: 36px 1fr; gap: 10px; }
-  .editorial-grid.three, .editorial-grid.six { grid-template-columns: 1fr; }
+  .editorial-grid.three { grid-template-columns: 1fr; }
   .continuity-chain { grid-template-columns: 1fr; }
   .continuity-chain div { border-right: 0; }
   .day-steps li { grid-template-columns: 1fr; gap: 6px; }
@@ -773,49 +772,18 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .world-head { text-align: left; }
 .world-head h2 { max-width: 900px; }
 .world-split { display: block; margin-top: 44px; }
-.world-content { text-align: left; }
+.world-content { text-align: left; max-width: 900px; }
 .world-content .section-lede { margin-top: 0; }
 .world-content .editorial-grid { margin-top: 34px; }
-.world-content .editorial-grid.six { grid-template-columns: 1fr; }
-/* The five areas stay one stacked column at every width — no 2-col variant. */
-.world-content .editorial-grid.five { grid-template-columns: 1fr; }
+/* The five areas stay one stacked column at every width — no 2-col variant.
+   Left border and article left-padding dropped so the item headings sit flush
+   on the section's left spine with the eyebrow, h2, lede, and closing line. */
+.world-content .editorial-grid.five { grid-template-columns: 1fr; border-left: 0; }
+.world-content .editorial-grid.five article { padding-left: 0; }
 .world-content .editorial-grid h3, .world-content .editorial-grid p { text-wrap: pretty; }
 /* Closing line sits on the section's left axis (inherits .world-content left),
    quieter than the grid. */
 .world-content .world-close { margin: 26px 0 0; color: var(--text-soft); }
-.world-visual {
-  aspect-ratio: 4 / 5;
-  display: grid;
-  place-items: center;
-  padding: 24px;
-  margin-top: 40px;
-  border: 1px solid var(--line);
-  background: rgba(11, 26, 43, 0.04);
-}
-.world-visual span {
-  max-width: 78%;
-  color: var(--text-soft);
-  opacity: .75;
-  font-size: 13px;
-  letter-spacing: .04em;
-  line-height: 1.5;
-  text-align: center;
-}
-@media (min-width: 768px) {
-  .world-split {
-    display: grid;
-    grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
-    gap: clamp(40px, 5vw, 72px);
-    align-items: stretch;
-  }
-  /* Image column fills the full content-stack height, no fixed ratio. */
-  .world-visual { margin-top: 0; aspect-ratio: auto; }
-}
-/* The six facets stay a single stacked column until the content column is
-   wide enough to hold two without stranding words; then they read as 2×3. */
-@media (min-width: 1024px) {
-  .world-content .editorial-grid.six { grid-template-columns: 1fr 1fr; }
-}
 
 /* 5. Outcomes: retire the 1.2/.8 end-aligned grid that stranded the right column */
 .outcome-heading { display: block; text-align: left; }
