@@ -280,6 +280,7 @@ blockquote { margin: 0; }
    single left axis of Section 2. */
 .section.distinction > .shell > .section-number,
 .section.distinction > .shell > h2 { margin-inline: 0; text-align: left; }
+.section.distinction > .shell > .section-lede { margin-inline: 0; text-align: left; }
 /* Section 3 close: the doctrine line is the sole close (edit #54 removed the
    cost line). It sits a deliberate distance below the copper tier-3 block —
    enough air to read as the section's final word without floating. Full
