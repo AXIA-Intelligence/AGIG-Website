@@ -607,7 +607,18 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .about-hero, .about-invite { min-height: 680px; position: relative; display: grid; place-items: center; background: var(--ink-900); color: var(--light); text-align: center; }
 .scene-scrim { position: absolute; inset: 0; background: rgba(9,20,32,.68); }
 .scene-content { position: relative; z-index: 1; width: min(calc(100% - 48px), 900px); }
-.about-hero { background-image: linear-gradient(rgba(9,20,32,.5),rgba(9,20,32,.8)), url("assets/founder-wide.jpg"); background-size: cover; background-position: center; }
+/* Hero is a plain dark panel (inherits var(--ink-900)); the founder photograph
+   now lives only in the captioned figure below. Shorter than the shared 680px
+   since it holds only an eyebrow, a name, and a lede. .about-invite untouched. */
+.about-hero { min-height: 420px; }
+/* At >=901px the site-wide `#main > section:not(.hero):not(.invitation)` rule
+   forces every section (incl. this hero) to min-height:100svh. Scope a higher-
+   specificity desktop override — .scene.about-hero ties that rule's specificity
+   and wins on source order — so the de-photographed hero collapses to a compact
+   panel instead of standing a full viewport tall. .about-invite stays 100svh. */
+@media (min-width: 901px) {
+  #main > section.scene.about-hero { min-height: 420px; }
+}
 .about-hero .portrait { display: none; }
 .about-copy, .editorial { padding-block: var(--section); background: var(--paper); }
 .editorial h2 { margin-top: 64px; }
@@ -618,19 +629,6 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .quote-founder { margin-top: 36px; font: italic 500 clamp(25px, 3vw, 38px)/1.4 var(--serif); }
 .attribution-name { margin: 22px 0 0; font-weight: 700; }
 .attribution-title { color: var(--text-soft); font-size: 14px; }
-/* Earned reliance ladder, migrated from the homepage trust section. Warm so it
-   alternates against the light editorial section above and the dark lineage
-   section below; laid out with the site's editorial-grid card pattern. */
-.reliance-ladder { padding-block: var(--section); background: var(--warm); }
-.reliance-ladder .reliance-grid span { display: block; margin-bottom: 14px; color: var(--copper-dark); font-size: 12px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
-.reliance-grid h3 { text-wrap: balance; }
-.reliance-grid p { text-wrap: pretty; }
-.reliance-ladder .trust-line { text-wrap: pretty; }
-@media (max-width: 340px) {
-  /* Trim the ladder headings on the narrowest screens so "environment" doesn't
-     strand alone. */
-  .reliance-grid h3 { font-size: 21px; }
-}
 .lineage { padding-block: var(--section); background: var(--ink-900); color: var(--light); }
 .lineage-intro { max-width: 760px; }
 .lede-small { color: var(--light-soft); font-size: 18px; }
@@ -894,6 +892,8 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .proof-section > .shell > .section-number,
 .proof-section > .shell > h2 { margin-inline: 0; text-align: left; }
 .earned-trust > .shell > .section-number { margin-inline: 0; text-align: left; }
+/* Quiet closing line under the outcome grid, on the section's left spine. */
+.earned-trust .earned-close { margin: 40px 0 0; max-width: 720px; color: var(--light-soft); }
 .accordion { max-width: 900px; margin: 52px auto 0; }
 
 /* 7. Engagement: centered header above centered steps */
