@@ -448,6 +448,14 @@ blockquote { margin: 0; }
 .invitation-leadin .shell { max-width: 900px; }
 .invitation-leadin h3 { font-size: clamp(27px, 3vw, 38px); text-wrap: balance; }
 .invitation-leadin p { max-width: 720px; margin: 18px auto 0; color: var(--light-soft); text-wrap: pretty; }
+/* Engagement steps reused inside the dark lead-in: a centred column whose rows
+   read left-aligned, recoloured for the dark background, with step-sized
+   headings (not the large lead-in h3). */
+.invitation-leadin .deployment-steps { max-width: 720px; margin: 34px auto 0; text-align: left; }
+.invitation-leadin .deployment-steps li { border-bottom-color: var(--line-dark); }
+.invitation-leadin .deployment-steps li > span { color: var(--copper); }
+.invitation-leadin .deployment-steps h3 { font-size: clamp(19px, 2vw, 22px); margin: 0 0 8px; color: var(--light); text-wrap: balance; }
+.invitation-leadin .deployment-steps p { max-width: none; margin: 0; color: rgba(255, 255, 255, .7); }
 
 .outcome-heading { display: grid; grid-template-columns: 1.2fr .8fr; align-items: end; gap: 72px; }
 .outcome-heading h2 { font-size: clamp(48px, 7vw, 88px); }
@@ -828,7 +836,12 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .world-content .section-lede { margin-top: 0; }
 .world-content .editorial-grid { margin-top: 34px; }
 .world-content .editorial-grid.six { grid-template-columns: 1fr; }
+/* The five areas stay one stacked column at every width — no 2-col variant. */
+.world-content .editorial-grid.five { grid-template-columns: 1fr; }
 .world-content .editorial-grid h3, .world-content .editorial-grid p { text-wrap: pretty; }
+/* Closing line sits on the section's left axis (inherits .world-content left),
+   quieter than the grid. */
+.world-content .world-close { margin: 26px 0 0; color: var(--text-soft); }
 .world-visual {
   aspect-ratio: 4 / 5;
   display: grid;
