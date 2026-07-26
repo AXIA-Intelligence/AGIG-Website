@@ -902,7 +902,7 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .outcome-heading p {
   text-align: left;
   max-width: 580px;
-  margin-inline: auto;
+  margin-inline: 0;
 }
 .about-hero .lede {
   text-align: left;
