@@ -207,6 +207,7 @@ blockquote { margin: 0; }
 .hero h1 { max-width: 820px; }
 .hero-lede, .lede { max-width: 690px; margin: 32px 0; color: var(--light); font-size: clamp(19px, 2vw, 24px); line-height: 1.5; }
 .hero-actions { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
+.hero .cta-note { margin: 16px 0 0; max-width: 420px; color: var(--light-soft); font-size: 15px; line-height: 1.5; }
 @media (min-width: 901px) {
   /* Raise the text block to the subject's eyeline (edit #64): anchor to the top
      instead of the bottom and offset the H1's top edge to ~36svh, which tracks
