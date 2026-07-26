@@ -856,14 +856,23 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 }
 
 /* 5. Outcomes: retire the 1.2/.8 end-aligned grid that stranded the right column */
-.outcome-heading { display: block; text-align: center; }
-.outcome-heading h2 { max-width: 1060px; margin-inline: auto; font-size: clamp(44px, 5.6vw, 72px); }
-.outcome-heading p { max-width: 700px; margin: 26px auto 0; }
+.outcome-heading { display: block; text-align: left; }
+.outcome-heading h2 { max-width: 1060px; margin-inline: 0; font-size: clamp(44px, 5.6vw, 72px); }
+.outcome-heading p { max-width: 700px; margin: 26px 0 0; }
 
 /* 6. Practical questions: centered header above a centered accordion */
 .objections .shell.split { display: block; }
-.objections .section-number, .objections h2 { margin-inline: auto; text-align: center; }
+.objections .section-number, .objections h2 { margin-inline: 0; text-align: left; }
 .objections h2 { max-width: 820px; }
+.objections .accordion { margin-inline: 0; }
+/* Left-anchor the eyebrow and headline of practical, proof, and outcomes so
+   header and body share one left axis (overrides the global centered default).
+   Scoped to the homepage classes; .in-practice on applications is unaffected. */
+.practical > .shell > .section-number,
+.practical > .shell > h2 { margin-inline: 0; text-align: left; }
+.proof-section > .shell > .section-number,
+.proof-section > .shell > h2 { margin-inline: 0; text-align: left; }
+.earned-trust > .shell > .section-number { margin-inline: 0; text-align: left; }
 .accordion { max-width: 900px; margin: 52px auto 0; }
 
 /* 7. Engagement: centered header above centered steps */
@@ -883,7 +892,7 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .proof-section > .shell > .section-lede.dark {
   text-align: left;
   max-width: 660px;
-  margin-inline: auto;
+  margin-inline: 0;
 }
 .deployment .split .section-lede.dark {
   text-align: left;
@@ -904,11 +913,11 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 /* 8. Authority and privacy: one centered axis — eyebrow, headline, and canonical
    statement all centered; three trust points in one centered row beneath. */
 .trust .trust-grid { display: block; }
-.trust .trust-grid > div:first-child { text-align: center; }
-.trust .trust-grid h2 { max-width: 900px; margin-inline: auto; }
-.trust .canonical-statement { margin-inline: auto; text-align: center; }
-.trust-points { max-width: 900px; margin: 58px auto 0; text-align: left; }
-.trust-points .text-button { justify-self: center; }
+.trust .trust-grid > div:first-child { text-align: left; }
+.trust .trust-grid h2 { max-width: 900px; margin-inline: 0; }
+.trust .canonical-statement { margin-inline: 0; text-align: left; }
+.trust-points { max-width: 900px; margin: 58px 0 0; text-align: left; }
+.trust-points .text-button { justify-self: start; }
 
 /* 9. Mobile: keep single-column flow readable (centered headers hold) */
 @media (max-width: 640px) {
