@@ -464,9 +464,6 @@ blockquote { margin: 0; }
 .outcome-grid article { padding: 30px; border-right: 1px solid var(--line-dark); border-bottom: 1px solid var(--line-dark); }
 .outcome-grid h3 { color: var(--copper); font: 650 16px var(--sans); }
 .outcome-grid p { margin: 10px 0 0; color: var(--light-soft); font-size: 15px; }
-/* .trust-line survives here: reused by the About 'Earned reliance' section that
-   inherited the migrated reliance ladder. */
-.trust-line { max-width: 970px; margin: 64px 0 0; font: italic 500 clamp(27px, 3.4vw, 44px)/1.35 var(--serif); }
 
 .accordion details { border-top: 1px solid var(--line); }
 .accordion details:last-child { border-bottom: 1px solid var(--line); }
@@ -811,7 +808,7 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 /* 2. Closing / doctrine lines */
 .doctrine, .prompt-close, .doctrine-note,
 .proof-line, .signature-line, .governance-line, .boundary-line,
-.trust-line, .privacy-note {
+.privacy-note {
   margin-inline: auto;
   text-align: center;
 }
