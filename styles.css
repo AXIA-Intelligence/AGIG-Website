@@ -806,7 +806,7 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .governance-line, .proof-line { border-top: 0; padding-top: 0; }
 
 /* 3. Center max-width content blocks that read as lists */
-.weight-ladder { margin-inline: auto; }
+.weight-ladder { margin-inline: 0; }
 
 /* 4b. Operating reality (Section 4): full-width left-aligned header over an
    equal-height content-LEFT / image-RIGHT split — Section 2's locked template
