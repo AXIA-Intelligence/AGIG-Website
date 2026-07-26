@@ -828,7 +828,12 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .world-content .section-lede { margin-top: 0; }
 .world-content .editorial-grid { margin-top: 34px; }
 .world-content .editorial-grid.six { grid-template-columns: 1fr; }
+/* The five areas stay one stacked column at every width — no 2-col variant. */
+.world-content .editorial-grid.five { grid-template-columns: 1fr; }
 .world-content .editorial-grid h3, .world-content .editorial-grid p { text-wrap: pretty; }
+/* Closing line sits on the section's left axis (inherits .world-content left),
+   quieter than the grid. */
+.world-content .world-close { margin: 26px 0 0; color: var(--text-soft); }
 .world-visual {
   aspect-ratio: 4 / 5;
   display: grid;
