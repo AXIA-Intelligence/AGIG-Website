@@ -486,25 +486,11 @@ blockquote { margin: 0; }
 .invitation-heading { max-width: 900px; }
 .invitation h2 { font-size: clamp(42px, 6vw, 76px); }
 .invitation > .invitation-inner > p:not(.eyebrow):not(.fit-gate) { max-width: 700px; margin: 28px auto 34px; color: var(--light-soft); font-size: 19px; }
-.invitation-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  width: 100%;
-  margin: 34px 0 0;
-  border-block: 1px solid var(--line-dark);
-  background: rgba(9,20,32,.7);
-  text-align: left;
-}
-.invitation-grid article { padding: 26px 30px; }
-.invitation-grid article + article { border-left: 1px solid var(--line-dark); }
-.invitation-grid h3 { color: var(--copper); font: 650 15px var(--sans); text-transform: uppercase; letter-spacing: .08em; }
-.invitation-grid p { margin: 15px 0 0; color: var(--light-soft); font-size: 15px; }
 .invitation-action { margin-top: auto; }
-/* Homepage invitation: top-align the heading and grid. On desktop the CTA keeps
-   the base margin-top:auto so it settles at the very bottom of the 1400px
-   section, below the chair band — matching .invitation-compact on
-   client-stories. On mobile the CTA keeps its original in-flow placement (the
-   clamp override below), so the mobile framing is unchanged. */
+/* Homepage invitation: top-align the heading, and the CTA keeps the base
+   margin-top:auto so it settles at the very bottom of the section, below the
+   chair band, on both desktop and mobile — matching .invitation-compact on
+   client-stories. */
 #invitation .invitation-inner { justify-content: flex-start; }
 @media (min-width: 901px) {
   #invitation.invitation {
@@ -514,15 +500,6 @@ blockquote { margin: 0; }
       var(--ink-950) url("assets/invitation-desktop.jpg") center top / cover no-repeat;
   }
   #invitation .invitation-inner { min-height: 1400px; padding-top: clamp(84px, 10vw, 130px); }
-  /* Floor for the space below the three-column grid before the chair band. At
-     the fixed 1400px height the CTA's margin-top:auto already leaves a wide dark
-     gap, so this guarantees the grid never abuts the photo if the section ever
-     shortens or the copy grows. */
-  #invitation .invitation-grid { margin-bottom: clamp(40px, 5vw, 64px); }
-}
-@media (max-width: 900px) {
-  /* Preserve the mobile CTA's original in-flow placement (unchanged framing). */
-  #invitation .invitation-action { margin-top: clamp(32px, 3vw, 44px); }
 }
 .fit-gate { max-width: 700px; margin: 18px auto 0; color: var(--light-soft); font-size: 14px; }
 .site-footer { padding-block: 42px; border-top: 1px solid var(--line-dark); background: var(--ink-950); color: var(--light-soft); font-size: 13px; }
@@ -677,8 +654,6 @@ blockquote { margin: 0; }
       var(--ink-950) url("assets/invitation-mobile.jpg") center bottom / 100% auto no-repeat;
   }
   .invitation-inner { min-height: 1540px; padding-block: 72px 42px; }
-  .invitation-grid { grid-template-columns: 1fr; max-width: 680px; }
-  .invitation-grid article + article { border-left: 0; border-top: 1px solid var(--line-dark); }
 }
 
 /* Narrow screens: drop the indent stagger (it only crowds the column here)
@@ -723,10 +698,8 @@ blockquote { margin: 0; }
   .day-steps li { grid-template-columns: 1fr; gap: 6px; }
   .case-feature { padding: 32px 24px; }
   .proof-actions { align-items: stretch; flex-direction: column; }
-  .trust-points, .invitation-grid { grid-template-columns: 1fr; }
+  .trust-points { grid-template-columns: 1fr; }
   .practical .practice-outcomes { grid-template-columns: 1fr; }
-  .invitation-grid article + article { border-left: 0; border-top: 1px solid var(--line); }
-  .invitation-grid article + article { border-color: var(--line-dark); }
   .story-index { position: static; }
   .story-section { scroll-margin-top: 0; }
   .timeline summary { min-height: 82px; grid-template-columns: 58px 1fr; gap: 14px; }
