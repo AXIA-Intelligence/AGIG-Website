@@ -251,6 +251,9 @@ blockquote { margin: 0; }
    the shared .page-hero base (and its mobile override) carry a continuity photo,
    so pin a flat ink background at a specificity that wins at every width. */
 .page-hero.stories-hero { background: var(--ink-950); }
+/* Cap the flat stories hero so the site-wide 100svh rule doesn't leave a full
+   viewport of empty dark field. Ties that rule's specificity, wins on order. */
+#main > section.page-hero.stories-hero { min-height: 520px; }
 
 .weight-section h2 { max-width: 980px; }
 .weight-ladder { max-width: 1080px; margin: 64px auto 0; padding: 0; list-style: none; counter-reset: weight; display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; border-top: 1px solid var(--line); }
