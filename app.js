@@ -1,45 +1,6 @@
 (function () {
   "use strict";
 
-  window.dataLayer = window.dataLayer || [];
-
-  function track(eventName, detail) {
-    var payload = { event: eventName };
-    if (detail) {
-      Object.keys(detail).forEach(function (key) {
-        payload[key] = detail[key];
-      });
-    }
-    window.dataLayer.push(payload);
-  }
-
-  document.addEventListener("click", function (event) {
-    var eventTarget = event.target.closest("[data-event]");
-    if (!eventTarget) return;
-    if (eventTarget.matches(".mobile-nav summary")) return;
-    track(eventTarget.getAttribute("data-event"));
-  });
-
-  document.querySelectorAll(".mobile-nav").forEach(function (menu) {
-    menu.addEventListener("toggle", function () {
-      if (menu.open) track("mobile_menu_opened");
-    });
-  });
-
-  var storyEvents = {
-    "#larry": "client_story_larry_opened",
-    "#roger": "client_story_roger_opened",
-    "#horacio-javier": "client_story_horacio_opened",
-    "#devin": "client_story_devin_opened"
-  };
-
-  document.querySelectorAll(".story-index a").forEach(function (link) {
-    link.addEventListener("click", function () {
-      var eventName = storyEvents[link.getAttribute("href")];
-      if (eventName) track(eventName);
-    });
-  });
-
   var trustDialog = document.querySelector("[data-trust-dialog]");
   var trustOpen = document.querySelector("[data-trust-open]");
   var trustClose = document.querySelector("[data-trust-close]");
