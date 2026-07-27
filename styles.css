@@ -325,6 +325,12 @@ blockquote { margin: 0; }
 .section.connectivity > .shell > h2,
 .section.connectivity > .shell > .section-lede { margin-inline: 0; text-align: left; }
 .connectivity .governance-line { margin-inline: 0; text-align: left; }
+/* Section 5 moved from warm to ink (edit #62): .section-lede's default color
+   is already the on-ink white, so the .dark modifier was dropped from both
+   paragraphs in the markup. .governance-line's base color is tuned for a
+   light background and would go near-invisible here, so it takes the same
+   light-soft white the lede and doctrine-note use elsewhere on ink. */
+.connectivity .governance-line { color: var(--light-soft); }
 .connectivity h2 { text-wrap: pretty; }
 .connectivity .section-number, .connectivity .section-lede, .connectivity .governance-line { text-wrap: pretty; }
 /* At the narrowest widths the display h2 can't hold "compounding begins." on
