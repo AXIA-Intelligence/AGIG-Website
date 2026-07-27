@@ -673,7 +673,7 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
     min-height: 1540px;
     background:
       linear-gradient(180deg, rgba(9,20,32,.98) 0%, rgba(9,20,32,.94) 48%, rgba(9,20,32,.22) 75%, rgba(9,20,32,.34) 100%),
-      var(--ink-950) url("assets/invitation-mobile.jpg") center top / cover no-repeat;
+      var(--ink-950) url("assets/invitation-mobile.jpg") center bottom / 100% auto no-repeat;
   }
   .invitation-inner { min-height: 1540px; padding-block: 72px 42px; }
   .invitation-grid { grid-template-columns: 1fr; max-width: 680px; }
