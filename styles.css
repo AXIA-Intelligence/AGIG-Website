@@ -373,6 +373,14 @@ blockquote { margin: 0; }
 /* Quiet attributed proof line under each claim: smaller and set off by a thin
    left rule so it reads as supporting evidence, not a second claim. */
 .practical .group-proof { max-width: 720px; margin: 14px 0 0; padding-left: 16px; border-left: 2px solid var(--line); color: var(--text-soft); font-size: 13.5px; line-height: 1.55; text-wrap: pretty; }
+/* Outcomes sub-grid relocated from the retired earned-trust section, restyled
+   for the paper practical section (light rules, copper-dark headings). */
+.practical .practice-outcomes { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 900px; margin-top: 56px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.practical .practice-outcomes article { padding: 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.practical .practice-outcomes h3 { color: var(--copper-dark); font: 650 15px var(--sans); }
+.practical .practice-outcomes p { margin: 8px 0 0; color: var(--text-soft); font-size: 14px; line-height: 1.5; text-wrap: pretty; }
+/* Quiet closing line under the outcomes sub-grid, on the section's left spine. */
+.practical .earned-close { max-width: 720px; margin: 40px 0 0; color: var(--text-soft); font-size: clamp(16px, 1.5vw, 18px); }
 .practical .breadcrumb-link { margin-top: 44px; }
 .practical .breadcrumb-link { display: flex; width: fit-content; margin-inline: auto; }
 
@@ -444,14 +452,6 @@ blockquote { margin: 0; }
 .invitation-leadin .deployment-steps li > span { color: var(--copper); }
 .invitation-leadin .deployment-steps h3 { font-size: clamp(19px, 2vw, 22px); margin: 0 0 8px; color: var(--light); text-wrap: balance; }
 .invitation-leadin .deployment-steps p { max-width: none; margin: 0; color: rgba(255, 255, 255, .7); }
-
-.outcome-heading { display: grid; grid-template-columns: 1.2fr .8fr; align-items: end; gap: 72px; }
-.outcome-heading h2 { font-size: clamp(48px, 7vw, 88px); }
-.outcome-heading p { margin: 0; color: var(--light-soft); font-size: 19px; }
-.outcome-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 66px; border-top: 1px solid var(--line-dark); border-left: 1px solid var(--line-dark); }
-.outcome-grid article { padding: 30px; border-right: 1px solid var(--line-dark); border-bottom: 1px solid var(--line-dark); }
-.outcome-grid h3 { color: var(--copper); font: 650 16px var(--sans); }
-.outcome-grid p { margin: 10px 0 0; color: var(--light-soft); font-size: 15px; }
 
 .accordion details { border-top: 1px solid var(--line); }
 .accordion details:last-child { border-bottom: 1px solid var(--line); }
@@ -672,7 +672,6 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
   .continuity-chain div { border-bottom: 1px solid var(--line-dark); }
   .continuity-chain div:nth-child(2n) { border-right: 0; }
   .case-feature { grid-template-columns: 1fr; gap: 34px; }
-  .outcome-heading { grid-template-columns: 1fr; gap: 30px; }
   .trust-points { gap: 34px; }
   .story-heading { position: static; }
   .story-index .shell { overflow-x: auto; }
@@ -734,7 +733,7 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
   .case-feature { padding: 32px 24px; }
   .proof-actions { align-items: stretch; flex-direction: column; }
   .trust-points, .invitation-grid { grid-template-columns: 1fr; }
-  .outcome-grid { grid-template-columns: 1fr; }
+  .practical .practice-outcomes { grid-template-columns: 1fr; }
   .invitation-grid article + article { border-left: 0; border-top: 1px solid var(--line); }
   .invitation-grid article + article { border-color: var(--line-dark); }
   .story-index { position: static; }
@@ -806,11 +805,6 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
    quieter than the grid. */
 .world-content .world-close { margin: 26px 0 0; color: var(--text-soft); }
 
-/* 5. Outcomes: retire the 1.2/.8 end-aligned grid that stranded the right column */
-.outcome-heading { display: block; text-align: left; }
-.outcome-heading h2 { max-width: 1060px; margin-inline: 0; font-size: clamp(44px, 5.6vw, 72px); }
-.outcome-heading p { max-width: 700px; margin: 26px 0 0; }
-
 /* 6. Practical questions: centered header above a centered accordion */
 /* Release the FAQ section from the site-wide 100svh minimum so it closes on its
    own padding. Two classes tie the global rule's specificity (a single .objections
@@ -826,9 +820,6 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .practical > .shell > h2 { margin-inline: 0; text-align: left; }
 .proof-section > .shell > .section-number,
 .proof-section > .shell > h2 { margin-inline: 0; text-align: left; }
-.earned-trust > .shell > .section-number { margin-inline: 0; text-align: left; }
-/* Quiet closing line under the outcome grid, on the section's left spine. */
-.earned-trust .earned-close { margin: 40px 0 0; max-width: 720px; color: var(--light-soft); }
 .accordion { max-width: 900px; margin: 52px auto 0; }
 
 /* Numbered engagement steps — base rules, reused by the homepage lead-in. */
@@ -842,11 +833,6 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 .proof-section > .shell > .section-lede.dark {
   text-align: left;
   max-width: 660px;
-  margin-inline: 0;
-}
-.outcome-heading p {
-  text-align: left;
-  max-width: 580px;
   margin-inline: 0;
 }
 .about-hero .lede {
