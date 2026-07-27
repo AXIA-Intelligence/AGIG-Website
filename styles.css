@@ -375,13 +375,7 @@ blockquote { margin: 0; }
 /* Quiet attributed proof line under each claim: smaller and set off by a thin
    left rule so it reads as supporting evidence, not a second claim. */
 .practical .group-proof { max-width: 720px; margin: 14px 0 0; padding-left: 16px; border-left: 2px solid var(--line); color: var(--text-soft); font-size: 13.5px; line-height: 1.55; text-wrap: pretty; }
-/* Outcomes sub-grid relocated from the retired earned-trust section, restyled
-   for the paper practical section (light rules, copper-dark headings). */
-.practical .practice-outcomes { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 900px; margin-top: 56px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-.practical .practice-outcomes article { padding: 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.practical .practice-outcomes h3 { color: var(--copper-dark); font: 650 15px var(--sans); }
-.practical .practice-outcomes p { margin: 8px 0 0; color: var(--text-soft); font-size: 14px; line-height: 1.5; text-wrap: pretty; }
-/* Quiet closing line under the outcomes sub-grid, on the section's left spine. */
+/* Quiet closing line under the four claims, on the section's left spine. */
 .practical .earned-close { max-width: 720px; margin: 40px 0 0; color: var(--text-soft); font-size: clamp(16px, 1.5vw, 18px); }
 /* GOV-20260727-practical-coda-reversal: the boundary line and story link
    return to the section's left spine now that the section around them has
@@ -720,7 +714,6 @@ blockquote { margin: 0; }
   .case-feature { padding: 32px 24px; }
   .proof-actions { align-items: stretch; flex-direction: column; }
   .trust-points { grid-template-columns: 1fr; }
-  .practical .practice-outcomes { grid-template-columns: 1fr; }
   .story-index { position: static; }
   .story-section { scroll-margin-top: 0; }
   .timeline summary { min-height: 82px; grid-template-columns: 58px 1fr; gap: 14px; }
