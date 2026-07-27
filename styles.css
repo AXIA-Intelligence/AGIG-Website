@@ -247,7 +247,10 @@ blockquote { margin: 0; }
 }
 .page-hero h1 { max-width: 1030px; }
 .page-hero .hero-lede { margin-bottom: 0; }
-.stories-hero { background-image: linear-gradient(90deg, rgba(9,20,32,.97), rgba(9,20,32,.74) 65%, rgba(9,20,32,.38)), url("assets/weight-desktop.jpg"); }
+/* Stories hero is a plain dark panel: it no longer reuses the weight photo, and
+   the shared .page-hero base (and its mobile override) carry a continuity photo,
+   so pin a flat ink background at a specificity that wins at every width. */
+.page-hero.stories-hero { background: var(--ink-950); }
 
 .weight-section h2 { max-width: 980px; }
 .weight-ladder { max-width: 1080px; margin: 64px auto 0; padding: 0; list-style: none; counter-reset: weight; display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; border-top: 1px solid var(--line); }
@@ -703,7 +706,6 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
   }
   .hero-content { padding-block: 42px 54px; }
   .page-hero { min-height: 640px; padding-block: 140px 70px; background-image: linear-gradient(0deg, rgba(9,20,32,.96), rgba(9,20,32,.55)), url("assets/continuity-mobile.jpg"); }
-  .stories-hero { background-image: linear-gradient(0deg, rgba(9,20,32,.96), rgba(9,20,32,.55)), url("assets/weight-mobile.jpg"); }
   .section { padding-block: 72px; }
   .weight-ladder { margin-top: 42px; grid-template-columns: 1fr; }
   .weight-ladder li { grid-template-columns: 36px 1fr; gap: 10px; }
