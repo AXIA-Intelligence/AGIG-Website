@@ -325,6 +325,12 @@ blockquote { margin: 0; }
 .section.connectivity > .shell > h2,
 .section.connectivity > .shell > .section-lede { margin-inline: 0; text-align: left; }
 .connectivity .governance-line { margin-inline: 0; text-align: left; }
+/* Section 5 moved from warm to ink (edit #62): .section-lede's default color
+   is already the on-ink white, so the .dark modifier was dropped from both
+   paragraphs in the markup. .governance-line's base color is tuned for a
+   light background and would go near-invisible here, so it takes the same
+   light-soft white the lede and doctrine-note use elsewhere on ink. */
+.connectivity .governance-line { color: var(--light-soft); }
 .connectivity h2 { text-wrap: pretty; }
 .connectivity .section-number, .connectivity .section-lede, .connectivity .governance-line { text-wrap: pretty; }
 /* At the narrowest widths the display h2 can't hold "compounding begins." on
@@ -366,8 +372,6 @@ blockquote { margin: 0; }
 .practical .system-group + .system-group { margin-top: 40px; }
 .practical .group-claim { margin-bottom: 12px; color: var(--text); font: 500 clamp(24px, 2.6vw, 33px)/1.22 var(--serif); text-wrap: balance; }
 .practical .group-line { max-width: 760px; margin-bottom: 0; font-size: clamp(16px, 1.5vw, 18px); }
-/* Intro paragraph under the practical headline, on the section's left axis. */
-.practical .practice-intro { max-width: 760px; margin: 22px 0 0; color: var(--text-soft); font-size: clamp(18px, 1.8vw, 21px); line-height: 1.55; }
 /* Quiet attributed proof line under each claim: smaller and set off by a thin
    left rule so it reads as supporting evidence, not a second claim. */
 .practical .group-proof { max-width: 720px; margin: 14px 0 0; padding-left: 16px; border-left: 2px solid var(--line); color: var(--text-soft); font-size: 13.5px; line-height: 1.55; text-wrap: pretty; }
@@ -379,8 +383,14 @@ blockquote { margin: 0; }
 .practical .practice-outcomes p { margin: 8px 0 0; color: var(--text-soft); font-size: 14px; line-height: 1.5; text-wrap: pretty; }
 /* Quiet closing line under the outcomes sub-grid, on the section's left spine. */
 .practical .earned-close { max-width: 720px; margin: 40px 0 0; color: var(--text-soft); font-size: clamp(16px, 1.5vw, 18px); }
+/* GOV-20260727-practical-coda-reversal: the boundary line and story link
+   return to the section's left spine now that the section around them has
+   changed materially (PR #234). Overrides the global centered
+   "closing/doctrine line" treatment; alignment only, the display size and
+   weight are untouched. */
+.practical .boundary-line { margin-inline: 0; text-align: left; }
 .practical .breadcrumb-link { margin-top: 44px; }
-.practical .breadcrumb-link { display: flex; width: fit-content; margin-inline: auto; }
+.practical .breadcrumb-link { display: flex; width: fit-content; margin-inline: 0; }
 
 /* The permit artifact migrated into Larry's story (edit #57): restore its own
    header, kicker, and step styling over the generic .story-body h3/p rules. */
