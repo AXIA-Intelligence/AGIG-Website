@@ -511,6 +511,11 @@ blockquote { margin: 0; }
       var(--ink-950) url("assets/invitation-desktop.jpg") center top / cover no-repeat;
   }
   #invitation .invitation-inner { min-height: 1400px; padding-top: clamp(84px, 10vw, 130px); }
+  /* Floor for the space below the three-column grid before the chair band. At
+     the fixed 1400px height the CTA's margin-top:auto already leaves a wide dark
+     gap, so this guarantees the grid never abuts the photo if the section ever
+     shortens or the copy grows. */
+  #invitation .invitation-grid { margin-bottom: clamp(40px, 5vw, 64px); }
 }
 @media (max-width: 900px) {
   /* Preserve the mobile CTA's original in-flow placement (unchanged framing). */
