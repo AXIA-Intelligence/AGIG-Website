@@ -468,7 +468,7 @@ blockquote { margin: 0; }
   overflow: hidden;
   background:
     linear-gradient(180deg, rgba(9,20,32,.98) 0%, rgba(9,20,32,.9) 34%, rgba(9,20,32,.3) 62%, rgba(9,20,32,.44) 100%),
-    url("assets/invitation-desktop.jpg") center bottom / cover no-repeat;
+    url("assets/invitation-desktop.jpg") center top / cover no-repeat;
   color: var(--light);
   text-align: center;
 }
@@ -511,7 +511,7 @@ blockquote { margin: 0; }
     min-height: 1400px;
     background:
       linear-gradient(180deg, rgba(9,20,32,.98) 0%, rgba(9,20,32,.92) 30%, rgba(9,20,32,.5) 47%, rgba(9,20,32,.06) 66%, rgba(9,20,32,.2) 100%),
-      var(--ink-950) url("assets/invitation-desktop.jpg") center bottom 64px / auto 720px no-repeat;
+      var(--ink-950) url("assets/invitation-desktop.jpg") center top / cover no-repeat;
   }
   #invitation .invitation-inner { min-height: 1400px; padding-top: clamp(84px, 10vw, 130px); }
 }
@@ -673,7 +673,7 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
     min-height: 1540px;
     background:
       linear-gradient(180deg, rgba(9,20,32,.98) 0%, rgba(9,20,32,.94) 48%, rgba(9,20,32,.22) 75%, rgba(9,20,32,.34) 100%),
-      var(--ink-950) url("assets/invitation-mobile.jpg") center bottom / 100% auto no-repeat;
+      var(--ink-950) url("assets/invitation-mobile.jpg") center top / cover no-repeat;
   }
   .invitation-inner { min-height: 1540px; padding-block: 72px 42px; }
   .invitation-grid { grid-template-columns: 1fr; max-width: 680px; }
@@ -875,7 +875,7 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
 
 /* Invitation: seat the chairs lower so the copy above them breathes */
 @media (min-width: 901px) {
-  .invitation { background-size: 100% 100%, auto 68%; background-position: center top, center calc(100% - 170px); background-color: var(--ink-950); }
+  .invitation { background-size: 100% 100%, cover; background-position: center top, center top; background-color: var(--ink-950); }
 }
 
 /* Header CTA: solid copper, locked to the top-right on every page */
@@ -984,7 +984,7 @@ dialog::backdrop { background: rgba(5,12,20,.78); }
     min-height: 1400px;
     background:
       linear-gradient(180deg, rgba(9,20,32,.98) 0%, rgba(9,20,32,.9) 26%, rgba(9,20,32,.35) 44%, rgba(9,20,32,.05) 66%, rgba(9,20,32,.2) 100%),
-      var(--ink-950) url("assets/invitation-desktop.jpg") center bottom / auto 730px no-repeat;
+      var(--ink-950) url("assets/invitation-desktop.jpg") center top / cover no-repeat;
   }
   .invitation-compact .invitation-inner { min-height: 1400px; justify-content: flex-start; padding-top: clamp(84px, 10vw, 130px); }
 }
