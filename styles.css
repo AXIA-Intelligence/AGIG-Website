@@ -383,8 +383,14 @@ blockquote { margin: 0; }
 .practical .practice-outcomes p { margin: 8px 0 0; color: var(--text-soft); font-size: 14px; line-height: 1.5; text-wrap: pretty; }
 /* Quiet closing line under the outcomes sub-grid, on the section's left spine. */
 .practical .earned-close { max-width: 720px; margin: 40px 0 0; color: var(--text-soft); font-size: clamp(16px, 1.5vw, 18px); }
+/* GOV-20260727-practical-coda-reversal: the boundary line and story link
+   return to the section's left spine now that the section around them has
+   changed materially (PR #234). Overrides the global centered
+   "closing/doctrine line" treatment; alignment only, the display size and
+   weight are untouched. */
+.practical .boundary-line { margin-inline: 0; text-align: left; }
 .practical .breadcrumb-link { margin-top: 44px; }
-.practical .breadcrumb-link { display: flex; width: fit-content; margin-inline: auto; }
+.practical .breadcrumb-link { display: flex; width: fit-content; margin-inline: 0; }
 
 /* The permit artifact migrated into Larry's story (edit #57): restore its own
    header, kicker, and step styling over the generic .story-body h3/p rules. */
