@@ -422,6 +422,38 @@ blockquote { margin: 0; }
 .proof-section .section-lede { text-wrap: pretty; }
 .proof-section .case-feature blockquote { text-wrap: balance; }
 .proof-section .proof-kicker { text-wrap: balance; }
+
+/* Proof section on the ink field, matching distinction/connectivity. Everything
+   here is scoped to .proof-section because .proof-kicker and .privacy-note are
+   also used on client-stories.html over paper, which must not change.
+   .proof-kicker cannot take the .copper class the way .section-number does --
+   the base .proof-kicker copper-dark rule outranks .copper on source order and
+   there is no .proof-kicker.copper pair -- so it is overridden here instead. */
+.proof-section .proof-kicker { color: var(--copper); }
+/* The Larry card was ink-900, identical to the ink section it now sits on, so
+   it would have vanished into the field. Lifted to ink-800 with a hairline
+   border: both are existing tokens, so the card reads as raised without
+   introducing a new colour. */
+.proof-section .case-feature { background: var(--ink-800); border: 1px solid var(--line-dark); }
+/* The 30% white overlay composites to a mid-slate (~rgb(86,95,107)) over ink,
+   which fails AA against both white and the dark navy body colour. Dropped to a
+   6% lift so the cards stay dark cards and carry light text instead. */
+.proof-section .case-grid { border-color: var(--line-dark); }
+.proof-section .case-grid > article { background: rgba(255, 255, 255, .06); }
+.proof-section .case-grid > article + article { border-left-color: var(--line-dark); }
+/* :not(.proof-kicker) because the Roger/Horacio kickers are also <p> inside
+   .case-grid -- without it this rule outranks the kicker colour above and
+   turns them white instead of copper. */
+.proof-section .case-grid p:not(.proof-kicker) { color: var(--light-soft); }
+/* Same situation .invitation .stories-privacy-note p already handles: a quiet
+   note that needs the on-ink light colour rather than paper's text-soft. */
+.proof-section .privacy-note { color: var(--light-soft); border-top-color: var(--line-dark); }
+/* Matches the 1100px breakpoint where the base rule swaps the card divider from
+   border-left to border-top -- at 900px the 901-1100px band would have kept the
+   paper-tuned dark divider, invisible on ink. */
+@media (max-width: 1100px) {
+  .proof-section .case-grid > article + article { border-top-color: var(--line-dark); }
+}
 @media (max-width: 400px) { #proof-title { font-size: clamp(27px, 7.6vw, 32px); } }
 .proof-actions { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 40px; }
 .privacy-note { max-width: 65ch; margin: clamp(49px, 3.9vw, 62px) 0 0; padding-top: 24px; border-top: 1px solid rgba(23,33,45,.18); color: var(--text-soft); font-size: 18px; }
@@ -802,7 +834,10 @@ blockquote { margin: 0; }
    readable measure, block kept centered under the headline (not pinned left).
    Connectivity dropped here in edit #56 — its passage now pins to the left
    axis via the .section.connectivity rule above. */
-.proof-section > .shell > .section-lede.dark {
+/* .dark dropped from the selector alongside the markup (proof went to ink):
+   this rule carries the left-anchor and 660px measure, so keeping .dark in the
+   selector would have silently un-anchored the lede back to centered. */
+.proof-section > .shell > .section-lede {
   text-align: left;
   max-width: 660px;
   margin-inline: 0;
