@@ -504,7 +504,7 @@ blockquote { margin: 0; }
     padding-top: clamp(44px, 4.5vw, 62px);
     padding-bottom: clamp(40px, 4vw, 56px);
   }
-  #invitation.invitation { background-position: center 35%; }
+  #invitation.invitation { background-position: center 45%; }
   #invitation .invitation-action .button {
     min-height: 64px;
     padding: 18px 56px;
