@@ -253,7 +253,12 @@ blockquote { margin: 0; }
 #main > section.page-hero.stories-hero { min-height: 520px; }
 
 .weight-section h2 { max-width: 980px; }
-.weight-ladder { max-width: 1080px; margin: 64px auto 0; padding: 0; list-style: none; counter-reset: weight; display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; border-top: 1px solid var(--line); }
+/* margin is left-anchored here to match the section headline. Note the
+   effective values come from the later .weight-ladder rules (margin-inline: 0,
+   then margin: 40px 0 0 / max-width: 620px in the weight-section block) which
+   win on source order -- this base margin never renders. Kept consistent so
+   the base rule doesn't read as centered when the element is not. */
+.weight-ladder { max-width: 1080px; margin: 64px 0 0; padding: 0; list-style: none; counter-reset: weight; display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; border-top: 1px solid var(--line); }
 .weight-ladder li { counter-increment: weight; display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); font: 400 clamp(18px, 1.6vw, 22px)/1.5 var(--serif); color: var(--text-soft); }
 .weight-ladder li::before { content: "0" counter(weight); color: var(--copper-dark); font: 650 14px/1.9 var(--sans); letter-spacing: .13em; }
 .weight-ladder li p { margin: 0; }
