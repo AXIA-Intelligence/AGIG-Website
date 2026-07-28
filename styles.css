@@ -125,7 +125,7 @@ blockquote { margin: 0; }
 /* Enlarge only the header lockup; the footer wordmark keeps its sizing. Header
    scope outranks the base rule and the max-width:640 .wordmark override, so the
    header follows the clamp at every width (min 16px), footer stays 15/13px. */
-.site-header .wordmark { font-size: clamp(16px, 1.35vw, 21px); }
+.site-header .wordmark { min-height: 44px; justify-content: center; font-size: clamp(16px, 1.35vw, 21px); }
 .site-header .wordmark span { font-size: clamp(10px, 0.8vw, 12px); }
 .nav-links { display: flex; align-items: center; gap: 26px; margin-left: auto; }
 .nav-links a { min-height: 44px; display: inline-flex; align-items: center; color: var(--light-soft); font-size: 14px; text-decoration: none; }
