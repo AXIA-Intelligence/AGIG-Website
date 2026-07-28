@@ -128,7 +128,7 @@ blockquote { margin: 0; }
 .site-header .wordmark { min-height: 44px; justify-content: center; font-size: clamp(16px, 1.35vw, 21px); }
 .site-header .wordmark span { font-size: 14px; }
 .nav-links { display: flex; align-items: center; gap: 26px; margin-left: auto; }
-.nav-links a { min-height: 44px; display: inline-flex; align-items: center; color: var(--light-soft); font-size: 14px; text-decoration: none; }
+.nav-links a { min-height: 44px; display: inline-flex; align-items: center; color: var(--light-soft); font-size: 16px; text-decoration: none; }
 .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--light); }
 .nav-links a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--copper); text-underline-offset: 7px; }
 .mobile-nav { display: none; position: relative; }
@@ -141,7 +141,7 @@ blockquote { margin: 0; }
   list-style: none;
   border: 1px solid var(--line-dark);
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
 }
 .mobile-nav summary::-webkit-details-marker { display: none; }
 .mobile-nav-panel {
@@ -606,7 +606,7 @@ blockquote { margin: 0; }
 
 @media (max-width: 1100px) {
   .header-cta { font-size: 0; width: 50px; padding-inline: 10px; }
-  .header-cta::after { content: "Talk"; font-size: 13px; }
+  .header-cta::after { content: "Talk"; font-size: 14px; }
   .case-grid { grid-template-columns: 1fr; }
   .case-grid > article + article { border-left: 0; border-top: 1px solid rgba(23,33,45,.18); }
 }
@@ -858,11 +858,14 @@ blockquote { margin: 0; }
    (≈230px + viewport inset) until the viewport is wide enough that the fixed
    button falls outside the shell. */
 @media (min-width: 901px) {
-  .nav-links { margin-right: clamp(0px, calc(876px - 50vw), 254px); }
+  /* D1: the header CTA grew from .button-small (221px) to the base .button
+     size (299px) so it matches the primary CTA's prominence. The reservation
+     footprint and its taper both grew by the same 78px the button did. */
+  .nav-links { margin-right: clamp(0px, calc(930px - 50vw), 345px); }
   /* R4/6a: at 901-1023px the accordion's right-aligned +/- toggle icon lands
      directly under the fixed header CTA when that row scrolls into the CTA's
      band, hiding it. Same reservation formula as .nav-links above. */
-  .accordion summary { padding-right: clamp(0px, calc(876px - 50vw), 254px); }
+  .accordion summary { padding-right: clamp(0px, calc(930px - 50vw), 345px); }
 }
 @media (max-width: 900px) {
   /* Menu stays in flow; clear the fixed CTA so they never overlap */
