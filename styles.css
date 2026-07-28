@@ -169,7 +169,6 @@ blockquote { margin: 0; }
   text-align: center;
   transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
 }
-.button-small { min-height: 44px; padding: 10px 17px; font-size: 13px; }
 .button-primary { background: var(--copper); color: var(--ink-950); }
 .button-primary:hover { background: var(--light); }
 .button-outline { border-color: rgba(200,126,70,.82); color: var(--light); }
