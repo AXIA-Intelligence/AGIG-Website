@@ -51,7 +51,7 @@ body {
   background: var(--ink-950);
   color: var(--text);
   font-family: var(--sans);
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
@@ -255,7 +255,7 @@ blockquote { margin: 0; }
 
 .weight-section h2 { max-width: 980px; }
 .weight-ladder { max-width: 1080px; margin: 64px auto 0; padding: 0; list-style: none; counter-reset: weight; display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; border-top: 1px solid var(--line); }
-.weight-ladder li { counter-increment: weight; display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); font: 400 clamp(17px, 1.6vw, 21px)/1.5 var(--serif); color: var(--text-soft); }
+.weight-ladder li { counter-increment: weight; display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); font: 400 clamp(18px, 1.6vw, 22px)/1.5 var(--serif); color: var(--text-soft); }
 .weight-ladder li::before { content: "0" counter(weight); color: var(--copper-dark); font: 650 14px/1.9 var(--sans); letter-spacing: .13em; }
 .weight-ladder li p { margin: 0; }
 .weight-ladder li strong { color: var(--text); font-weight: 650; }
@@ -941,7 +941,7 @@ blockquote { margin: 0; }
 /* Larry's testimonial, migrated into the warm client-proof section (edit #61):
    a bordered pull-quote landing his own words after his case-feature. Light
    palette to sit on the warm field. */
-.canonical-statement { max-width: 680px; margin: clamp(29px, 2.8vw, 38px) 0 0; color: var(--light-soft); font-size: clamp(17px, 1.6vw, 20px); line-height: 1.6; }
+.canonical-statement { max-width: 56ch; margin: clamp(29px, 2.8vw, 38px) 0 0; color: var(--light-soft); font-size: clamp(18px, 1.6vw, 21px); line-height: 1.6; }
 
 /* v30 — client-stories: compact invitation so the chairs sit low with breathing room */
 @media (min-width: 901px) {
