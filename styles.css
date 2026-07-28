@@ -205,7 +205,7 @@ blockquote { margin: 0; }
 .hero h1 { max-width: 820px; }
 .hero-lede, .lede { max-width: 690px; margin: 32px 0; color: var(--light); font-size: clamp(19px, 2vw, 24px); line-height: 1.5; }
 .hero-actions { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
-.hero .cta-note { margin: 16px 0 0; max-width: 45ch; color: var(--light-soft); font-size: 16px; line-height: 1.5; }
+.hero .cta-note { margin: clamp(16px, 1.8vw, 22px) 0 0; max-width: 45ch; color: var(--light-soft); font-size: 16px; line-height: 1.5; }
 @media (min-width: 901px) {
   /* Raise the text block to the subject's eyeline (edit #64): anchor to the top
      instead of the bottom and offset the H1's top edge to ~36svh, which tracks
@@ -339,7 +339,7 @@ blockquote { margin: 0; }
   .connectivity h2 { font-size: clamp(30px, 8.3vw, 34px); }
 }
 .signature-line { max-width: 940px; margin: 58px 0 0; font: italic 500 clamp(26px, 3.2vw, 42px)/1.35 var(--serif); }
-.governance-line { max-width: 60ch; margin: 30px 0 0; padding-top: 26px; border-top: 1px solid rgba(23,33,45,.24); color: var(--text-soft); }
+.governance-line { max-width: 60ch; margin: clamp(30px, 3vw, 40px) 0 0; padding-top: 26px; border-top: 1px solid rgba(23,33,45,.24); color: var(--text-soft); }
 
 .system-groups { margin-top: 52px; }
 .system-group + .system-group { margin-top: 48px; }
@@ -348,8 +348,8 @@ blockquote { margin: 0; }
 .boundary-line { max-width: 820px; margin: 42px 0 0; font: 500 clamp(22px, 2.7vw, 34px)/1.4 var(--serif); }
 /* Quiet definition passage on the practical section's left axis, below the four
    claims and above the boundary line. */
-.practical .practice-definition { max-width: 62ch; margin: 24px 0 0; color: var(--text-soft); font-size: 19px; line-height: 1.6; }
-.practical .practice-definition:first-of-type { margin-top: 56px; }
+.practical .practice-definition { max-width: 62ch; margin: clamp(24px, 2.5vw, 32px) 0 0; color: var(--text-soft); font-size: 19px; line-height: 1.6; }
+.practical .practice-definition:first-of-type { margin-top: clamp(56px, 5vw, 72px); }
 .case-day { margin-top: 82px; padding: clamp(30px, 4vw, 52px); border: 1px solid var(--line); background: var(--paper-light); }
 .case-day > header { max-width: 780px; }
 .case-day > header h3 { margin-top: 12px; font-size: clamp(25px, 2.7vw, 34px); line-height: 1.16; }
@@ -360,7 +360,7 @@ blockquote { margin: 0; }
 .day-steps li > div > p:last-child { max-width: 65ch; margin: 0; color: var(--text-soft); font-size: 16px; }
 .day-close { max-width: 820px; margin: 40px 0 0; color: var(--text); font: 500 clamp(19px, 2vw, 24px)/1.42 var(--serif); }
 .day-attribution { margin: 22px 0 0; color: var(--copper); font-size: 14px; font-weight: 650; }
-.day-boundary { max-width: 58ch; margin: 12px 0 0; color: var(--text-soft); font-size: 16px; }
+.day-boundary { max-width: 58ch; margin: clamp(12px, 1.5vw, 18px) 0 0; color: var(--text-soft); font-size: 16px; }
 
 /* Section 6 outcome groups, now cardless (edit #57): the nine capability cards
    moved to Applications, so the three outcomes read as a ruled vertical sequence
@@ -374,7 +374,7 @@ blockquote { margin: 0; }
 .practical .group-line { max-width: 760px; margin-bottom: 0; font-size: clamp(16px, 1.5vw, 18px); }
 /* Quiet attributed proof line under each claim: smaller and set off by a thin
    left rule so it reads as supporting evidence, not a second claim. */
-.practical .group-proof { max-width: 60ch; margin: 14px 0 0; padding-left: 16px; border-left: 2px solid var(--line); color: var(--text-soft); font-size: 16px; line-height: 1.55; text-wrap: pretty; }
+.practical .group-proof { max-width: 60ch; margin: clamp(16px, 1.8vw, 22px) 0 0; padding-left: 16px; border-left: 2px solid var(--line); color: var(--text-soft); font-size: 16px; line-height: 1.55; text-wrap: pretty; }
 /* Quiet closing line under the four claims, on the section's left spine. */
 .practical .earned-close { max-width: 720px; margin: 40px 0 0; color: var(--text-soft); font-size: clamp(16px, 1.5vw, 18px); }
 /* GOV-20260727-practical-coda-reversal: the boundary line and story link
@@ -430,7 +430,7 @@ blockquote { margin: 0; }
 @media (max-width: 400px) { #proof-title { font-size: clamp(27px, 7.6vw, 32px); } }
 .proof-note { max-width: 65ch; margin: 26px 0 0; color: var(--text-soft); font-size: 16px; }
 .proof-actions { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 40px; }
-.privacy-note { max-width: 65ch; margin: 44px 0 0; padding-top: 24px; border-top: 1px solid rgba(23,33,45,.18); color: var(--text-soft); font-size: 16px; }
+.privacy-note { max-width: 65ch; margin: clamp(44px, 3.5vw, 56px) 0 0; padding-top: 24px; border-top: 1px solid rgba(23,33,45,.18); color: var(--text-soft); font-size: 16px; }
 
 .deployment-steps { list-style: none; margin: 0; padding: 0; }
 .deployment-steps li { display: grid; grid-template-columns: 54px 1fr; gap: 20px; padding: 0 0 30px; border-bottom: 1px solid rgba(23,33,45,.2); margin-bottom: 30px; }
@@ -466,7 +466,7 @@ blockquote { margin: 0; }
 .trust-points { display: grid; grid-template-columns: repeat(2, 1fr); gap: 42px 34px; }
 .trust-points h3 { font: 650 17px var(--sans); color: var(--copper); }
 .trust-points p { max-width: 45ch; margin-top: 9px; color: var(--light-soft); font-size: 16px; text-wrap: pretty; }
-.trust-security { max-width: 60ch; margin: 34px 0 0; color: var(--light-soft); font-size: 16px; line-height: 1.6; text-wrap: pretty; }
+.trust-security { max-width: 60ch; margin: clamp(34px, 3vw, 46px) 0 0; color: var(--light-soft); font-size: 16px; line-height: 1.6; text-wrap: pretty; }
 
 .invitation {
   min-height: 1080px;
@@ -582,7 +582,7 @@ blockquote { margin: 0; }
 .editorial h2:first-child { margin-top: 0; }
 .still { margin: 52px 0; }
 .still img { width: 100%; }
-.fineprint { max-width: 58ch; margin-top: 13px; color: var(--text-soft); font-size: 16px; }
+.fineprint { max-width: 58ch; margin-top: clamp(13px, 1.5vw, 18px); color: var(--text-soft); font-size: 16px; }
 .quote-founder { margin-top: 36px; font: italic 500 clamp(25px, 3vw, 38px)/1.4 var(--serif); }
 .attribution-name { margin: 22px 0 0; font-weight: 700; }
 .attribution-title { max-width: 48ch; color: var(--text-soft); font-size: 16px; }
@@ -955,7 +955,7 @@ blockquote { margin: 0; }
    palette to sit on the warm field. */
 .pci-portability { margin: 18px 0 0; font-size: 16px; color: var(--light-soft); }
 .pci-portability strong { display: block; color: var(--copper); margin-bottom: 6px; }
-.canonical-statement { max-width: 680px; margin: 26px 0 0; color: var(--light-soft); font-size: clamp(17px, 1.6vw, 20px); line-height: 1.6; }
+.canonical-statement { max-width: 680px; margin: clamp(26px, 2.5vw, 34px) 0 0; color: var(--light-soft); font-size: clamp(17px, 1.6vw, 20px); line-height: 1.6; }
 .judgment-line { max-width: 900px; margin: 40px 0 0; color: var(--copper); font: italic 500 clamp(21px, 2.4vw, 29px)/1.4 var(--serif); }
 
 /* v30 — client-stories: compact invitation so the chairs sit low with breathing room */
