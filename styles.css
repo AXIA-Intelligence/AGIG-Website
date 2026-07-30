@@ -970,7 +970,10 @@ blockquote { margin: 0; }
     margin-inline: auto;
     text-align: center;
   }
-  .weight-content .weight-passage p:last-child { margin-top: 64px; }
+  .weight-content .weight-passage p:last-child {
+    margin-top: clamp(120px, 14vw, 200px);
+    font: italic 400 clamp(21px, 2.5vw, 32px)/1.4 var(--serif);
+  }
 }
 
 @media (max-width: 900px) {
