@@ -490,6 +490,9 @@ blockquote { margin: 0; }
 .trust-points h3 { font: 650 17px var(--sans); color: var(--copper); }
 .trust-points p { max-width: 60ch; margin-top: 9px; color: var(--light-soft); font-size: 18px; text-wrap: pretty; }
 .trust-security { max-width: 60ch; margin: clamp(38px, 3.4vw, 51px) 0 0; color: var(--light-soft); font-size: 18px; line-height: 1.6; text-wrap: pretty; }
+/* TRIAL (revert candidate): center this closing paragraph, breaking from
+   the section's left axis. Remove this rule to return it to the left. */
+.trust .trust-security { max-width: 700px; margin-inline: auto; text-align: center; }
 
 .invitation {
   min-height: 1080px;
