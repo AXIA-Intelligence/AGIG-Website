@@ -534,7 +534,10 @@ blockquote { margin: 0; }
   }
   #invitation .invitation-inner {
     min-height: 92svh;
-    padding-top: clamp(44px, 4.5vw, 62px);
+    /* Heading sits about half an inch lower so the eyebrow and h2 settle
+       inside the frame rather than crowding its top edge. Border-box keeps
+       the CTA on the bottom padding, so only the heading moves. */
+    padding-top: clamp(92px, calc(4.5vw + 48px), 110px);
     padding-bottom: clamp(40px, 4vw, 56px);
   }
   #invitation.invitation { background-position: center 45%; }
