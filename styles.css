@@ -959,6 +959,19 @@ blockquote { margin: 0; }
    it reads as the section's deliberate close, not a continuation of the body
    paragraph above it. Same treatment the weight doctrine used. */
 .weight-passage p:last-child { margin-top: 42px; color: var(--light); font: italic 500 clamp(26px, 3.3vw, 42px)/1.25 var(--serif); text-wrap: balance; }
+/* TRIAL (revert candidate): on desktop the closing italic passage leaves the
+   ladder's left axis and centers across the full width beneath it. This puts
+   the line over the lit right side of the image rather than the dark left
+   field, so the scrim below carries the legibility. Remove this block to
+   return the passage to the left column. */
+@media (min-width: 901px) {
+  .weight-content .weight-passage {
+    max-width: 960px;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .weight-content .weight-passage p:last-child { margin-top: 64px; }
+}
 
 @media (max-width: 900px) {
   /* Stack: media strip on top (man intact), copy below on solid ink */
