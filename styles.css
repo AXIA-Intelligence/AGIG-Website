@@ -368,9 +368,6 @@ blockquote { margin: 0; }
 .practical .system-group + .system-group { margin-top: 40px; }
 .practical .group-claim { margin-bottom: 12px; color: var(--text); font: 500 clamp(24px, 2.6vw, 33px)/1.22 var(--serif); text-wrap: balance; }
 .practical .group-line { max-width: 760px; margin-bottom: 0; font-size: clamp(18px, 1.6vw, 20px); }
-/* Quiet attributed proof line under each claim: smaller and set off by a thin
-   left rule so it reads as supporting evidence, not a second claim. */
-.practical .group-proof { max-width: 60ch; margin: clamp(18px, 2vw, 25px) 0 0; padding-left: 16px; border-left: 2px solid var(--line); color: var(--text-soft); font-size: 18px; line-height: 1.55; text-wrap: pretty; }
 /* Quiet closing line under the four claims, on the section's left spine. */
 .practical .earned-close { max-width: 720px; margin: 40px 0 0; color: var(--text-soft); font-size: clamp(18px, 1.6vw, 20px); }
 /* GOV-20260727-practical-coda-reversal: the boundary line and story link
