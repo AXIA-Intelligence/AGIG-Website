@@ -287,6 +287,10 @@ blockquote { margin: 0; }
    enough air to read as the section's final word without floating. Full
    weight and full-white brightness come from .doctrine and .ink already. */
 .distinction .doctrine { margin: clamp(56px, 6vw, 84px) 0 0; max-width: none; text-align: left; text-wrap: pretty; }
+/* TRIAL (revert candidate): center the closing doctrine line instead of
+   holding the section's left axis — flagged as reading off-balance on its
+   own. Remove this rule to return it to the left. */
+.distinction .doctrine { max-width: 900px; margin-inline: auto; text-align: center; }
 
 .progression-grid { display: block; margin-top: 56px; }
 .progression-grid article {
@@ -929,6 +933,12 @@ blockquote { margin: 0; }
   linear-gradient(90deg, var(--ink-950) 0%, rgba(9,20,32,0) 30%); }
 .weight-media img,
 .weight-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+/* TRIAL (revert candidate): nudge the crop down a touch so the desk/hands
+   sit higher in the frame, clearing more room below for the closing
+   passage, without pulling his head toward the top edge. Mobile keeps its
+   own object-position override below and is unaffected. */
+.weight-media img,
+.weight-media video { object-position: center 9%; }
 .weight-media video { z-index: 1; border: 0; }
 .weight-scrim {
   z-index: 2;
