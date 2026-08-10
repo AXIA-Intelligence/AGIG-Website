@@ -1238,7 +1238,7 @@ blockquote { margin: 0; }
    build's vocabulary: three pillars, client proof teaser, concise trust,
    and the five-step deployment that now carries the page's closing CTA. */
 
-/* Three pillars — stacked rather than gridded, because each body is a
+/* Three pillars: stacked rather than gridded, because each body is a
    paragraph and three columns would set them too narrow to read. */
 .pillars { display: flex; flex-direction: column; gap: clamp(28px, 3.4vw, 44px); margin-top: clamp(34px, 4vw, 52px); max-width: 760px; }
 .pillars article { padding-left: clamp(20px, 2.6vw, 34px); border-left: 3px solid rgba(200, 126, 70, .45); }
@@ -1246,7 +1246,7 @@ blockquote { margin: 0; }
 .pillars h3 { margin: 0 0 12px; font-size: clamp(23px, 2.1vw, 29px); line-height: 1.2; letter-spacing: -.02em; }
 .pillars p:not(.pillar-label) { margin: 0; color: rgba(255, 255, 255, .82); font-size: clamp(17px, 1.5vw, 19px); line-height: 1.55; text-wrap: pretty; }
 
-/* Client proof teaser — reuses the ink-tuned .proof-section vocabulary from
+/* Client proof teaser. Reuses the ink-tuned .proof-section vocabulary from
    the pre-pivot build. Two changes for this arc: Larry leads with his name
    as the heading rather than a kicker, and he carries two quotes instead of
    one, so the pair is set below the single-quote display size to keep both
@@ -1258,13 +1258,13 @@ blockquote { margin: 0; }
 .case-feature blockquote.quote-pair p + p { margin-top: 16px; }
 .proof-section .case-grid h3 { margin: 0 0 12px; font-size: clamp(21px, 1.9vw, 26px); }
 
-/* Trust — .canonical-statement had no base rule left in the sheet, only the
+/* Trust. .canonical-statement had no base rule left in the sheet, only the
    .trust-scoped alignment override, so it rendered at body size. Given the
    lede treatment it is meant to carry, here and on the trust page. */
 .canonical-statement { max-width: 760px; margin: 26px 0 0; color: var(--light-soft); font-family: var(--serif); font-weight: 420; font-size: clamp(20px, 1.8vw, 25px); line-height: 1.45; text-wrap: pretty; }
 .trust-more { margin: clamp(38px, 3.4vw, 51px) 0 0; }
 
-/* Five-step deployment — the last confidence-builder, and now the page's
+/* Five-step deployment. The last confidence-builder, and now the page's
    closing CTA. Reuses .deployment-steps, recoloured for ink the way the
    pre-pivot .invitation-leadin did, since the standalone invitation section
    that used to follow it is gone. */
@@ -1292,7 +1292,7 @@ blockquote { margin: 0; }
   }
 }
 
-/* Client story pull-quotes — Larry's two anchor quotes, the same lines the
+/* Client story pull-quotes. Larry's two anchor quotes, the same lines the
    homepage proof teaser features. Serif italic against the story column so
    they read as his voice rather than as body copy. */
 .story-quote { margin: 26px 0; padding-left: clamp(18px, 2vw, 26px); border-left: 3px solid var(--copper-dark); }
@@ -1313,7 +1313,7 @@ blockquote { margin: 0; }
 .faq-trust-link { max-width: 860px; margin: clamp(38px, 3.4vw, 51px) auto 0; }
 .faq-close .section-lede { color: var(--light-soft); }
 
-/* Trust page — same flat dark hero as the FAQ, then the long-form treatment
+/* Trust page. Same flat dark hero as the FAQ, then the long-form treatment
    the About page already uses for reading-length prose. */
 .page-hero.trust-hero { background: var(--ink-950); }
 #main > section.page-hero.trust-hero { min-height: 560px; }
