@@ -1277,6 +1277,14 @@ blockquote { margin: 0; }
 .canonical-statement { max-width: 760px; margin: 26px 0 0; color: var(--light-soft); font-family: var(--serif); font-weight: 420; font-size: clamp(20px, 1.8vw, 25px); line-height: 1.45; text-wrap: pretty; }
 .trust-more { margin: clamp(38px, 3.4vw, 51px) 0 0; }
 
+/* The base .section-lede carries no top margin; sections that use one add
+   their own, the way .proof-section does. Without this the lede sits flush
+   against the heading above it. */
+.pillars-section > .shell > .section-lede,
+.deployment-section > .shell > .section-lede,
+.faq-close > .shell > .section-lede,
+.trust-close > .shell > .section-lede { margin-top: clamp(20px, 2vw, 30px); }
+
 /* Five-step deployment. The last confidence-builder, and now the page's
    closing CTA. Reuses .deployment-steps, recoloured for ink the way the
    pre-pivot .invitation-leadin did, since the standalone invitation section
