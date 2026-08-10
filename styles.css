@@ -1312,3 +1312,12 @@ blockquote { margin: 0; }
 .accordion details > div p + p { margin-top: 16px; }
 .faq-trust-link { max-width: 860px; margin: clamp(38px, 3.4vw, 51px) auto 0; }
 .faq-close .section-lede { color: var(--light-soft); }
+
+/* Trust page — same flat dark hero as the FAQ, then the long-form treatment
+   the About page already uses for reading-length prose. */
+.page-hero.trust-hero { background: var(--ink-950); }
+#main > section.page-hero.trust-hero { min-height: 560px; }
+.page-hero.trust-hero h1 { max-width: 900px; }
+.trust-page .prose h2 { margin-top: clamp(44px, 4.5vw, 62px); }
+.trust-page .prose > h2:first-child { margin-top: 0; }
+.trust-close .section-lede { color: var(--light-soft); }
