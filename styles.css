@@ -1245,3 +1245,15 @@ blockquote { margin: 0; }
 .pillar-label { margin: 0 0 10px; color: var(--copper); font-size: clamp(12px, .95vw, 14px); font-weight: 700; letter-spacing: .16em; line-height: 1.4; text-transform: uppercase; }
 .pillars h3 { margin: 0 0 12px; font-size: clamp(23px, 2.1vw, 29px); line-height: 1.2; letter-spacing: -.02em; }
 .pillars p:not(.pillar-label) { margin: 0; color: rgba(255, 255, 255, .82); font-size: clamp(17px, 1.5vw, 19px); line-height: 1.55; text-wrap: pretty; }
+
+/* Client proof teaser — reuses the ink-tuned .proof-section vocabulary from
+   the pre-pivot build. Two changes for this arc: Larry leads with his name
+   as the heading rather than a kicker, and he carries two quotes instead of
+   one, so the pair is set below the single-quote display size to keep both
+   lines on a comfortable measure. */
+.proof-section .case-feature h3 { margin: 0; font-size: clamp(28px, 3vw, 38px); line-height: 1.1; }
+.case-role { margin: 14px 0 0; font-size: clamp(16px, 1.4vw, 18px); line-height: 1.5; text-wrap: pretty; }
+.case-feature blockquote.quote-pair { font-size: clamp(23px, 2.4vw, 32px); line-height: 1.28; }
+.case-feature blockquote.quote-pair p { margin: 0; color: inherit; }
+.case-feature blockquote.quote-pair p + p { margin-top: 16px; }
+.proof-section .case-grid h3 { margin: 0 0 12px; font-size: clamp(21px, 1.9vw, 26px); }
