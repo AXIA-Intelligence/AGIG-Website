@@ -1037,6 +1037,9 @@ blockquote { margin: 0; }
 .hero-top h1 { max-width: 640px; font-size: clamp(42px, 4.6vw, 52px); line-height: 1.04; letter-spacing: -.035em; text-wrap: balance; }
 .hero-top .hero-lede { max-width: 620px; margin: 22px 0 0; font-family: var(--serif); font-weight: 420; font-size: clamp(20px, 1.8vw, 24px); line-height: 1.45; text-wrap: pretty; }
 .hero-top .hero-support { max-width: 600px; margin: 18px 0 34px; color: rgba(255, 255, 255, .82); font-size: clamp(17px, 1.4vw, 19px); line-height: 1.55; text-wrap: pretty; }
+/* Hero eyebrow names who the page is for before the headline lands. Tighter
+   than the section-level eyebrow so it reads as a label on the h1. */
+.hero-eyebrow { margin: 0 0 18px; font-size: clamp(12px, .95vw, 14px); letter-spacing: .18em; }
 
 /* Origin story — three blocks that escalate from a dim recollection to the
    resolution, marked by a thickening copper rule rather than numbering. */
@@ -1049,6 +1052,20 @@ blockquote { margin: 0; }
 .origin-step-2 p { color: rgba(255, 255, 255, .78); font-size: clamp(18px, 1.6vw, 20px); line-height: 1.55; }
 .origin-step-3 { margin-top: clamp(8px, 1vw, 14px); padding: clamp(34px, 4vw, 48px) clamp(22px, 3vw, 38px); border-left: 4px solid var(--copper); background: rgba(200, 126, 70, .1); }
 .origin-step-3 p { color: var(--light); font-size: clamp(19px, 1.8vw, 22px); line-height: 1.55; }
+/* Closing pull-quote — the line the whole origin story resolves to. Set in
+   serif italic and given its own air so it reads as a statement, not a
+   fourth rung on the ladder. */
+.origin-pullquote {
+  max-width: 720px;
+  margin: clamp(44px, 5vw, 68px) 0 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.4;
+  color: rgba(255, 255, 255, .88);
+  text-wrap: pretty;
+}
 
 /* Ai vs IA — the load-bearing distinction. Two opposed headings split by a
    hairline, then the comparison pair. */
