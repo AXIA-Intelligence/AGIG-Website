@@ -1232,6 +1232,19 @@ blockquote { margin: 0; }
 .section.ia-split > .shell > h2,
 .section.ggi > .shell > h2,
 .section.lineage-section > .shell > .section-number { margin-inline: 0; text-align: left; }
+/* The three pillars and the deployment steps join that left axis. Their
+   bodies are left-aligned blocks, so a centered header above them read as
+   two different axes stacked on one another. */
+.section.pillars-section > .shell > .section-number,
+.section.pillars-section > .shell > h2,
+.section.pillars-section > .shell > .section-lede,
+.section.deployment-section > .shell > .section-number,
+.section.deployment-section > .shell > h2,
+.section.deployment-section > .shell > .section-lede,
+.section.faq-close > .shell > h2,
+.section.faq-close > .shell > .section-lede,
+.section.trust-close > .shell > h2,
+.section.trust-close > .shell > .section-lede { margin-inline: 0; text-align: left; }
 
 /* ── v1.7 arc integration ─────────────────────────────────────────────────
    Sections restored from the pre-pivot site and rebuilt in the governance
