@@ -49,6 +49,15 @@
       if (usesDesktopInteraction()) clearActive();
     });
 
+    // Touch has no equivalent of mouseleave, so on a phone a panel opened by
+    // tapping stayed open with no way back to the common thread. A tap
+    // outside the rail is that way back. Gated to non-desktop so the
+    // mouseleave path above stays the only clear on a pointer device.
+    document.addEventListener("click", function (event) {
+      if (usesDesktopInteraction()) return;
+      if (!lineage.contains(event.target)) clearActive();
+    });
+
     // A radio checked by the browser on reload would leave the rail out of
     // step with the dot styling, so adopt whatever state we load with.
     inputs.forEach(function (input, index) {
