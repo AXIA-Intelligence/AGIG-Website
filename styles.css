@@ -1257,3 +1257,9 @@ blockquote { margin: 0; }
 .case-feature blockquote.quote-pair p { margin: 0; color: inherit; }
 .case-feature blockquote.quote-pair p + p { margin-top: 16px; }
 .proof-section .case-grid h3 { margin: 0 0 12px; font-size: clamp(21px, 1.9vw, 26px); }
+
+/* Trust — .canonical-statement had no base rule left in the sheet, only the
+   .trust-scoped alignment override, so it rendered at body size. Given the
+   lede treatment it is meant to carry, here and on the trust page. */
+.canonical-statement { max-width: 760px; margin: 26px 0 0; color: var(--light-soft); font-family: var(--serif); font-weight: 420; font-size: clamp(20px, 1.8vw, 25px); line-height: 1.45; text-wrap: pretty; }
+.trust-more { margin: clamp(38px, 3.4vw, 51px) 0 0; }
