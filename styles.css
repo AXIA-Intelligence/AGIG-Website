@@ -1232,3 +1232,16 @@ blockquote { margin: 0; }
 .section.ia-split > .shell > h2,
 .section.ggi > .shell > h2,
 .section.lineage-section > .shell > .section-number { margin-inline: 0; text-align: left; }
+
+/* ── v1.7 arc integration ─────────────────────────────────────────────────
+   Sections restored from the pre-pivot site and rebuilt in the governance
+   build's vocabulary: three pillars, client proof teaser, concise trust,
+   and the five-step deployment that now carries the page's closing CTA. */
+
+/* Three pillars — stacked rather than gridded, because each body is a
+   paragraph and three columns would set them too narrow to read. */
+.pillars { display: flex; flex-direction: column; gap: clamp(28px, 3.4vw, 44px); margin-top: clamp(34px, 4vw, 52px); max-width: 760px; }
+.pillars article { padding-left: clamp(20px, 2.6vw, 34px); border-left: 3px solid rgba(200, 126, 70, .45); }
+.pillar-label { margin: 0 0 10px; color: var(--copper); font-size: clamp(12px, .95vw, 14px); font-weight: 700; letter-spacing: .16em; line-height: 1.4; text-transform: uppercase; }
+.pillars h3 { margin: 0 0 12px; font-size: clamp(23px, 2.1vw, 29px); line-height: 1.2; letter-spacing: -.02em; }
+.pillars p:not(.pillar-label) { margin: 0; color: rgba(255, 255, 255, .82); font-size: clamp(17px, 1.5vw, 19px); line-height: 1.55; text-wrap: pretty; }
