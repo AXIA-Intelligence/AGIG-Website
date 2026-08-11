@@ -590,7 +590,8 @@ blockquote { margin: 0; }
 .about-hero { min-height: 420px; position: relative; display: grid; align-content: start; justify-items: center; padding-top: clamp(80px, 10vw, 140px); background: var(--ink-900); color: var(--light); text-align: center; }
 .about-invite { min-height: 100svh; position: relative; display: grid; justify-items: center; padding: clamp(100px, 12vw, 160px) 0 clamp(40px, 5vw, 60px); background: var(--ink-900); color: var(--light); text-align: center; }
 .about-invite .scene-content { display: flex; flex-direction: column; align-items: center; }
-.about-invite .invite-bottom { margin-top: auto; }
+.about-invite .invite-top .lede-small { margin-top: clamp(20px, 2.5vw, 32px); }
+.about-invite .invite-bottom { margin-top: auto; padding-bottom: clamp(16px, 3vw, 40px); }
 .scene-scrim { position: absolute; inset: 0; background: rgba(9,20,32,.68); }
 .scene-content { position: relative; z-index: 1; width: min(calc(100% - 48px), 900px); }
 .about-hero .portrait { display: none; }
