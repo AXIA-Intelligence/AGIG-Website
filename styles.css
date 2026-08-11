@@ -297,19 +297,19 @@ blockquote { margin: 0; }
 }
 .progression-grid article + article { margin-top: clamp(14px, 1.8vw, 22px); }
 .comparison-label { margin-bottom: 14px; color: var(--copper); }
-.progression-grid h3 { margin-bottom: 16px; font-size: clamp(24px, 2.3vw, 32px); text-wrap: pretty; color: rgba(255, 255, 255, .74); }
-.progression-grid p:last-child { color: rgba(255, 255, 255, .56); text-wrap: pretty; }
+.progression-grid h3 { margin-bottom: 16px; font-size: clamp(24px, 2.3vw, 32px); text-wrap: pretty; color: rgba(255, 255, 255, .88); }
+.progression-grid p:last-child { color: rgba(255, 255, 255, .78); text-wrap: pretty; }
 
 /* Tier 2 — heavier rail, brighter, stepped in from the base line. */
 .progression-grid article:nth-child(2) { margin-left: clamp(14px, 2.6vw, 36px); border-left-width: 3px; border-left-color: rgba(200, 126, 70, .55); }
-.progression-grid article:nth-child(2) h3 { color: rgba(255, 255, 255, .88); }
-.progression-grid article:nth-child(2) p:last-child { color: rgba(255, 255, 255, .7); }
+.progression-grid article:nth-child(2) h3 { color: rgba(255, 255, 255, .93); }
+.progression-grid article:nth-child(2) p:last-child { color: rgba(255, 255, 255, .85); }
 
 /* Tier 3 — the destination: furthest in, copper-lit fill, heaviest rail,
    brightest and largest heading. */
 .progression-grid .progression-emphasis { margin-left: clamp(28px, 5vw, 70px); border-left: 4px solid var(--copper); background: rgba(200, 126, 70, .12); }
 .progression-emphasis h3 { font-size: clamp(28px, 3vw, 40px); color: #ffffff; }
-.progression-emphasis p:last-child { color: rgba(255, 255, 255, .82); }
+.progression-emphasis p:last-child { color: rgba(255, 255, 255, .93); }
 .connectivity h2 { max-width: 990px; }
 .connectivity > .shell > .section-lede { margin-top: 30px; }
 /* Section 5 compressed to a tight left-aligned passage (edit #56): the
@@ -477,7 +477,7 @@ blockquote { margin: 0; }
 .invitation-leadin .deployment-steps li { border-bottom-color: var(--line-dark); }
 .invitation-leadin .deployment-steps li > span { color: var(--copper); }
 .invitation-leadin .deployment-steps h3 { font-size: clamp(19px, 2vw, 22px); margin: 0 0 8px; color: var(--light); text-wrap: balance; }
-.invitation-leadin .deployment-steps p { max-width: none; margin: 0; color: rgba(255, 255, 255, .7); }
+.invitation-leadin .deployment-steps p { max-width: none; margin: 0; color: rgba(255, 255, 255, .88); }
 
 .accordion details { border-top: 1px solid var(--line); }
 .accordion details:last-child { border-bottom: 1px solid var(--line); }
@@ -590,7 +590,7 @@ blockquote { margin: 0; }
 .about-hero { min-height: 420px; position: relative; display: grid; align-content: start; justify-items: center; padding-top: clamp(80px, 10vw, 140px); background: var(--ink-900); color: var(--light); text-align: center; }
 .about-invite { min-height: 100svh; position: relative; display: grid; justify-items: center; padding: clamp(100px, 12vw, 160px) 0 clamp(40px, 5vw, 60px); background: var(--ink-900); color: var(--light); text-align: center; }
 .about-invite .scene-content { display: flex; flex-direction: column; align-items: center; }
-.about-invite .invite-top .lede-small { margin-top: clamp(20px, 2.5vw, 32px); }
+.about-invite .invite-top .lede-small { margin-top: clamp(32px, 4vw, 52px); }
 .about-invite .invite-bottom { margin-top: auto; padding-bottom: clamp(16px, 3vw, 40px); }
 .scene-scrim { position: absolute; inset: 0; background: rgba(9,20,32,.68); }
 .scene-content { position: relative; z-index: 1; width: min(calc(100% - 48px), 900px); }
@@ -1025,11 +1025,11 @@ blockquote { margin: 0; }
 .hero-top { align-items: flex-start; }
 .hero-top .hero-content { padding-block: clamp(148px, 33svh, 330px) clamp(48px, 6vh, 72px); }
 .hero-top h1 { max-width: 640px; font-size: clamp(42px, 4.6vw, 52px); line-height: 1.04; letter-spacing: -.035em; text-wrap: balance; }
-.hero-top .hero-lede { max-width: 620px; margin: 22px 0 0; font-family: var(--serif); font-weight: 420; font-size: clamp(20px, 1.8vw, 24px); line-height: 1.45; text-wrap: pretty; }
-.hero-top .hero-support { max-width: 600px; margin: 18px 0 34px; color: rgba(255, 255, 255, .82); font-size: clamp(17px, 1.4vw, 19px); line-height: 1.55; text-wrap: pretty; }
+.hero-top .hero-lede { max-width: 620px; margin: clamp(28px, 3vw, 38px) 0 0; font-family: var(--serif); font-weight: 420; font-size: clamp(20px, 1.8vw, 24px); line-height: 1.45; text-wrap: pretty; }
+.hero-top .hero-support { max-width: 600px; margin: clamp(24px, 2.5vw, 32px) 0 clamp(40px, 4vw, 52px); color: rgba(255, 255, 255, .93); font-size: clamp(17px, 1.4vw, 19px); line-height: 1.55; text-wrap: pretty; }
 /* Hero eyebrow names who the page is for before the headline lands. Tighter
    than the section-level eyebrow so it reads as a label on the h1. */
-.hero-eyebrow { margin: 0 0 18px; font-size: clamp(12px, .95vw, 14px); letter-spacing: .18em; }
+.hero-eyebrow { margin: 0 0 clamp(22px, 2.5vw, 30px); font-size: clamp(12px, .95vw, 14px); letter-spacing: .18em; }
 
 /* Origin story — three blocks that escalate from a dim recollection to the
    resolution, marked by a thickening copper rule rather than numbering. */
@@ -1037,9 +1037,9 @@ blockquote { margin: 0; }
 .origin-ladder { display: flex; flex-direction: column; margin-top: clamp(36px, 4vw, 48px); max-width: 720px; }
 .origin-ladder p { margin: 0; text-wrap: pretty; }
 .origin-step-1 { padding: clamp(22px, 3vw, 30px) 0 clamp(28px, 3vw, 36px) clamp(22px, 3vw, 38px); border-left: 2px solid rgba(255, 255, 255, .16); }
-.origin-step-1 p { color: rgba(255, 255, 255, .6); font-size: clamp(17px, 1.5vw, 19px); line-height: 1.55; }
+.origin-step-1 p { color: rgba(255, 255, 255, .78); font-size: clamp(17px, 1.5vw, 19px); line-height: 1.55; }
 .origin-step-2 { padding: clamp(28px, 3vw, 36px) 0 clamp(32px, 3.5vw, 42px) clamp(22px, 3vw, 38px); border-left: 3px solid rgba(200, 126, 70, .5); }
-.origin-step-2 p { color: rgba(255, 255, 255, .78); font-size: clamp(18px, 1.6vw, 20px); line-height: 1.55; }
+.origin-step-2 p { color: rgba(255, 255, 255, .9); font-size: clamp(18px, 1.6vw, 20px); line-height: 1.55; }
 .origin-step-3 { margin-top: clamp(8px, 1vw, 14px); padding: clamp(34px, 4vw, 48px) clamp(22px, 3vw, 38px); border-left: 4px solid var(--copper); background: rgba(200, 126, 70, .1); }
 .origin-step-3 p { color: var(--light); font-size: clamp(19px, 1.8vw, 22px); line-height: 1.55; }
 /* Closing pull-quote — the line the whole origin story resolves to. Set in
@@ -1067,15 +1067,15 @@ blockquote { margin: 0; }
 .ia-split .ia-rule { width: 80px; height: 1px; margin: clamp(18px, 2vw, 28px) 0; border: 0; background: rgba(200, 126, 70, .4); }
 .ia-split .ia-highlight { color: var(--copper); }
 .ia-prose { max-width: 760px; margin-top: clamp(30px, 3vw, 44px); }
-.ia-prose p { margin: 0; color: rgba(255, 255, 255, .7); font-size: clamp(18px, 1.8vw, 22px); line-height: 1.55; text-wrap: pretty; }
-.ia-prose p + p { margin-top: clamp(36px, 4vw, 52px); color: rgba(255, 255, 255, .85); }
+.ia-prose p { margin: 0; color: rgba(255, 255, 255, .88); font-size: clamp(18px, 1.8vw, 22px); line-height: 1.55; text-wrap: pretty; }
+.ia-prose p + p { margin-top: clamp(36px, 4vw, 52px); color: rgba(255, 255, 255, .95); }
 .ia-compare { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2vw, 24px); margin-top: clamp(36px, 4vw, 48px); max-width: 900px; }
 .ia-card { min-width: 0; padding: clamp(28px, 3vw, 38px); border: 1px solid var(--line-dark); }
 .ia-card-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; }
 .ia-mark { font-family: var(--serif); font-size: clamp(22px, 2.2vw, 28px); font-weight: 520; color: rgba(255, 255, 255, .7); }
 .ia-card-head .label { margin: 0; font-size: clamp(12px, .9vw, 13px); color: rgba(255, 255, 255, .7); }
-.ia-stance { margin: 0 0 clamp(18px, 2vw, 24px); font-family: var(--serif); font-style: italic; font-size: clamp(16px, 1.4vw, 18px); color: rgba(255, 255, 255, .7); }
-.ia-card ul { display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0; list-style: none; color: rgba(255, 255, 255, .6); font-size: clamp(15px, 1.3vw, 17px); line-height: 1.5; }
+.ia-stance { margin: 0 0 clamp(18px, 2vw, 24px); font-family: var(--serif); font-style: italic; font-size: clamp(16px, 1.4vw, 18px); color: rgba(255, 255, 255, .88); }
+.ia-card ul { display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0; list-style: none; color: rgba(255, 255, 255, .82); font-size: clamp(15px, 1.3vw, 17px); line-height: 1.5; }
 .ia-card li { display: flex; gap: 12px; }
 .ia-card li::before { content: "\25CF"; flex: 0 0 auto; color: rgba(255, 255, 255, .4); font-size: 8px; line-height: 2.1; }
 .ia-card-strong { border-color: rgba(200, 126, 70, .4); background: rgba(200, 126, 70, .1); }
@@ -1087,7 +1087,7 @@ blockquote { margin: 0; }
 
 /* Lineage — a century of the same question, on a rail. Interaction is a radio
    group so it works with no JavaScript; app.js only adds hover and clearing. */
-.lineage-lede { max-width: 720px; margin: 0; color: rgba(255, 255, 255, .78); font-size: clamp(18px, 1.8vw, 22px); line-height: 1.55; text-wrap: pretty; }
+.lineage-lede { max-width: 720px; margin: 0; color: rgba(255, 255, 255, .92); font-size: clamp(18px, 1.8vw, 22px); line-height: 1.55; text-wrap: pretty; }
 .lineage-claim { max-width: 720px; margin: clamp(20px, 2vw, 28px) 0 0; color: var(--light); font-size: clamp(19px, 2vw, 24px); line-height: 1.55; text-wrap: pretty; }
 .lineage-hint { max-width: 700px; margin: clamp(12px, 1.2vw, 18px) 0 clamp(32px, 3vw, 44px); color: rgba(255, 255, 255, .45); font-size: clamp(15px, 1.2vw, 17px); line-height: 1.55; }
 .lineage-hint .touch-instruction { display: none; }
@@ -1121,7 +1121,7 @@ blockquote { margin: 0; }
 .lineage-panel-work { font-size: clamp(14px, 1.2vw, 16px); font-style: italic; color: rgba(255, 255, 255, .5); }
 .lineage-panel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(24px, 3vw, 36px); }
 .lineage-panel-grid h3 { margin: 0 0 10px; font: 700 12px var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--copper); }
-.lineage-panel-grid p { margin: 0; font-size: clamp(14px, 1.2vw, 16px); line-height: 1.6; color: rgba(255, 255, 255, .75); }
+.lineage-panel-grid p { margin: 0; font-size: clamp(14px, 1.2vw, 16px); line-height: 1.6; color: rgba(255, 255, 255, .88); }
 .lineage-panel-grid .lineage-blocked h3 { color: rgba(255, 255, 255, .4); }
 .lineage-panel-grid .lineage-blocked p { color: rgba(255, 255, 255, .55); }
 .lineage-thread { padding: clamp(24px, 3vw, 36px) clamp(28px, 3vw, 40px); border: 1px dashed rgba(200, 126, 70, .35); background: rgba(200, 126, 70, .04); }
@@ -1149,12 +1149,12 @@ blockquote { margin: 0; }
    practice as a <details> list so every answer is readable without script. */
 .ggi h2 { max-width: 900px; margin: 0; font-size: clamp(36px, 4.5vw, 52px); line-height: 1.08; letter-spacing: -.025em; text-wrap: balance; }
 .ggi-definitions { display: flex; flex-direction: column; gap: clamp(24px, 2.5vw, 32px); margin-top: clamp(36px, 4vw, 52px); max-width: 760px; }
-.ggi-definitions p { margin: 0; color: rgba(255, 255, 255, .85); font-size: clamp(19px, 2vw, 24px); line-height: 1.5; text-wrap: pretty; }
+.ggi-definitions p { margin: 0; color: rgba(255, 255, 255, .95); font-size: clamp(19px, 2vw, 24px); line-height: 1.5; text-wrap: pretty; }
 .ggi-definitions strong { color: var(--light); }
 .ggi-prose { max-width: 760px; margin-top: clamp(32px, 3vw, 44px); }
-.ggi-prose p { margin: 0; color: rgba(255, 255, 255, .78); font-size: clamp(19px, 2vw, 24px); line-height: 1.5; text-wrap: pretty; }
+.ggi-prose p { margin: 0; color: rgba(255, 255, 255, .92); font-size: clamp(19px, 2vw, 24px); line-height: 1.5; text-wrap: pretty; }
 .ggi-prose p + p { margin-top: clamp(28px, 3vw, 38px); color: var(--light); }
-.ggi-close { margin: clamp(40px, 4vw, 56px) 0 0; max-width: 760px; color: rgba(255, 255, 255, .78); font-size: clamp(19px, 2vw, 24px); line-height: 1.5; text-wrap: pretty; }
+.ggi-close { margin: clamp(40px, 4vw, 56px) 0 0; max-width: 760px; color: rgba(255, 255, 255, .92); font-size: clamp(19px, 2vw, 24px); line-height: 1.5; text-wrap: pretty; }
 
 .perks { max-width: 760px; margin-top: clamp(28px, 3vw, 38px); }
 .perks summary { min-height: 0; display: block; padding-top: clamp(14px, 1.5vw, 20px); cursor: pointer; list-style: none; color: var(--light); font: 650 clamp(18px, 1.6vw, 21px)/1.3 var(--sans); transition: color .2s; }
@@ -1165,7 +1165,7 @@ blockquote { margin: 0; }
 }
 .perks summary:hover, .perks details[open] > summary { color: var(--copper); }
 .perks summary:hover::before, .perks details[open] > summary::before { background: var(--copper); }
-.perks details > p { margin: 0; padding-right: 24px; color: rgba(255, 255, 255, .7); font-size: clamp(17px, 1.4vw, 19px); line-height: 1.55; text-wrap: pretty; }
+.perks details > p { margin: 0; padding-right: 24px; color: rgba(255, 255, 255, .9); font-size: clamp(17px, 1.4vw, 19px); line-height: 1.55; text-wrap: pretty; }
 .ggi-links { display: flex; align-items: center; justify-content: space-between; gap: clamp(24px, 3vw, 40px); margin-top: clamp(48px, 5vw, 64px); flex-wrap: wrap; }
 .ggi-links .text-link { color: var(--copper); font-size: clamp(16px, 1.4vw, 18px); }
 .ggi-links .text-link-quiet { color: rgba(255, 255, 255, .6); font-weight: 600; }
@@ -1218,7 +1218,7 @@ blockquote { margin: 0; }
 
 /* Governance pivot — remaining hooks. */
 .visually-hidden-heading { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-.invitation-action .cta-note { max-width: 700px; margin: clamp(18px, 2vw, 24px) auto 0; color: rgba(255, 255, 255, .7); font-size: 18px; text-wrap: pretty; }
+.invitation-action .cta-note { max-width: 700px; margin: clamp(18px, 2vw, 24px) auto 0; color: rgba(255, 255, 255, .88); font-size: 18px; text-wrap: pretty; }
 
 /* The governance sections run on a single left axis, so they opt out of the
    v18 centered editorial axis (rule 1 above) rather than weakening it. */
@@ -1251,7 +1251,7 @@ blockquote { margin: 0; }
 .pillars article { padding-left: clamp(20px, 2.6vw, 34px); border-left: 3px solid rgba(200, 126, 70, .45); }
 .pillar-label { margin: 0 0 10px; color: var(--copper); font-size: clamp(12px, .95vw, 14px); font-weight: 700; letter-spacing: .16em; line-height: 1.4; text-transform: uppercase; }
 .pillars h3 { margin: 0 0 12px; font-size: clamp(23px, 2.1vw, 29px); line-height: 1.2; letter-spacing: -.02em; }
-.pillars p:not(.pillar-label) { margin: 0; color: rgba(255, 255, 255, .82); font-size: clamp(17px, 1.5vw, 19px); line-height: 1.55; text-wrap: pretty; }
+.pillars p:not(.pillar-label) { margin: 0; color: rgba(255, 255, 255, .93); font-size: clamp(17px, 1.5vw, 19px); line-height: 1.55; text-wrap: pretty; }
 
 /* Client proof teaser. Reuses the ink-tuned .proof-section vocabulary from
    the pre-pivot build. Two changes for this arc: Larry leads with his name
@@ -1287,7 +1287,7 @@ blockquote { margin: 0; }
 .deployment-section .deployment-steps li { border-bottom-color: var(--line-dark); }
 .deployment-section .deployment-steps li > span { color: var(--copper); }
 .deployment-section .deployment-steps h3 { margin: 0 0 8px; font-size: clamp(19px, 2vw, 22px); color: var(--light); text-wrap: balance; }
-.deployment-section .deployment-steps p { max-width: none; margin: 0; color: rgba(255, 255, 255, .7); }
+.deployment-section .deployment-steps p { max-width: none; margin: 0; color: rgba(255, 255, 255, .88); }
 .deployment-close { margin-top: clamp(40px, 4.5vw, 60px); }
 .deployment-close .cta-note { max-width: 45ch; margin: clamp(18px, 2vw, 25px) 0 0; color: var(--light-soft); font-size: 18px; line-height: 1.5; }
 
@@ -1322,6 +1322,10 @@ blockquote { margin: 0; }
 .page-hero.faq-hero { background: var(--ink-950); }
 #main > section.page-hero.faq-hero { min-height: 520px; }
 .faq-accordion { max-width: 860px; margin-inline: auto; }
+.faq-section .accordion details > div { color: rgba(255, 255, 255, .92); }
+.faq-section .accordion details { border-top-color: var(--line-dark); }
+.faq-section .accordion details:last-child { border-bottom-color: var(--line-dark); }
+.faq-section .accordion summary { color: var(--light); }
 /* The base accordion collapses paragraph margins, which suits the one-answer
    entries it was written for. These answers run to two paragraphs. */
 .accordion details > div p + p { margin-top: 16px; }
