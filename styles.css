@@ -99,9 +99,6 @@ blockquote { margin: 0; }
 .section-lede.dark { color: var(--text-soft); }
 .section-intro { align-items: end; }
 .section { padding-block: var(--section); }
-@media (min-width: 901px) {
-  #main > section:not(.hero):not(.invitation) { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
-}
 .paper { background: var(--paper); }
 .warm { background: var(--warm); }
 .ink { background: var(--ink-900); color: var(--light); }
@@ -590,21 +587,12 @@ blockquote { margin: 0; }
 .story-dark .claim-boundary strong { color: var(--copper); }
 
 /* About page */
-.about-hero, .about-invite { min-height: 680px; position: relative; display: grid; align-content: start; justify-items: center; padding-top: clamp(80px, 10vw, 140px); background: var(--ink-900); color: var(--light); text-align: center; }
+.about-hero { min-height: 420px; position: relative; display: grid; align-content: start; justify-items: center; padding-top: clamp(80px, 10vw, 140px); background: var(--ink-900); color: var(--light); text-align: center; }
+.about-invite { min-height: 100svh; position: relative; display: grid; justify-items: center; padding: clamp(100px, 12vw, 160px) 0 clamp(40px, 5vw, 60px); background: var(--ink-900); color: var(--light); text-align: center; }
+.about-invite .scene-content { display: flex; flex-direction: column; align-items: center; }
+.about-invite .invite-bottom { margin-top: auto; }
 .scene-scrim { position: absolute; inset: 0; background: rgba(9,20,32,.68); }
 .scene-content { position: relative; z-index: 1; width: min(calc(100% - 48px), 900px); }
-/* Hero is a plain dark panel (inherits var(--ink-900)); the founder photograph
-   now lives only in the captioned figure below. Shorter than the shared 680px
-   since it holds only an eyebrow, a name, and a lede. .about-invite untouched. */
-.about-hero { min-height: 420px; }
-/* At >=901px the site-wide `#main > section:not(.hero):not(.invitation)` rule
-   forces every section (incl. this hero) to min-height:100svh. Scope a higher-
-   specificity desktop override — .scene.about-hero ties that rule's specificity
-   and wins on source order — so the de-photographed hero collapses to a compact
-   panel instead of standing a full viewport tall. .about-invite stays 100svh. */
-@media (min-width: 901px) {
-  #main > section.scene.about-hero { min-height: 420px; }
-}
 .about-hero .portrait { display: none; }
 .about-copy, .editorial { padding-block: var(--section); background: var(--paper); }
 /* .prose's own max-width (720px) loses to .container.narrow's max-width
@@ -641,7 +629,7 @@ blockquote { margin: 0; }
 .common-thread, .otto { padding: 32px; border: 1px solid var(--line-dark); }
 .thread-copy { color: var(--light-soft); }
 .em { font-style: italic; }
-.about-invite .lede-small { max-width: 720px; margin: 26px auto 34px; }
+.about-invite .lede-small { max-width: 720px; margin: 0 auto 24px; }
 .cta-row { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
 .btn { min-height: 50px; display: inline-flex; align-items: center; padding: 12px 24px; text-decoration: none; }
 .btn-solid { background: var(--copper); color: var(--ink-950); }
@@ -755,7 +743,8 @@ blockquote { margin: 0; }
   .tl-body { grid-template-columns: 1fr; padding: 12px 0 30px; }
   .desktop-instruction { display: none; }
   .touch-instruction { display: inline; }
-  .about-hero, .about-invite { min-height: 560px; padding-top: 60px; }
+  .about-hero { min-height: 0; padding-top: 60px; }
+  .about-invite { min-height: 560px; padding: 60px 0 40px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1070,11 +1059,6 @@ blockquote { margin: 0; }
 .section.ink + .section.ink,
 .section.ink + .section.trust,
 .section.trust + .section.ink { padding-top: clamp(24px, 3vw, 48px); }
-@media (min-width: 901px) {
-  .section.ink + .section.ink,
-  .section.ink + .section.trust,
-  .section.trust + .section.ink { min-height: 0; }
-}
 
 /* Ai vs IA — the load-bearing distinction. Two opposed headings split by a
    hairline, then the comparison pair. */
@@ -1313,9 +1297,6 @@ blockquote { margin: 0; }
   background:
     linear-gradient(180deg, rgba(9,20,32,.96) 0%, rgba(9,20,32,.82) 30%, rgba(9,20,32,.35) 58%, rgba(9,20,32,.5) 100%),
     var(--ink-950) url("assets/invitation-desktop.jpg") center bottom / cover no-repeat;
-}
-@media (min-width: 901px) {
-  #main > section.scene.about-invite { min-height: 680px; }
 }
 @media (max-width: 640px) {
   .about-invite {
