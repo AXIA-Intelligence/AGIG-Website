@@ -46,16 +46,16 @@
     });
 
     lineage.addEventListener("mouseleave", function () {
-      if (usesDesktopInteraction()) clearActive();
+      if (usesDesktopInteraction()) setActive(0);
     });
 
     // Touch has no equivalent of mouseleave, so on a phone a panel opened by
-    // tapping stayed open with no way back to the common thread. A tap
+    // tapping stayed open with no way back to the resting state. A tap
     // outside the rail is that way back. Gated to non-desktop so the
-    // mouseleave path above stays the only clear on a pointer device.
+    // mouseleave path above stays the only reset on a pointer device.
     document.addEventListener("click", function (event) {
       if (usesDesktopInteraction()) return;
-      if (!lineage.contains(event.target)) clearActive();
+      if (!lineage.contains(event.target)) setActive(0);
     });
 
     // A radio checked by the browser on reload would leave the rail out of
