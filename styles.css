@@ -1067,7 +1067,7 @@ blockquote { margin: 0; }
   text-wrap: pretty;
 }
 
-.lineage-section + .ia-split { padding-top: clamp(24px, 3vw, 48px); }
+.section.ink + .section.ink { padding-top: clamp(24px, 3vw, 48px); }
 
 /* Ai vs IA — the load-bearing distinction. Two opposed headings split by a
    hairline, then the comparison pair. */
@@ -1423,7 +1423,8 @@ blockquote { margin: 0; }
 /* Solo proof — single-client presentation replacing the multi-card grid. */
 .case-feature.case-solo {
   display: block;
-  max-width: 760px;
+  max-width: 920px;
+  padding: clamp(28px, 3.5vw, 44px) clamp(32px, 4vw, 52px);
   text-align: left;
 }
 .case-intro {
