@@ -1067,6 +1067,8 @@ blockquote { margin: 0; }
   text-wrap: pretty;
 }
 
+.lineage-section + .ia-split { padding-top: clamp(24px, 3vw, 48px); }
+
 /* Ai vs IA — the load-bearing distinction. Two opposed headings split by a
    hairline, then the comparison pair. */
 .ia-split h2 { max-width: 960px; margin: 0; font-size: clamp(32px, 4vw, 52px); line-height: 1.1; letter-spacing: -.025em; }
