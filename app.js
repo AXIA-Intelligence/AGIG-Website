@@ -67,11 +67,18 @@
 
   /* Governed-intelligence list.
      Native <details>, so every answer is reachable by click and readable with
-     script disabled. On desktop, hovering opens an entry and closes the rest;
-     leaving the list closes all of them. */
+     script disabled. On desktop, hovering opens an entry and closes the rest.
+
+     The first entry carries `open` in the markup and is the list's resting
+     state, not just its initial one. A visitor arriving at a fully collapsed
+     list has no way to know the rows do anything; one row already expanded
+     and highlighted shows the behaviour before they touch it. So leaving the
+     list returns to that first entry rather than collapsing everything, which
+     would throw away the cue the moment the pointer wandered off. */
   var perks = document.querySelector("[data-perks]");
   if (perks) {
     var entries = Array.prototype.slice.call(perks.querySelectorAll("details"));
+    var resting = entries[0];
 
     var closeOthers = function (active) {
       entries.forEach(function (entry) {
@@ -103,8 +110,9 @@
     });
 
     perks.addEventListener("mouseleave", function () {
-      if (usesDesktopInteraction()) {
-        entries.forEach(function (entry) { entry.open = false; });
+      if (usesDesktopInteraction() && resting) {
+        resting.open = true;
+        closeOthers(resting);
       }
     });
   }
