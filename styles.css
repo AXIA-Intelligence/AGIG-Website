@@ -589,9 +589,15 @@ blockquote { margin: 0; }
 
 /* About page */
 .about-hero { min-height: 420px; position: relative; display: grid; align-content: start; justify-items: center; padding-top: clamp(80px, 10vw, 140px); background: var(--ink-900); color: var(--light); text-align: center; }
-.about-invite { min-height: 100svh; position: relative; display: grid; justify-items: center; padding: clamp(64px, 8vw, 100px) 0 clamp(40px, 5vw, 60px); background: var(--ink-900); color: var(--light); text-align: center; }
+.about-invite { position: relative; display: grid; justify-items: center; padding: clamp(72px, 8vw, 108px) 0; background: var(--ink-900); color: var(--light); text-align: center; }
 .about-invite .scene-content { display: flex; flex-direction: column; align-items: center; }
 .about-invite .invite-top .cta-row { margin-top: clamp(44px, 5vw, 64px); }
+.invite-note { max-width: 45ch; margin: clamp(18px, 2vw, 25px) auto 0; color: var(--light-soft); font-size: 18px; line-height: 1.5; text-wrap: pretty; }
+.about-invite.invite-light { background: var(--light); color: var(--ink-950); }
+.about-invite.invite-light .eyebrow { color: var(--copper-dark); }
+.about-invite.invite-light .button-primary { background: var(--ink-950); color: var(--light); }
+.about-invite.invite-light .button-primary:hover { background: var(--ink-900); color: var(--light); }
+.about-invite.invite-light .invite-note { color: rgba(9,20,32,.68); }
 .scene-scrim { position: absolute; inset: 0; background: rgba(9,20,32,.68); }
 .scene-content { position: relative; z-index: 1; width: min(calc(100% - 48px), 900px); }
 .about-hero .portrait { display: none; }
@@ -745,7 +751,7 @@ blockquote { margin: 0; }
   .desktop-instruction { display: none; }
   .touch-instruction { display: inline; }
   .about-hero { min-height: 0; padding-top: 60px; }
-  .about-invite { min-height: 560px; padding: 60px 0 40px; }
+  .about-invite { padding: 60px 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
