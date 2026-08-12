@@ -1294,8 +1294,8 @@ blockquote { margin: 0; }
 .deployment-section .deployment-steps li > span { color: var(--copper); }
 .deployment-section .deployment-steps h3 { margin: 0 0 8px; font-size: clamp(19px, 2vw, 22px); color: var(--light); text-wrap: balance; }
 .deployment-section .deployment-steps p { max-width: none; margin: 0; color: rgba(255, 255, 255, .88); }
-.deployment-close { margin-top: clamp(40px, 4.5vw, 60px); }
-.deployment-close .cta-note { max-width: 45ch; margin: clamp(18px, 2vw, 25px) 0 0; color: var(--light-soft); font-size: 18px; line-height: 1.5; }
+.deployment-close { margin-top: clamp(40px, 4.5vw, 60px); text-align: center; }
+.deployment-close .cta-note { max-width: 45ch; margin: clamp(18px, 2vw, 25px) auto 0; color: var(--light-soft); font-size: 18px; line-height: 1.5; }
 
 /* The chairs photograph moves with the invitation it belonged to. The
    homepage no longer closes on that section, so the image now backs the
