@@ -1447,15 +1447,14 @@ blockquote { margin: 0; }
   text-wrap: balance;
 }
 
-/* Inline client-voice quote — copper-bordered, matched-size treatment used
-   as a rhythm element when multiple client quotes stack in a single scene.
-   The border becomes the pattern of the section; each quote reads with
-   equal weight, and together they accumulate into a case. */
+/* Inline client-voice quote — matched-size treatment used as a rhythm
+   element when multiple client quotes stack in a single scene. Each
+   quote reads with equal weight, and together they accumulate into a
+   case. Standing on its own — no border, no framing device. */
 .case-quote-inline {
   margin: clamp(24px, 2.4vw, 32px) 0 0;
-  padding: 6px 0 6px clamp(18px, 1.6vw, 24px);
+  padding: 0;
   border: 0;
-  border-left: 2px solid var(--copper);
 }
 .case-quote-inline p {
   margin: 0;
