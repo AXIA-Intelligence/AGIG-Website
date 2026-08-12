@@ -1447,6 +1447,44 @@ blockquote { margin: 0; }
   text-wrap: balance;
 }
 
+/* Proof detail prose — third-party observation, portability evidence, and
+   identity-shift narrative that follows the primary pull quote. Lower
+   register than the pull quote so the quote stays dominant. */
+.proof-details {
+  margin-top: clamp(28px, 3vw, 40px);
+}
+.proof-details p {
+  margin: 0 0 clamp(14px, 1.4vw, 20px);
+  max-width: 42em;
+  color: rgba(255, 255, 255, .82);
+  font-size: clamp(17px, 1.55vw, 20px);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+.proof-details p:last-child { margin-bottom: 0; }
+
+/* Inline client-voice quote — a pause in the argument, not another hero
+   pull quote. Copper left border, smaller serif, muted attribution. */
+.case-quote-inline {
+  margin: clamp(20px, 2vw, 28px) 0 0;
+  padding: 4px 0 4px clamp(16px, 1.5vw, 22px);
+  border: 0;
+  border-left: 2px solid var(--copper);
+}
+.case-quote-inline p {
+  color: var(--light);
+  font: italic 500 clamp(20px, 2vw, 26px)/1.35 var(--serif);
+  text-wrap: pretty;
+}
+.case-quote-inline cite {
+  display: block;
+  margin-top: 8px;
+  color: rgba(255, 255, 255, .62);
+  font: 500 14px/1.5 var(--sans);
+  font-style: normal;
+  letter-spacing: .02em;
+}
+
 /* Trust columns — two-column layout with headed bullet lists. */
 .trust-col h3 {
   margin: 0 0 clamp(14px, 1.5vw, 20px);
