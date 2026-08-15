@@ -1569,6 +1569,20 @@ blockquote { margin: 0; }
    The section-number is new; left-axis opt-out matches origin/ggi/ia-split. */
 .section.origin > .shell > .section-number { margin-inline: 0; text-align: left; }
 
+/* Preparation problem — the Licklider measurement set as a standalone statement.
+   The section heading centres by default; this keeps the follow-up line centred
+   with it rather than falling back to the left-aligned body default. */
+.preparation-section > .shell > h2 { max-width: 900px; }
+.preparation-claim {
+  max-width: 660px;
+  margin: clamp(20px, 2vw, 28px) auto 0;
+  color: var(--light);
+  font-size: clamp(19px, 2vw, 24px);
+  line-height: 1.55;
+  text-align: center;
+  text-wrap: pretty;
+}
+
 /* Abbreviated lineage — 4 key figures as a static horizontal timeline.
    No interaction; the full interactive rail lives on deeper pages. */
 .lineage-condensed-section > .shell > .section-number,
@@ -1579,7 +1593,7 @@ blockquote { margin: 0; }
 
 .lineage-four {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   margin-top: clamp(40px, 5vw, 64px);
   border-top: 1px solid rgba(200, 126, 70, .25);
 }
