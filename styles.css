@@ -1593,7 +1593,7 @@ blockquote { margin: 0; }
 
 .lineage-four {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   margin-top: clamp(40px, 5vw, 64px);
   border-top: 1px solid rgba(200, 126, 70, .25);
 }
