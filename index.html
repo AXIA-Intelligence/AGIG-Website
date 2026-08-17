@@ -369,5 +369,37 @@
   </footer>
 
   <script src="app.js?v=10" defer></script>
+  <script>
+  (function() {
+    if (!window.clarity) return;
+    var tracked = {};
+    var sections = [
+      { id: 'preparation-title', tag: 'preparation_85pct' },
+      { id: 'proof-title', tag: 'client_proof' },
+      { id: 'origin-title', tag: 'memory_governance' },
+      { id: 'ggi-title', tag: 'ggi_explanation' },
+      { id: 'ia-title', tag: 'ia_vs_ai_distinction' },
+      { id: 'lineage-brief-title', tag: 'lineage_130yr' },
+      { id: 'trust-title', tag: 'trust_security' },
+      { id: 'deployment-title', tag: 'engagement_steps' }
+    ];
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !tracked[entry.target.id]) {
+          tracked[entry.target.id] = true;
+          var match = sections.find(function(s) { return s.id === entry.target.id; });
+          if (match) {
+            window.clarity('set', 'section_reached', match.tag);
+            window.clarity('event', 'reached_' + match.tag);
+          }
+        }
+      });
+    }, { threshold: 0.1 });
+    sections.forEach(function(s) {
+      var el = document.getElementById(s.id);
+      if (el) observer.observe(el);
+    });
+  })();
+  </script>
 </body>
 </html>
