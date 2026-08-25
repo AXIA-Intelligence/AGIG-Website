@@ -1,6 +1,27 @@
 (function () {
   "use strict";
 
+  /* Homepage narrative alignment.
+     GGI and Intelligence Augmentation are explanatory sections in the same
+     buyer-reading sequence as Mechanism. An older global editorial rule
+     centers direct section headers, so these scoped overrides keep the full
+     section content on the established left axis. */
+  var narrativeAlignment = document.createElement("style");
+  narrativeAlignment.textContent = [
+    ".section.ggi > .shell > .section-number,",
+    ".section.ggi > .shell > h2,",
+    ".section.ggi > .shell > .category-line,",
+    ".section.ggi > .shell > .category-context,",
+    ".section.ia-split > .shell > .section-number,",
+    ".section.ia-split > .shell > h2,",
+    ".section.ia-split > .shell > .ia-prose {",
+    "  margin-left: 0;",
+    "  margin-right: 0;",
+    "  text-align: left;",
+    "}"
+  ].join("\n");
+  document.head.appendChild(narrativeAlignment);
+
   var desktopQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
 
   function usesDesktopInteraction() {
