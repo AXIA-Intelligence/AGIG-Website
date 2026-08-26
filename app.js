@@ -169,13 +169,17 @@
     }
 
     .deployment-close {
-      max-width: 760px;
+      width: 100%;
+      max-width: none;
       margin: clamp(40px, 4.5vw, 60px) 0 0;
       text-align: left;
     }
     .deployment-close .cta-note {
-      max-width: 45ch;
-      margin: clamp(16px, 1.8vw, 22px) 0 0;
+      width: 100%;
+      max-width: none;
+      margin: clamp(16px, 1.8vw, 22px) auto 0;
+      text-align: center;
+      text-wrap: balance;
     }
 
     /* One CTA language across Home, About, Client Stories, and FAQ. */
@@ -224,6 +228,10 @@
     .site-footer a, .site-footer .wordmark { color: var(--light-soft) !important; }
 
     @media (max-width: 640px) {
+      .deployment-close .cta-note {
+        padding-inline: 12px;
+        line-height: 1.45;
+      }
       .site-cta-banner { min-height: 92px; padding-inline: 16px; }
       .site-cta-label { font-size: clamp(24px, 7vw, 32px); padding-inline: 42px; }
       .site-cta-arrow { right: 18px; }
