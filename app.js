@@ -174,13 +174,6 @@
       margin: clamp(40px, 4.5vw, 60px) 0 0;
       text-align: left;
     }
-    .deployment-close .cta-note {
-      width: 100%;
-      max-width: none;
-      margin: clamp(16px, 1.8vw, 22px) auto 0;
-      text-align: center;
-      text-wrap: balance;
-    }
 
     /* One CTA language across Home, About, Client Stories, and FAQ. */
     .site-cta-banner {
@@ -218,6 +211,15 @@
       transform: translateY(-50%);
       font: 400 clamp(30px, 3.5vw, 48px)/1 var(--sans);
     }
+    .site-cta-support {
+      width: 100%;
+      margin: 0 !important;
+      padding: clamp(18px, 2.2vw, 28px) clamp(24px, 5vw, 72px) clamp(28px, 3.5vw, 44px);
+      text-align: center;
+      text-wrap: balance;
+      color: var(--text-soft) !important;
+      background: var(--paper);
+    }
 
     .hero-actions:empty,
     .about-invite .cta-row:empty { display: none !important; }
@@ -228,8 +230,8 @@
     .site-footer a, .site-footer .wordmark { color: var(--light-soft) !important; }
 
     @media (max-width: 640px) {
-      .deployment-close .cta-note {
-        padding-inline: 12px;
+      .site-cta-support {
+        padding-inline: 22px;
         line-height: 1.45;
       }
       .site-cta-banner { min-height: 92px; padding-inline: 16px; }
@@ -276,19 +278,29 @@
     }
   }
 
-  /* Homepage engagement: preserve the competency/risk-reversal copy, then conclude with the same strip. */
+  /* Homepage engagement: competency statement, CTA, then risk-reversal support. */
   var deploymentSection = document.querySelector(".deployment-section");
   if (deploymentSection) {
     var deploymentClose = deploymentSection.querySelector(".deployment-close");
     if (deploymentClose) {
+      var supportNote = null;
       Array.prototype.slice.call(deploymentClose.querySelectorAll(".cta-note")).forEach(function (note) {
-        if (note.textContent.toLowerCase().indexOf("see if this is the right fit") !== -1) note.remove();
+        var noteText = note.textContent.toLowerCase();
+        if (noteText.indexOf("see if this is the right fit") !== -1) {
+          note.remove();
+        } else if (noteText.indexOf("thirty minutes with the founder") !== -1) {
+          supportNote = note;
+        }
       });
       var deploymentButton = deploymentClose.querySelector("a.button");
       if (deploymentButton) {
         var deploymentHref = deploymentButton.href;
         deploymentButton.remove();
         deploymentSection.appendChild(createCtaBanner(deploymentHref));
+        if (supportNote) {
+          supportNote.classList.add("site-cta-support");
+          deploymentSection.appendChild(supportNote);
+        }
       }
     }
   }
