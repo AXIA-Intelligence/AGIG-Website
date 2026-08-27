@@ -171,7 +171,7 @@
     .deployment-close {
       width: 100%;
       max-width: none;
-      margin: clamp(40px, 4.5vw, 60px) 0 0;
+      margin: clamp(40px, 4.5vw, 60px) 0 clamp(34px, 4vw, 56px);
       text-align: left;
     }
 
@@ -230,6 +230,9 @@
     .site-footer a, .site-footer .wordmark { color: var(--light-soft) !important; }
 
     @media (max-width: 640px) {
+      .deployment-close {
+        margin-bottom: clamp(28px, 8vw, 40px);
+      }
       .site-cta-support {
         padding-inline: 22px;
         line-height: 1.45;
