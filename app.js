@@ -2,9 +2,9 @@
   "use strict";
 
   /*
-    AXIA Monochrome live trial + CTA consistency layer.
-    This file intentionally centralizes the current reversible visual trial so
-    Home, About, Client Stories, and FAQ share one visual and CTA language.
+    AXIA Monochrome + CTA consistency layer.
+    This file centralizes the approved visual system so Home, About,
+    Client Stories, and FAQ share one visual and CTA language.
   */
   var style = document.createElement("style");
   style.id = "axia-site-system";
@@ -174,6 +174,9 @@
       margin: clamp(40px, 4.5vw, 60px) 0 clamp(34px, 4vw, 56px);
       text-align: left;
     }
+    .deployment-section.has-terminal-cta {
+      padding-bottom: 0 !important;
+    }
 
     /* One CTA language across Home, About, Client Stories, and FAQ. */
     .site-cta-banner {
@@ -299,6 +302,7 @@
       if (deploymentButton) {
         var deploymentHref = deploymentButton.href;
         deploymentButton.remove();
+        deploymentSection.classList.add("has-terminal-cta");
         deploymentSection.appendChild(createCtaBanner(deploymentHref));
         if (supportNote) {
           supportNote.classList.add("site-cta-support");
@@ -313,9 +317,14 @@
     var inviteButton = section.querySelector(".cta-row a.button");
     if (!inviteButton) return;
     var inviteHref = inviteButton.href;
+    var inviteNote = section.querySelector(".invite-note");
     inviteButton.remove();
     section.classList.add("has-site-cta");
     section.appendChild(createCtaBanner(inviteHref));
+    if (inviteNote) {
+      inviteNote.classList.add("site-cta-support");
+      section.appendChild(inviteNote);
+    }
   });
 
   /* Preserve any legacy interactive components that remain on secondary pages. */
