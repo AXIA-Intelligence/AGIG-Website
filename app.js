@@ -200,18 +200,25 @@
       background: var(--ink-950);
       color: var(--light);
     }
+    .site-cta-content {
+      max-width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(14px, 1.8vw, 26px);
+    }
     .site-cta-label {
-      width: 100%;
-      padding-inline: clamp(44px, 6vw, 84px);
+      width: auto;
+      min-width: 0;
+      padding-inline: 0;
       text-align: center;
       font: 520 clamp(26px, 3.2vw, 46px)/1.1 var(--serif);
       letter-spacing: -.02em;
     }
     .site-cta-arrow {
-      position: absolute;
-      right: clamp(24px, 5vw, 72px);
-      top: 50%;
-      transform: translateY(-50%);
+      position: static;
+      flex: 0 0 auto;
+      transform: none;
       font: 400 clamp(30px, 3.5vw, 48px)/1 var(--sans);
     }
     .site-cta-support {
@@ -241,8 +248,8 @@
         line-height: 1.45;
       }
       .site-cta-banner { min-height: 92px; padding-inline: 16px; }
-      .site-cta-label { font-size: clamp(24px, 7vw, 32px); padding-inline: 42px; }
-      .site-cta-arrow { right: 18px; }
+      .site-cta-content { gap: 14px; }
+      .site-cta-label { font-size: clamp(24px, 7vw, 32px); padding-inline: 0; }
       .preparation-section, .outcomes-section, .ia-split, .deployment-section {
         background: var(--paper) !important;
       }
@@ -259,6 +266,9 @@
     banner.href = href;
     banner.setAttribute("aria-label", "Schedule a private conversation");
 
+    var content = document.createElement("span");
+    content.className = "site-cta-content";
+
     var label = document.createElement("span");
     label.className = "site-cta-label";
     label.textContent = "Schedule a private conversation";
@@ -268,8 +278,9 @@
     arrow.setAttribute("aria-hidden", "true");
     arrow.textContent = "\u2192";
 
-    banner.appendChild(label);
-    banner.appendChild(arrow);
+    content.appendChild(label);
+    content.appendChild(arrow);
+    banner.appendChild(content);
     return banner;
   }
 
