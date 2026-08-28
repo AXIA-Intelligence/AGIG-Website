@@ -1,0 +1,1659 @@
+/* AVANT GARDE — Batch 6 whole-person editorial system */
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("fonts/source-serif-4-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("fonts/source-serif-4-italic-variable.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 200 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("fonts/source-sans-3-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+:root {
+  --ink-950: #091420;
+  --ink-900: #0e1b2b;
+  --ink-800: #18283a;
+  --paper: #f7f9fc;
+  --paper-light: #f7f9fc;
+  --warm: #edf3f8;
+  --text: #0b1a2b;
+  --text-soft: #33465b;
+  --light: #ffffff;
+  --light-soft: #ffffff;
+  --copper: #c87e46;
+  --copper-dark: #bc4a00;
+  --line: #cbd5df;
+  --line-dark: rgba(255, 255, 255, 0.18);
+  --serif: "Source Serif 4", Georgia, serif;
+  --sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --shell: 1180px;
+  --measure: 820px;
+  --section: clamp(76px, 9vw, 132px);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--ink-950);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 18px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+button, a, summary { touch-action: manipulation; }
+.shell { width: min(calc(100% - 64px), var(--shell)); margin-inline: auto; }
+.container { width: min(calc(100% - 64px), var(--shell)); margin-inline: auto; }
+.container.narrow { max-width: var(--shell); }
+.container.narrow > * { max-width: var(--measure); }
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 500;
+  transform: translateY(-160%);
+  background: var(--copper);
+  color: var(--ink-950);
+  padding: 12px 18px;
+  font-weight: 700;
+}
+.skip-link:focus { transform: none; }
+:focus-visible { outline: 3px solid var(--copper); outline-offset: 4px; }
+
+h1, h2, h3 { font-family: var(--serif); font-weight: 520; text-wrap: balance; }
+h1 { margin: 0; color: var(--light); font-size: clamp(43px, 6.2vw, 82px); line-height: 1.02; letter-spacing: -0.035em; }
+h2 { margin: 0; font-size: clamp(36px, 4.5vw, 62px); line-height: 1.08; letter-spacing: -0.025em; }
+h3 { margin: 0; font-size: clamp(25px, 2.7vw, 34px); line-height: 1.2; }
+h4 { margin: 0; font-size: 18px; line-height: 1.3; }
+p { margin: 0 0 1.25em; }
+ul { margin-top: 0; }
+blockquote { margin: 0; }
+.eyebrow, .section-number, .comparison-label, .proof-kicker, .map-label, .label {
+  margin: 0 0 24px;
+  font-size: clamp(14px, 1vw, 15px);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+.eyebrow, .copper, .label-copper { color: var(--copper); }
+.section-number, .proof-kicker, .map-label { color: var(--copper-dark); }
+.section-number.copper { color: var(--copper); }
+.section-lede { max-width: 760px; color: var(--light-soft); font-size: clamp(19px, 2vw, 24px); line-height: 1.5; }
+.section-lede.dark { color: var(--text-soft); }
+.section-intro { align-items: end; }
+.section { padding-block: var(--section); }
+.paper { background: var(--paper); }
+.warm { background: var(--warm); }
+.ink { background: var(--ink-900); color: var(--light); }
+.split { display: grid; grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr); gap: clamp(48px, 8vw, 112px); }
+.prose { max-width: 720px; color: var(--text-soft); }
+
+.site-header { position: absolute; inset: 0 0 auto; z-index: 20; color: var(--light); }
+.nav-shell {
+  width: min(calc(100% - 64px), var(--shell));
+  min-height: 88px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid var(--line-dark);
+}
+.wordmark { display: flex; flex-direction: column; flex: 0 0 auto; text-decoration: none; font-size: 15px; letter-spacing: .16em; line-height: 1.25; }
+.wordmark strong { font-weight: 650; }
+.wordmark span { font-size: 14px; letter-spacing: .26em; opacity: .75; }
+/* Enlarge only the header lockup; the footer wordmark keeps its sizing. Header
+   scope outranks the base rule and the max-width:640 .wordmark override, so the
+   header follows the clamp at every width (min 16px), footer stays 15/13px. */
+.site-header .wordmark { min-height: 44px; justify-content: center; font-size: clamp(16px, 1.35vw, 21px); }
+.site-header .wordmark span { font-size: 14px; }
+.nav-links { display: flex; align-items: center; gap: 26px; margin-left: auto; }
+.nav-links a { min-height: 44px; display: inline-flex; align-items: center; color: var(--light-soft); font-size: 16px; text-decoration: none; }
+.nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--light); }
+.nav-links a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--copper); text-underline-offset: 7px; }
+.mobile-nav { display: none; position: relative; }
+.mobile-nav summary {
+  min-height: 44px;
+  min-width: 58px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  border: 1px solid var(--line-dark);
+  cursor: pointer;
+  font-size: 16px;
+}
+.mobile-nav summary::-webkit-details-marker { display: none; }
+.mobile-nav-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 220px;
+  padding: 8px;
+  border: 1px solid rgba(200,126,70,.48);
+  background: var(--ink-950);
+  box-shadow: 0 24px 60px rgba(0,0,0,.34);
+}
+.mobile-nav-panel a { min-height: 48px; display: flex; align-items: center; padding-inline: 15px; color: var(--light); text-decoration: none; }
+.mobile-nav-panel a + a { border-top: 1px solid var(--line-dark); }
+
+.button {
+  min-height: 54px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border: 1px solid transparent;
+  font: 650 17px/1.2 var(--sans);
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+.button-primary { background: var(--copper); color: var(--ink-950); }
+.button-primary:hover { background: var(--light); }
+.button-outline { border-color: rgba(200,126,70,.82); color: var(--light); }
+.button-outline:hover { border-color: var(--copper); background: var(--copper); color: var(--ink-950); }
+.button-dark { background: var(--ink-900); color: var(--light); }
+.button-dark:hover { background: var(--ink-800); }
+.text-link { min-height: 44px; display: inline-flex; align-items: center; gap: 10px; text-underline-offset: 5px; font-weight: 650; }
+
+.hero { min-height: 100svh; position: relative; display: flex; align-items: flex-end; overflow: hidden; }
+.hero-media, .hero-scrim { position: absolute; inset: 0; }
+.hero-scrim { z-index: 2; pointer-events: none; }
+.hero-media picture,
+.hero-media img {
+  width: 100%;
+  height: 100%;
+}
+.hero-media picture {
+  position: absolute;
+  inset: 0;
+}
+.hero-media img {
+  object-fit: cover;
+  /* Bias toward the dark left well so the text zone stays clear and the
+     subject sits to the right (partly off-frame on narrow viewports). */
+  object-position: 30% center;
+}
+/* Ambient hero loop: poster-backed video over the still, same object-position
+   as .hero-media img so the poster-to-video handoff has no jump. Sits below the
+   scrim (z-index 1 vs the scrim's 2) so the left text zone stays dark. */
+.hero-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 30% center; z-index: 1; border: 0; }
+.hero-scrim { background: linear-gradient(90deg, rgba(9,20,32,.98) 0%, rgba(9,20,32,.88) 45%, rgba(9,20,32,.52) 62%, rgba(9,20,32,.1) 88%), linear-gradient(0deg, rgba(9,20,32,.92) 0%, transparent 58%); }
+.hero-content { position: relative; z-index: 1; padding-block: 0 48px; }
+.hero h1 { max-width: 820px; }
+.hero-lede, .lede { max-width: 690px; margin: 32px 0; color: var(--light); font-size: clamp(19px, 2vw, 24px); line-height: 1.5; }
+.hero-actions { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
+@media (min-width: 901px) {
+  /* Raise the text block to the subject's eyeline (edit #64): anchor to the top
+     instead of the bottom and offset the H1's top edge to ~36svh, which tracks
+     the eyeline (a fixed fraction of the top-pinned cover image) across viewport
+     heights. Horizontal position and the dark left column are unchanged. */
+  .hero { align-items: flex-start; }
+  .hero-content {
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-block: 36svh 60px;
+    text-align: left;
+  }
+  .hero h1 {
+    max-width: 600px;
+    font-size: clamp(42px, 4.2vw, 48px);
+    line-height: 1.04;
+  }
+  .hero-lede {
+    max-width: 540px;
+    margin: 20px 0 34px;
+    font-size: clamp(18px, 1.4vw, 19px);
+    line-height: 1.48;
+  }
+  .hero-actions { justify-content: flex-start; }
+}
+.page-hero {
+  min-height: 670px;
+  padding-block: 188px 94px;
+  display: flex;
+  align-items: end;
+  color: var(--light);
+  background:
+    linear-gradient(90deg, rgba(9,20,32,.96), rgba(9,20,32,.78) 58%, rgba(9,20,32,.36)),
+    url("assets/continuity-desktop.jpg") center / cover no-repeat;
+}
+.page-hero h1 { max-width: 1030px; }
+.page-hero .hero-lede { margin-bottom: 0; }
+/* Stories hero is a plain dark panel: it no longer reuses the weight photo, and
+   the shared .page-hero base (and its mobile override) carry a continuity photo,
+   so pin a flat ink background at a specificity that wins at every width. */
+.page-hero.stories-hero { background: var(--ink-950); }
+/* Cap the flat stories hero so the site-wide 100svh rule doesn't leave a full
+   viewport of empty dark field. Ties that rule's specificity, wins on order. */
+#main > section.page-hero.stories-hero { min-height: 520px; }
+
+.weight-section h2 { max-width: 980px; }
+/* margin is left-anchored here to match the section headline. Note the
+   effective values come from the later .weight-ladder rules (margin-inline: 0,
+   then margin: 40px 0 0 / max-width: 620px in the weight-section block) which
+   win on source order -- this base margin never renders. Kept consistent so
+   the base rule doesn't read as centered when the element is not. */
+.weight-ladder { max-width: 1080px; margin: 64px 0 0; padding: 0; list-style: none; counter-reset: weight; display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; border-top: 1px solid var(--line); }
+.weight-ladder li { counter-increment: weight; display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); font: 400 clamp(18px, 1.6vw, 22px)/1.5 var(--serif); color: var(--text-soft); }
+.weight-ladder li::before { content: "0" counter(weight); color: var(--copper-dark); font: 650 14px/1.9 var(--sans); letter-spacing: .13em; }
+.weight-ladder li p { margin: 0; }
+.weight-ladder li strong { color: var(--text); font-weight: 650; }
+.weight-ladder .weight-final { grid-column: 1 / -1; font-size: clamp(20px, 2vw, 26px); color: var(--text); }
+.editorial-grid { display: grid; margin-top: 64px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.editorial-grid.three { grid-template-columns: repeat(3, 1fr); }
+.editorial-grid article { min-width: 0; padding: 32px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.editorial-grid h3 { margin: 0 0 12px; }
+.editorial-grid p:last-child { max-width: 58ch; margin-bottom: 0; color: var(--text-soft); font-size: 18px; }
+.doctrine { margin: 72px 0 0; max-width: 930px; font: italic 500 clamp(30px, 4vw, 52px)/1.25 var(--serif); }
+.doctrine.compact { margin-top: 54px; font-size: clamp(26px, 3.3vw, 42px); }
+
+.distinction h2 { max-width: 900px; }
+/* Section 3 — the three levels read as a vertical ascending progression,
+   not a parallel column grid (edit #51). Tiers stack top-to-bottom and
+   gain rail weight, brightness, size, and indent as they rise, so the
+   third tier lands as the destination rather than one of three equals.
+   Header and trailing lines share the shell's left edge, matching the
+   single left axis of Section 2. */
+.section.distinction > .shell > .section-number,
+.section.distinction > .shell > h2 { margin-inline: 0; text-align: left; }
+.section.distinction > .shell > .section-lede { margin-inline: 0; text-align: left; }
+/* Section 3 close: the doctrine line is the sole close (edit #54 removed the
+   cost line). It sits a deliberate distance below the copper tier-3 block —
+   enough air to read as the section's final word without floating. Full
+   weight and full-white brightness come from .doctrine and .ink already. */
+.distinction .doctrine { margin: clamp(56px, 6vw, 84px) 0 0; max-width: none; text-align: left; text-wrap: pretty; }
+/* TRIAL (revert candidate): center the closing doctrine line instead of
+   holding the section's left axis — flagged as reading off-balance on its
+   own. Remove this rule to return it to the left. */
+.distinction .doctrine { max-width: 900px; margin-inline: auto; text-align: center; }
+
+.progression-grid { display: block; margin-top: 56px; }
+.progression-grid article {
+  min-width: 0;
+  padding: clamp(22px, 3vw, 34px) clamp(22px, 3vw, 38px);
+  border-left: 2px solid rgba(255, 255, 255, .16);
+}
+.progression-grid article + article { margin-top: clamp(14px, 1.8vw, 22px); }
+.comparison-label { margin-bottom: 14px; color: var(--copper); }
+.progression-grid h3 { margin-bottom: 16px; font-size: clamp(24px, 2.3vw, 32px); text-wrap: pretty; color: rgba(255, 255, 255, .88); }
+.progression-grid p:last-child { color: rgba(255, 255, 255, .78); text-wrap: pretty; }
+
+/* Tier 2 — heavier rail, brighter, stepped in from the base line. */
+.progression-grid article:nth-child(2) { margin-left: clamp(14px, 2.6vw, 36px); border-left-width: 3px; border-left-color: rgba(200, 126, 70, .55); }
+.progression-grid article:nth-child(2) h3 { color: rgba(255, 255, 255, .93); }
+.progression-grid article:nth-child(2) p:last-child { color: rgba(255, 255, 255, .85); }
+
+/* Tier 3 — the destination: furthest in, copper-lit fill, heaviest rail,
+   brightest and largest heading. */
+.progression-grid .progression-emphasis { margin-left: clamp(28px, 5vw, 70px); border-left: 4px solid var(--copper); background: rgba(200, 126, 70, .12); }
+.progression-emphasis h3 { font-size: clamp(28px, 3vw, 40px); color: #ffffff; }
+.progression-emphasis p:last-child { color: rgba(255, 255, 255, .93); }
+.connectivity h2 { max-width: 990px; }
+.connectivity > .shell > .section-lede { margin-top: 30px; }
+/* Section 5 compressed to a tight left-aligned passage (edit #56): the
+   two-panel compound-map moved to Applications. Header, both paragraphs, and
+   the governance line now share one left axis. */
+.section.connectivity > .shell > .section-number,
+.section.connectivity > .shell > h2,
+.section.connectivity > .shell > .section-lede { margin-inline: 0; text-align: left; }
+.connectivity .governance-line { margin-inline: 0; text-align: left; }
+/* Section 5 moved from warm to ink (edit #62): .section-lede's default color
+   is already the on-ink white, so the .dark modifier was dropped from both
+   paragraphs in the markup. .governance-line's base color is tuned for a
+   light background and would go near-invisible here, so it takes the same
+   light-soft white the lede and doctrine-note use elsewhere on ink. */
+.connectivity .governance-line { color: var(--light-soft); }
+.connectivity h2 { text-wrap: pretty; }
+.connectivity .section-number, .connectivity .section-lede, .connectivity .governance-line { text-wrap: pretty; }
+/* At the narrowest widths the display h2 can't hold "compounding begins." on
+   one line; trim it a touch so the closing word never strands. */
+@media (max-width: 400px) {
+  .connectivity h2 { font-size: clamp(30px, 8.3vw, 34px); }
+}
+.signature-line { max-width: 940px; margin: 58px 0 0; font: italic 500 clamp(26px, 3.2vw, 42px)/1.35 var(--serif); }
+.governance-line { max-width: 64ch; margin: clamp(34px, 3.4vw, 45px) 0 0; padding-top: 26px; border-top: 1px solid rgba(23,33,45,.24); color: var(--text-soft); }
+
+.system-groups { margin-top: 52px; }
+.system-group + .system-group { margin-top: 48px; }
+/* R2/5b: the unscoped .group-claim and .group-line base rules used to sit
+   here at clamp(17px,1.6vw,20px) and 16px respectively -- coincidentally
+   the same size as .canonical-statement. Every real .group-claim/.group-line
+   in the markup lives inside .practical, so the .practical-scoped overrides
+   below (higher specificity) always win and the base rules never rendered.
+   Removed as dead weight rather than left to collide on paper. */
+.boundary-line { max-width: 820px; margin: 42px 0 0; font: 500 clamp(22px, 2.7vw, 34px)/1.4 var(--serif); }
+/* Quiet definition passage on the practical section's left axis, below the four
+   claims and above the boundary line. */
+.practical .practice-definition { max-width: 62ch; margin: clamp(27px, 2.8vw, 36px) 0 0; color: var(--text-soft); font-size: 20px; line-height: 1.6; }
+.practical .practice-definition:first-of-type { margin-top: clamp(62px, 5.5vw, 80px); }
+.case-day { margin-top: 82px; padding: clamp(30px, 4vw, 52px); border: 1px solid var(--line); background: var(--paper-light); }
+.case-day > header { max-width: 780px; }
+.case-day > header h3 { margin-top: 12px; font-size: clamp(25px, 2.7vw, 34px); line-height: 1.16; }
+.day-steps { list-style: none; margin: 36px 0 0; padding: 0; }
+.day-steps li { display: grid; grid-template-columns: 46px 1fr; gap: 22px; padding: 24px 0; border-top: 1px solid var(--line); }
+.day-steps li > span { color: var(--copper-dark); font: 650 14px/1.7 var(--sans); letter-spacing: .13em; }
+.day-lead { margin: 0 0 6px; color: var(--text); font-weight: 650; }
+.day-steps li > div > p:last-child { max-width: 65ch; margin: 0; color: var(--text-soft); font-size: 18px; }
+.day-close { max-width: 820px; margin: 40px 0 0; color: var(--text); font: 500 clamp(19px, 2vw, 24px)/1.42 var(--serif); }
+.day-boundary { max-width: 58ch; margin: clamp(14px, 1.7vw, 20px) 0 0; color: var(--text-soft); font-size: 18px; }
+
+/* Section 6 outcome groups, now cardless (edit #57): the nine capability cards
+   moved to Applications, so the three outcomes read as a ruled vertical sequence
+   — each a promoted serif claim over its supporting line — rather than an
+   emptied grid. Scoped to .practical so the migrated Applications copies keep
+   the original grouped-card treatment. */
+.practical .system-groups { max-width: 900px; }
+.practical .system-group { border-top: 1px solid var(--line); padding-top: 30px; }
+.practical .system-group + .system-group { margin-top: 40px; }
+.practical .group-claim { margin-bottom: 12px; color: var(--text); font: 500 clamp(24px, 2.6vw, 33px)/1.22 var(--serif); text-wrap: balance; }
+.practical .group-line { max-width: 760px; margin-bottom: 0; font-size: clamp(18px, 1.6vw, 20px); }
+/* Quiet closing line under the four claims, on the section's left spine. */
+.practical .earned-close { max-width: 720px; margin: 40px 0 0; color: var(--text-soft); font-size: clamp(18px, 1.6vw, 20px); }
+/* GOV-20260727-practical-coda-reversal: the boundary line and story link
+   return to the section's left spine now that the section around them has
+   changed materially (PR #234). Overrides the global centered
+   "closing/doctrine line" treatment; alignment only, the display size and
+   weight are untouched. */
+.practical .boundary-line { margin-inline: 0; text-align: left; }
+.practical .breadcrumb-link { margin-top: 44px; }
+.practical .breadcrumb-link { display: flex; width: fit-content; margin-inline: 0; }
+
+/* The permit artifact migrated into Larry's story (edit #57): restore its own
+   header, kicker, and step styling over the generic .story-body h3/p rules. */
+.story-body .case-day { margin-block: 44px; }
+.story-body .case-day > header h3 { font: 500 clamp(25px, 2.7vw, 34px)/1.16 var(--serif); color: var(--text); text-transform: none; letter-spacing: normal; }
+.story-body .case-day .proof-kicker { color: var(--copper-dark); }
+.story-body .case-day .day-lead { color: var(--text); }
+.story-body .case-day .day-close { color: var(--text); }
+
+/* Widow control on the migrated / surviving copy (edit #57). */
+.practical h2 { text-wrap: balance; }
+.practical .section-number, .practical .group-line, .practical .boundary-line,
+.day-steps p, .day-close { text-wrap: pretty; }
+/* Narrowest widths: trim the display H2 and the boundary line so their long
+   closing words ("impressive.", "judgment.") never strand. */
+@media (max-width: 400px) {
+  .practical h2 { font-size: clamp(27px, 8vw, 34px); }
+  .practical .boundary-line { font-size: 20px; }
+}
+
+.proof-section h2 { max-width: 960px; }
+.proof-section > .shell > .section-lede { margin-top: 30px; }
+.case-feature { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; margin-top: 68px; padding: clamp(38px, 6vw, 72px); background: var(--ink-900); color: var(--light); }
+.case-feature h3 { font-size: clamp(31px, 4vw, 48px); }
+.case-feature p { color: var(--light-soft); }
+.case-feature blockquote { margin: 24px 0 0; color: var(--light); font: italic 500 clamp(30px, 3.8vw, 46px)/1.3 var(--serif); }
+.case-grid { display: grid; grid-template-columns: repeat(2, 1fr); margin-top: 24px; border: 1px solid rgba(23,33,45,.18); }
+.case-grid > article { min-width: 0; padding: 34px; background: rgba(255,255,255,.3); }
+.case-grid > article + article { border-left: 1px solid rgba(23,33,45,.18); }
+.case-grid h3 { margin-bottom: 20px; }
+.case-grid p { color: var(--text-soft); text-wrap: pretty; }
+/* Section 7 teaser row (edit #58): Roger and Horacio compress to one line each.
+   Keep the equal-height two-column box, set a clearer beat below the Larry
+   feature, and center each card's content so the shorter card reads as a
+   deliberate teaser rather than a truncated card with empty space below. */
+.proof-section .case-grid { margin-top: 56px; }
+.proof-section .case-grid > article { display: flex; flex-direction: column; justify-content: center; }
+/* Keep the proof section free of stranded final words at narrow widths. */
+.proof-section .section-lede { text-wrap: pretty; }
+.proof-section .case-feature blockquote { text-wrap: balance; }
+.proof-section .proof-kicker { text-wrap: balance; }
+
+/* Proof section on the ink field, matching distinction/connectivity. Everything
+   here is scoped to .proof-section because .proof-kicker and .privacy-note are
+   also used on client-stories.html over paper, which must not change.
+   .proof-kicker cannot take the .copper class the way .section-number does --
+   the base .proof-kicker copper-dark rule outranks .copper on source order and
+   there is no .proof-kicker.copper pair -- so it is overridden here instead. */
+.proof-section .proof-kicker { color: var(--copper); }
+/* The Larry card was ink-900, identical to the ink section it now sits on, so
+   it would have vanished into the field. Lifted to ink-800 with a hairline
+   border: both are existing tokens, so the card reads as raised without
+   introducing a new colour. */
+.proof-section .case-feature { background: var(--ink-800); border: 1px solid var(--line-dark); }
+/* The 30% white overlay composites to a mid-slate (~rgb(86,95,107)) over ink,
+   which fails AA against both white and the dark navy body colour. Dropped to a
+   6% lift so the cards stay dark cards and carry light text instead. */
+.proof-section .case-grid { border-color: var(--line-dark); }
+.proof-section .case-grid > article { background: rgba(255, 255, 255, .06); }
+.proof-section .case-grid > article + article { border-left-color: var(--line-dark); }
+/* :not(.proof-kicker) because the Roger/Horacio kickers are also <p> inside
+   .case-grid -- without it this rule outranks the kicker colour above and
+   turns them white instead of copper. */
+.proof-section .case-grid p:not(.proof-kicker) { color: var(--light-soft); }
+/* Same situation .invitation .stories-privacy-note p already handles: a quiet
+   note that needs the on-ink light colour rather than paper's text-soft. */
+.proof-section .privacy-note { color: var(--light-soft); border-top-color: var(--line-dark); }
+/* Matches the 1100px breakpoint where the base rule swaps the card divider from
+   border-left to border-top -- at 900px the 901-1100px band would have kept the
+   paper-tuned dark divider, invisible on ink. */
+@media (max-width: 1100px) {
+  .proof-section .case-grid > article + article { border-top-color: var(--line-dark); }
+}
+@media (max-width: 400px) { #proof-title { font-size: clamp(27px, 7.6vw, 32px); } }
+.proof-actions { display: flex; align-items: center; gap: 24px; margin-top: 40px; }
+.proof-actions .text-link { color: var(--copper); font-size: clamp(18px, 1.6vw, 21px); text-decoration: none; }
+.proof-actions .text-link:hover { text-decoration: underline; text-underline-offset: 5px; }
+.privacy-note { max-width: 65ch; margin: clamp(49px, 3.9vw, 62px) 0 0; padding-top: 24px; border-top: 1px solid rgba(23,33,45,.18); color: var(--text-soft); font-size: 18px; }
+
+.deployment-steps { list-style: none; margin: 0; padding: 0; }
+.deployment-steps li { display: grid; grid-template-columns: 54px 1fr; gap: 20px; padding: 0 0 30px; border-bottom: 1px solid rgba(23,33,45,.2); margin-bottom: 30px; }
+.deployment-steps li:last-child { margin-bottom: 0; }
+.deployment-steps li > span { color: var(--copper-dark); font-size: 14px; letter-spacing: .12em; }
+.deployment-steps h3 { margin-bottom: 8px; text-wrap: balance; }
+.deployment-steps p { margin: 0; color: var(--text-soft); text-wrap: pretty; font-size: 18px; }
+/* Homepage close lead-in: the risk-reversal beat that used to sit inside the
+   dissolved Section 8, relocated as a short dark passage directly above the
+   invitation. A div (not a section) so it sizes to its content instead of
+   clamping to the full-viewport section min-height, and ink-950 so it reads
+   continuously into the invitation's dark top rather than as a new section. */
+.invitation-leadin { background: var(--ink-950); color: var(--light); text-align: left; padding-block: clamp(48px, 6vw, 84px) clamp(30px, 4vw, 48px); }
+.invitation-leadin h3 { font-size: clamp(27px, 3vw, 38px); text-wrap: balance; max-width: 900px; margin-inline: 0; }
+.invitation-leadin p { max-width: 720px; margin: 18px 0 0; color: var(--light-soft); text-wrap: pretty; }
+/* Engagement steps reused inside the dark lead-in: a centred column whose rows
+   read left-aligned, recoloured for the dark background, with step-sized
+   headings (not the large lead-in h3). */
+.invitation-leadin .deployment-steps { max-width: 720px; margin: 34px 0 0; text-align: left; }
+.invitation-leadin .deployment-steps li { border-bottom-color: var(--line-dark); }
+.invitation-leadin .deployment-steps li > span { color: var(--copper); }
+.invitation-leadin .deployment-steps h3 { font-size: clamp(19px, 2vw, 22px); margin: 0 0 8px; color: var(--light); text-wrap: balance; }
+.invitation-leadin .deployment-steps p { max-width: none; margin: 0; color: rgba(255, 255, 255, .88); }
+
+.accordion details { border-top: 1px solid var(--line); }
+.accordion details:last-child { border-bottom: 1px solid var(--line); }
+.accordion summary { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px; cursor: pointer; font: 550 21px/1.3 var(--serif); }
+.accordion summary::after { content: "+"; color: var(--copper-dark); font: 400 27px var(--sans); }
+.accordion details[open] summary::after { content: "−"; }
+.accordion details > div { padding: 0 44px 22px 0; color: var(--text-soft); }
+.accordion details > div p { margin: 0; }
+.trust { background: var(--ink-900); color: var(--light); }
+.trust-points { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(42px, 4vw, 54px) 34px; }
+.trust-points h3 { font: 650 17px var(--sans); color: var(--copper); }
+.trust-points p { max-width: 60ch; margin-top: 9px; color: var(--light-soft); font-size: 18px; text-wrap: pretty; }
+.trust-security { max-width: 60ch; margin: clamp(38px, 3.4vw, 51px) 0 0; color: var(--light-soft); font-size: 18px; line-height: 1.6; text-wrap: pretty; }
+/* TRIAL (revert candidate): center this closing paragraph, breaking from
+   the section's left axis. Remove this rule to return it to the left. */
+.trust .trust-security { max-width: 700px; margin-inline: auto; text-align: center; }
+
+.invitation {
+  min-height: 1080px;
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(9,20,32,.98) 0%, rgba(9,20,32,.9) 34%, rgba(9,20,32,.3) 62%, rgba(9,20,32,.44) 100%),
+    url("assets/invitation-desktop.jpg") center top / cover no-repeat;
+  color: var(--light);
+  text-align: center;
+}
+.invitation-inner {
+  min-height: 1080px;
+  max-width: 1180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 84px 46px;
+}
+.invitation-heading { max-width: 900px; }
+/* R2/5c: three h2 tiers land 15px apart at 1024px (base 46.1px,
+   .story-heading 51.2px, this one 61.4px). Intentional, not drift: base h2
+   is a regular section header, .story-heading h2 is a page-level feature
+   heading, and this is the closing full-bleed invitation CTA -- the
+   page's single most prominent moment. Kept as a graduated tier rather
+   than flattened to one size. */
+.invitation h2 { font-size: clamp(42px, 6vw, 76px); }
+.invitation > .invitation-inner > p:not(.eyebrow) { max-width: 700px; margin: 28px auto 34px; color: var(--light-soft); font-size: 19px; }
+.invitation-action { margin-top: auto; }
+/* Homepage invitation: top-align the heading, and the CTA keeps the base
+   margin-top:auto so it settles at the very bottom of the section, below the
+   chair band, on both desktop and mobile — matching .invitation-compact on
+   client-stories. */
+#invitation .invitation-inner { justify-content: flex-start; }
+@media (min-width: 901px) {
+  #invitation.invitation {
+    min-height: 92svh;
+    background:
+      linear-gradient(180deg, rgba(9,20,32,.98) 0%, rgba(9,20,32,.92) 30%, rgba(9,20,32,.5) 47%, rgba(9,20,32,.06) 66%, rgba(9,20,32,.2) 100%),
+      var(--ink-950) url("assets/invitation-desktop.jpg") center top / cover no-repeat;
+  }
+  #invitation .invitation-inner {
+    min-height: 92svh;
+    /* Heading sits about half an inch lower so the eyebrow and h2 settle
+       inside the frame rather than crowding its top edge. Border-box keeps
+       the CTA on the bottom padding, so only the heading moves. */
+    padding-top: clamp(92px, calc(4.5vw + 48px), 110px);
+    padding-bottom: clamp(40px, 4vw, 56px);
+  }
+  #invitation.invitation { background-position: center 45%; }
+  #invitation .invitation-action .button {
+    min-height: 64px;
+    padding: 18px 56px;
+    font-size: 17px;
+    letter-spacing: .01em;
+  }
+}
+.site-footer { padding-block: 42px; border-top: 1px solid var(--line-dark); background: var(--ink-950); color: var(--light-soft); font-size: 18px; }
+.footer-signature { color: var(--light); font-weight: 650; }
+
+
+
+/* Client stories */
+/* The editorial/privacy statement, moved to fine print at the page close
+   (edit #59B): reuse the claims-boundary treatment in its dark-surface variant
+   so it reads as a footnote below the invitation CTA, not as its own section. */
+.invitation .stories-privacy-note { max-width: 62ch; margin: 40px auto 0; text-align: left; border-color: var(--line-dark); background: rgba(200, 126, 70, .1); }
+.invitation .stories-privacy-note p { margin: 0; color: var(--light-soft); font-size: 18px; line-height: 1.6; text-wrap: pretty; }
+.story-index { position: sticky; top: 0; z-index: 10; background: var(--paper-light); border-bottom: 1px solid var(--line); }
+.story-index .shell { display: grid; grid-template-columns: repeat(4, 1fr); }
+.story-index a { min-height: 72px; display: flex; flex-direction: column; justify-content: center; padding: 12px 18px; text-decoration: none; font-weight: 650; }
+.story-index a + a { border-left: 1px solid var(--line); }
+.story-index span { color: var(--text-soft); font-size: 18px; font-weight: 400; }
+.story-section { scroll-margin-top: 72px; padding-block: var(--section); }
+.story-light { background: var(--paper); }
+.story-dark { background: var(--ink-900); color: var(--light); }
+.story-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(55px, 9vw, 130px); }
+.story-heading { align-self: start; position: sticky; top: 110px; }
+.story-heading h2 { font-size: clamp(38px, 5vw, 64px); }
+.story-heading blockquote { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--line); color: var(--copper-dark); font: italic 500 clamp(23px, 2.6vw, 34px)/1.4 var(--serif); }
+.story-detail { padding-block: 28px; border-top: 1px solid var(--line); }
+.story-dark .story-detail { border-color: var(--line-dark); }
+.story-body h3 { margin-bottom: 12px; font: 650 15px var(--sans); color: var(--copper-dark); text-transform: uppercase; letter-spacing: .1em; }
+.story-dark .story-body h3 { color: var(--copper); }
+.story-body p { margin: 0; color: var(--text-soft); }
+.story-dark .story-body p { color: var(--light-soft); }
+.claim-boundary { margin-top: 34px; padding: 28px; border: 1px solid var(--line); background: var(--paper-light); }
+.story-dark .claim-boundary { border-color: var(--line-dark); background: rgba(200,126,70,.1); }
+.claim-boundary strong { display: block; margin-bottom: 10px; color: var(--copper-dark); font-size: 14px; letter-spacing: .1em; text-transform: uppercase; }
+.story-dark .claim-boundary strong { color: var(--copper); }
+
+/* About page */
+.about-hero { min-height: 420px; position: relative; display: grid; align-content: start; justify-items: center; padding-top: clamp(80px, 10vw, 140px); background: var(--ink-900); color: var(--light); text-align: center; }
+.about-invite { position: relative; display: grid; justify-items: center; padding: clamp(72px, 8vw, 108px) 0; background: var(--ink-900); color: var(--light); text-align: center; }
+.about-invite .scene-content { display: flex; flex-direction: column; align-items: center; }
+.about-invite .invite-top .cta-row { margin-top: clamp(44px, 5vw, 64px); }
+.invite-note { max-width: 45ch; margin: clamp(18px, 2vw, 25px) auto 0; color: var(--light-soft); font-size: 18px; line-height: 1.5; text-wrap: pretty; }
+.about-invite.invite-light { background: var(--light); color: var(--ink-950); }
+.about-invite.invite-light .eyebrow { color: var(--copper-dark); }
+.about-invite.invite-light .button-primary { background: var(--ink-950); color: var(--light); }
+.about-invite.invite-light .button-primary:hover { background: var(--ink-900); color: var(--light); }
+.about-invite.invite-light .invite-note { color: rgba(9,20,32,.68); }
+.scene-scrim { position: absolute; inset: 0; background: rgba(9,20,32,.68); }
+.scene-content { position: relative; z-index: 1; width: min(calc(100% - 48px), 900px); }
+.about-hero .portrait { display: none; }
+.about-copy, .editorial { padding-block: var(--section); background: var(--paper); }
+/* .prose's own max-width (720px) loses to .container.narrow's max-width
+   (1180px) when both classes land on the same element -- two classes beats
+   one, so the intended narrower reading column was never actually applying.
+   Capping the paragraphs directly sidesteps that fight rather than
+   reworking it. */
+.editorial .container p { max-width: 62ch; }
+.editorial h2 { margin-top: 64px; }
+.editorial h2:first-child { margin-top: 0; }
+.still { margin: 52px 0; }
+.still img { width: 100%; }
+.fineprint { max-width: 58ch; margin-top: clamp(15px, 1.7vw, 20px); color: var(--text-soft); font-size: 18px; }
+.quote-founder { margin-top: 36px; font: italic 500 clamp(25px, 3vw, 38px)/1.4 var(--serif); }
+.attribution-name { margin: 22px 0 0; font-weight: 700; }
+.attribution-title { max-width: 48ch; color: var(--text-soft); font-size: 18px; }
+.lineage { background: var(--ink-900); color: var(--light); }
+.lineage-intro { max-width: 760px; }
+.lede-small { color: var(--light-soft); font-size: 20px; }
+.timeline { margin-top: 60px; border-top: 1px solid var(--line-dark); }
+.timeline details { border-bottom: 1px solid var(--line-dark); }
+.timeline summary { min-height: 72px; display: grid; grid-template-columns: 80px 1fr 1fr; align-items: center; gap: 24px; cursor: pointer; list-style: none; }
+.timeline summary::-webkit-details-marker { display: none; }
+.tl-year { color: var(--copper); }
+.tl-name { font-family: var(--serif); font-size: 21px; }
+.tl-tag { color: var(--light-soft); }
+.tl-body { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding: 12px 0 34px 104px; }
+.tl-body h3 { font: 650 14px var(--sans); color: var(--copper); text-transform: uppercase; letter-spacing: .1em; }
+.tl-body p { max-width: 45ch; color: var(--light-soft); font-size: 18px; }
+.timeline details[open] summary { box-shadow: inset 4px 0 0 var(--copper); padding-left: 18px; }
+.timeline summary:hover .tl-name, .timeline summary:focus-visible .tl-name, .timeline details[open] .tl-name { text-decoration: underline; text-decoration-color: var(--copper); text-underline-offset: 6px; }
+.touch-instruction { display: none; }
+.tl-now, .common-thread, .otto { margin-top: 52px; }
+.common-thread, .otto { padding: 32px; border: 1px solid var(--line-dark); }
+.thread-copy { color: var(--light-soft); }
+.em { font-style: italic; }
+.about-invite .lede-small { max-width: 720px; margin: 0 auto 24px; }
+.cta-row { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.btn { min-height: 50px; display: inline-flex; align-items: center; padding: 12px 24px; text-decoration: none; }
+.btn-solid { background: var(--copper); color: var(--ink-950); }
+.btn-ghost { border: 1px solid var(--line-dark); color: var(--light); }
+
+@media (max-width: 1100px) {
+  .header-cta { font-size: 0; width: 50px; padding-inline: 10px; }
+  .header-cta::after { content: "Talk"; font-size: 14px; }
+  .case-grid { grid-template-columns: 1fr; }
+  .case-grid > article + article { border-left: 0; border-top: 1px solid rgba(23,33,45,.18); }
+}
+
+@media (max-width: 900px) {
+  .shell, .container, .nav-shell { width: min(calc(100% - 40px), var(--shell)); }
+  .nav-links { display: none; }
+  .mobile-nav { display: block; margin-left: auto; }
+  .hero {
+    min-height: 0;
+    display: block;
+    padding-top: 88px;
+    background: var(--ink-950);
+  }
+  .hero-media {
+    position: relative;
+    inset: auto;
+    height: 420px;
+    overflow: hidden;
+  }
+  .hero-media::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    z-index: 2;
+    height: 34%;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(9,20,32,0) 0%, rgba(9,20,32,.55) 55%, #091420 100%);
+  }
+  .hero-media img {
+    object-position: 22% center;
+  }
+  .hero-scrim {
+    top: 88px;
+    bottom: auto;
+    height: 420px;
+    background: linear-gradient(0deg, rgba(9,20,32,.62), rgba(9,20,32,.08) 72%);
+  }
+  .hero-content { padding-block: 50px 62px; }
+  .hero h1 { max-width: none; }
+  .split, .story-layout { grid-template-columns: 1fr; gap: 48px; }
+  .editorial-grid.three { grid-template-columns: repeat(2, 1fr); }
+  .case-feature { grid-template-columns: 1fr; gap: 34px; }
+  .trust-points { gap: 34px; }
+  .story-heading { position: static; }
+  .story-index .shell { overflow-x: auto; }
+  .story-index a { min-width: 180px; }
+  .story-layout { max-width: 820px; }
+  .invitation {
+    min-height: 1540px;
+    background:
+      linear-gradient(180deg, rgba(9,20,32,.98) 0%, rgba(9,20,32,.94) 48%, rgba(9,20,32,.22) 75%, rgba(9,20,32,.34) 100%),
+      var(--ink-950) url("assets/invitation-mobile.jpg") center bottom / 100% auto no-repeat;
+  }
+  .invitation-inner { min-height: 1540px; padding-block: 72px 42px; }
+}
+
+/* Narrow screens: drop the indent stagger (it only crowds the column here)
+   and let the ascending read come from the escalating left rail, the copper
+   fill, and rising brightness. Flush tiers give the tier-3 heading the full
+   width it needs to break without stranding a lone word. */
+@media (max-width: 560px) {
+  .progression-grid article { padding: clamp(20px, 4vw, 26px) 12px; }
+  .progression-grid article:nth-child(2) { margin-left: 0; }
+  .progression-grid .progression-emphasis { margin-left: 0; }
+  .progression-emphasis h3 { font-size: 24px; }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 18px; }
+  .shell, .container, .nav-shell { width: min(calc(100% - 32px), var(--shell)); }
+  .nav-shell { min-height: 78px; gap: 12px; }
+  .wordmark { font-size: 14px; }
+  .hero { padding-top: 78px; }
+  .hero-media { height: 340px; }
+  .hero-media::after {
+    display: block;
+    height: 30%;
+    background: linear-gradient(180deg, rgba(9,20,32,0) 0%, rgba(9,20,32,.55) 55%, #091420 100%);
+  }
+  .hero-media img {
+    object-position: 18% center;
+  }
+  .hero-media video { display: none; }
+  .hero-scrim {
+    top: 78px;
+    height: 340px;
+  }
+  .hero-content { padding-block: 42px 54px; }
+  .page-hero { min-height: 640px; padding-block: 140px 70px; background-image: linear-gradient(0deg, rgba(9,20,32,.96), rgba(9,20,32,.55)), url("assets/continuity-mobile.jpg"); }
+  .section { padding-block: 72px; }
+  .weight-ladder { margin-top: 42px; grid-template-columns: 1fr; }
+  .weight-ladder li { grid-template-columns: 36px 1fr; gap: 10px; }
+  .editorial-grid.three { grid-template-columns: 1fr; }
+  .day-steps li { grid-template-columns: 1fr; gap: 6px; }
+  .case-feature { padding: 32px 24px; }
+  .proof-actions { align-items: stretch; flex-direction: column; }
+  .trust-points { grid-template-columns: 1fr; }
+  .story-index { position: static; }
+  .story-section { scroll-margin-top: 0; }
+  .timeline summary { min-height: 82px; grid-template-columns: 58px 1fr; gap: 14px; }
+  .tl-tag { grid-column: 2; margin-top: -20px; font-size: 18px; }
+  .tl-body { grid-template-columns: 1fr; padding: 12px 0 30px; }
+  .desktop-instruction { display: none; }
+  .touch-instruction { display: inline; }
+  .about-hero { min-height: 0; padding-top: 60px; }
+  .about-invite { padding: 60px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .hero-media video { display: none; }
+}
+
+/* ===== v18 CANDIDATE — Alignment unification =====
+   One centered editorial axis: section headers, ledes, and closing doctrine
+   lines center on the page, matching the hero and the invitation.
+   Working content (grids, cards, steps, accordion) keeps left-aligned text
+   internally for readability; the blocks themselves are centered. */
+
+/* 1. Standalone section headers (label + h2 + lede as direct children of .shell) */
+.section > .shell > .section-number,
+.section > .shell > h2,
+.section > .shell > .section-lede {
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* 2. Closing / doctrine lines */
+.doctrine, .signature-line, .governance-line, .boundary-line,
+.privacy-note {
+  margin-inline: auto;
+  text-align: center;
+}
+.governance-line { border-top: 0; padding-top: 0; }
+
+/* 3. Center max-width content blocks that read as lists */
+.weight-ladder { margin-inline: 0; }
+
+/* 4b. Operating reality (Section 4): full-width left-aligned header over an
+   equal-height content-LEFT / image-RIGHT split — Section 2's locked template
+   mirrored (edit #55). Section-scoped (.world-*) so the global centered
+   editorial axis never reaches the header or lede (neither is a direct .shell
+   child); no global rule is weakened. Light (paper) section, so the
+   placeholder is a quiet light panel: a faint ink tint over paper with a
+   --line hairline border. */
+.world-head { text-align: left; }
+.world-head h2 { max-width: 900px; }
+.world-split { display: block; margin-top: 44px; }
+.world-content { text-align: left; max-width: 900px; }
+.world-content .section-lede { margin-top: 0; }
+.world-content .editorial-grid { margin-top: 34px; }
+/* The five areas stay one stacked column at every width — no 2-col variant.
+   Left border and article left-padding dropped so the item headings sit flush
+   on the section's left spine with the eyebrow, h2, lede, and closing line. */
+.world-content .editorial-grid.five { grid-template-columns: 1fr; border-left: 0; }
+.world-content .editorial-grid.five article { padding-left: 0; }
+.world-content .editorial-grid h3, .world-content .editorial-grid p { text-wrap: pretty; }
+/* Closing line sits on the section's left axis (inherits .world-content left),
+   quieter than the grid. */
+.world-content .world-close { margin: 26px 0 0; color: var(--text-soft); }
+
+/* 6. Practical questions: centered header above a centered accordion */
+/* Release the FAQ section from the site-wide 100svh minimum so it closes on its
+   own padding. Two classes tie the global rule's specificity (a single .objections
+   would lose to :not(.hero):not(.invitation)); wins on source order. */
+#main > section.objections.section { min-height: auto; }
+.objections .shell.split { display: block; }
+.objections .section-number, .objections h2 { margin-inline: 0; text-align: left; }
+.objections h2 { max-width: 820px; }
+.objections .accordion { margin-inline: 0; }
+/* Left-anchor the eyebrow and headline of practical, proof, and outcomes so
+   header and body share one left axis (overrides the global centered default). */
+.practical > .shell > .section-number,
+.practical > .shell > h2 { margin-inline: 0; text-align: left; }
+.proof-section > .shell > .section-number,
+.proof-section > .shell > h2 { text-align: left; }
+.accordion { max-width: 900px; margin: 52px auto 0; }
+
+/* Numbered engagement steps — base rules, reused by the homepage lead-in. */
+.deployment-steps { max-width: 880px; margin: 60px auto 0; }
+.deployment-steps li { text-align: left; }
+
+/* Edit #46: left-align the body-length ledes for a fixed return sweep, at a
+   readable measure, block kept centered under the headline (not pinned left).
+   Connectivity dropped here in edit #56 — its passage now pins to the left
+   axis via the .section.connectivity rule above. */
+/* .dark dropped from the selector alongside the markup (proof went to ink):
+   this rule carries the left-anchor and 660px measure, so keeping .dark in the
+   selector would have silently un-anchored the lede back to centered. */
+.proof-section > .shell > .section-lede {
+  text-align: left;
+  max-width: 660px;
+}
+.about-hero .lede {
+  text-align: left;
+  max-width: 690px;
+  margin-inline: auto;
+}
+
+/* 8. Authority and privacy: one centered axis — eyebrow, headline, and canonical
+   statement all centered; three trust points in one centered row beneath. */
+.trust .trust-grid { display: block; }
+.trust .trust-grid > div:first-child { text-align: left; }
+.trust .trust-grid h2 { max-width: 900px; margin-inline: 0; }
+.trust .canonical-statement { margin-inline: 0; text-align: left; }
+.trust-points { max-width: 900px; margin: 58px 0 0; text-align: left; }
+
+/* 9. Mobile: keep single-column flow readable (centered headers hold) */
+@media (max-width: 640px) {
+  .accordion, .deployment-steps, .trust-points { margin-top: 40px; }
+  /* Give the moved engagement steps the full column width on narrow screens
+     (number stacks above the text, as the pathway list already does) so long
+     final words don't strand alone. */
+  .deployment-steps li { grid-template-columns: 1fr; gap: 6px; }
+}
+@media (max-width: 400px) {
+  /* Trim the engagement H2 on the narrowest screens so "capability." doesn't
+     strand on its own line. */
+  #engagement-title { font-size: clamp(26px, 8.4vw, 30px); }
+}
+
+/* ===== v21 — scannable weight, calm invitation, locked CTA ===== */
+
+/* Footer: centered wordmark only */
+.footer-center { display: flex; justify-content: center; padding-block: 8px; }
+.site-footer .wordmark { align-items: center; text-align: center; }
+
+/* Invitation: seat the chairs lower so the copy above them breathes */
+@media (min-width: 901px) {
+  .invitation { background-size: 100% 100%, cover; background-position: center top, center top; background-color: var(--ink-950); }
+}
+
+/* Header CTA: solid copper, locked to the top-right on every page */
+.header-cta {
+  position: fixed;
+  top: 20px;
+  right: 32px;
+  z-index: 90;
+  background: var(--copper);
+  border-color: var(--copper);
+  color: var(--ink-950);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+.header-cta:hover { background: var(--light); border-color: var(--light); color: var(--ink-950); }
+/* Keep the nav links clear of the fixed CTA: reserve the button's footprint
+   (≈230px + viewport inset) until the viewport is wide enough that the fixed
+   button falls outside the shell. */
+@media (min-width: 901px) {
+  /* D1: the header CTA grew from .button-small (221px) to the base .button
+     size (299px) so it matches the primary CTA's prominence. The reservation
+     footprint and its taper both grew by the same 78px the button did. */
+  .nav-links { margin-right: clamp(0px, calc(930px - 50vw), 345px); }
+  /* R4/6a: at 901-1023px the accordion's right-aligned +/- toggle icon lands
+     directly under the fixed header CTA when that row scrolls into the CTA's
+     band, hiding it. Same reservation formula as .nav-links above. */
+  .accordion summary { padding-right: clamp(0px, calc(930px - 50vw), 345px); }
+}
+@media (max-width: 900px) {
+  /* Menu stays in flow; clear the fixed CTA so they never overlap */
+  .mobile-nav { margin-right: 84px; }
+}
+@media (max-width: 640px) {
+  .header-cta { top: 14px; right: 16px; }
+  .mobile-nav { margin-right: 76px; }
+}
+
+/* ===== v23 — The Weight: cinematic composition (text left, executive right) ===== */
+.weight-section { position: relative; overflow: hidden; background: var(--ink-950); color: var(--light); padding-block: clamp(52px, 5.5vw, 84px) clamp(76px, 9vw, 132px); }
+.weight-media, .weight-scrim { position: absolute; inset: 0; }
+/* Footage as a right-side panel, dropped below the section top so the
+   subject's head keeps clear headroom; edges blend into the ink field. */
+.weight-media { top: 0; left: 24%; }
+.weight-media::before { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background:
+  linear-gradient(180deg, var(--ink-950) 0%, rgba(9,20,32,0) 26%),
+  linear-gradient(90deg, var(--ink-950) 0%, rgba(9,20,32,0) 30%); }
+.weight-media img,
+.weight-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+/* TRIAL (revert candidate): nudge the crop down a touch so the desk/hands
+   sit higher in the frame, clearing more room below for the closing
+   passage, without pulling his head toward the top edge. Mobile keeps its
+   own object-position override below and is unaffected. */
+.weight-media img,
+.weight-media video { object-position: center 9%; }
+.weight-media video { z-index: 1; border: 0; }
+.weight-scrim {
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(9,20,32,.97) 0%, rgba(9,20,32,.92) 36%, rgba(9,20,32,.6) 54%, rgba(9,20,32,.16) 74%, rgba(9,20,32,.42) 100%),
+    linear-gradient(0deg, rgba(9,20,32,.55) 0%, rgba(9,20,32,.12) 26%, rgba(9,20,32,.3) 100%);
+}
+.weight-content { position: relative; z-index: 3; }
+/* Left-column composition: this section is a photo-editorial moment, not a centered band */
+.weight-section > .shell > .section-number,
+.weight-section > .shell > h2 { margin-inline: 0; text-align: left; }
+.weight-section > .shell > h2 { max-width: 640px; font-size: clamp(32px, 3.4vw, 52px); }
+.weight-ladder { grid-template-columns: 1fr; max-width: 620px; margin: 40px 0 0; border-top-color: var(--line-dark); }
+.weight-ladder li { border-bottom-color: var(--line-dark); color: rgba(233, 239, 246, .74); }
+.weight-ladder li::before { color: var(--copper); }
+.weight-ladder li strong { color: var(--light); }
+.weight-ladder .weight-final { color: var(--light); }
+/* The complete problem statement, ending on diagnosis (edits #61, #62): the
+   reassembly passage follows the ladder directly and the doctrine line is the
+   section's final word. Both join the ladder's left axis and column so they sit
+   over the permanently-dark left field of the scrim, not the lit right side of
+   the image. Readable measure, near-white for legibility over the footage. */
+/* Body prose bridging the ladder to the closing italic passage: on the section's
+   left axis, quieter and smaller than the italic close below it. */
+.weight-passage { max-width: 620px; margin: 46px 0 0; }
+.weight-content .weight-passage { margin: 48px 0 0; }
+.weight-passage p { margin: 0; font-size: clamp(19px, 2vw, 24px); line-height: 1.5; color: rgba(233, 239, 246, .92); text-wrap: pretty; }
+/* The second paragraph lands the cost: promoted to the italic serif display
+   treatment the doctrine line vacated (edit #65), and set apart with more air so
+   it reads as the section's deliberate close, not a continuation of the body
+   paragraph above it. Same treatment the weight doctrine used. */
+.weight-passage p:last-child { margin-top: 42px; color: var(--light); font: italic 500 clamp(26px, 3.3vw, 42px)/1.25 var(--serif); text-wrap: balance; }
+/* TRIAL (revert candidate): on desktop the closing italic passage leaves the
+   ladder's left axis and centers across the full width beneath it. This puts
+   the line over the lit right side of the image rather than the dark left
+   field, so the scrim below carries the legibility. Remove this block to
+   return the passage to the left column. */
+@media (min-width: 901px) {
+  .weight-content .weight-passage {
+    max-width: 960px;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .weight-content .weight-passage p:last-child {
+    margin-top: clamp(120px, 14vw, 200px);
+    font: italic 400 clamp(21px, 2.5vw, 32px)/1.4 var(--serif);
+  }
+}
+
+@media (max-width: 900px) {
+  /* Stack: media strip on top (man intact), copy below on solid ink */
+  .weight-media { position: relative; inset: auto; height: 320px; }
+  .weight-media img, .weight-media video { object-position: 72% center; }
+  .weight-scrim { background: linear-gradient(0deg, var(--ink-950) 0%, rgba(9,20,32,.22) 34%, rgba(9,20,32,.05) 100%); height: 320px; inset: auto 0 auto 0; top: 0; }
+  .weight-section { padding-top: 0; }
+  .weight-content { padding-top: 44px; }
+}
+
+/* ===== v24 — Founder note (homepage section 14) ===== */
+
+/* v28 — desktop-only line break for the Problem headline (copy ticket) */
+.break-desktop { display: none; }
+@media (min-width: 901px) { .break-desktop { display: inline; } }
+
+.case-feature blockquote p { margin: 0; }
+.case-feature blockquote p + p { margin-top: 14px; }
+/* Larry's testimonial, migrated into the warm client-proof section (edit #61):
+   a bordered pull-quote landing his own words after his case-feature. Light
+   palette to sit on the warm field. */
+.canonical-statement { max-width: 56ch; margin: clamp(29px, 2.8vw, 38px) 0 0; color: var(--light-soft); font-size: clamp(18px, 1.6vw, 21px); line-height: 1.6; }
+
+/* v30 — client-stories: compact invitation so the chairs sit low with breathing room */
+@media (min-width: 901px) {
+  .invitation-compact {
+    min-height: 1400px;
+    background:
+      linear-gradient(180deg, rgba(9,20,32,.98) 0%, rgba(9,20,32,.9) 26%, rgba(9,20,32,.35) 44%, rgba(9,20,32,.05) 66%, rgba(9,20,32,.2) 100%),
+      var(--ink-950) url("assets/invitation-desktop.jpg") center top / cover no-repeat;
+  }
+  .invitation-compact .invitation-inner { min-height: 1400px; justify-content: flex-start; padding-top: clamp(84px, 10vw, 130px); }
+}
+
+/* ==========================================================================
+   GOVERNANCE PIVOT (2026-08-09)
+   Homepage rebuilt around Generative Governed Intelligence. Components below
+   are new: the hero top-anchor, the origin ladder, the Ai/IA distinction, the
+   lineage rail, and the governed-intelligence list. Everything degrades without
+   JavaScript: the lineage runs on a radio group and the list on <details>.
+   ========================================================================== */
+
+/* Hero — the governance hero anchors its copy from the top so the desk image
+   keeps its lower third, rather than bottom-anchoring like the previous build. */
+.hero-top { align-items: flex-start; }
+.hero-top .hero-content { padding-block: clamp(148px, 33svh, 330px) clamp(48px, 6vh, 72px); }
+.hero-top h1 { max-width: 640px; font-size: clamp(42px, 4.6vw, 52px); line-height: 1.04; letter-spacing: -.035em; text-wrap: balance; }
+.hero-top .hero-lede { max-width: 620px; margin: clamp(28px, 3vw, 38px) 0 0; font-family: var(--serif); font-weight: 420; font-size: clamp(20px, 1.8vw, 24px); line-height: 1.45; text-wrap: pretty; }
+.hero-top .hero-support { max-width: 600px; margin: clamp(24px, 2.5vw, 32px) 0 clamp(40px, 4vw, 52px); color: rgba(255, 255, 255, .93); font-size: clamp(17px, 1.4vw, 19px); line-height: 1.55; text-wrap: pretty; }
+/* Hero eyebrow names who the page is for before the headline lands. Tighter
+   than the section-level eyebrow so it reads as a label on the h1. */
+.hero-eyebrow { margin: 0 0 clamp(22px, 2.5vw, 30px); font-size: clamp(12px, .95vw, 14px); letter-spacing: .18em; }
+
+/* Origin story — three blocks that escalate from a dim recollection to the
+   resolution, marked by a thickening copper rule rather than numbering. */
+.origin h2 { max-width: 900px; font-size: clamp(36px, 4.5vw, 62px); line-height: 1.08; letter-spacing: -.025em; text-wrap: balance; }
+.origin-ladder { display: flex; flex-direction: column; margin-top: clamp(36px, 4vw, 48px); max-width: 720px; }
+.origin-ladder p { margin: 0; text-wrap: pretty; }
+.origin-step-1 { padding: clamp(22px, 3vw, 30px) 0 clamp(28px, 3vw, 36px) clamp(22px, 3vw, 38px); border-left: 2px solid rgba(255, 255, 255, .16); }
+.origin-step-1 p { color: rgba(255, 255, 255, .78); font-size: clamp(17px, 1.5vw, 19px); line-height: 1.55; }
+.origin-step-2 { padding: clamp(28px, 3vw, 36px) 0 clamp(32px, 3.5vw, 42px) clamp(22px, 3vw, 38px); border-left: 3px solid rgba(200, 126, 70, .5); }
+.origin-step-2 p { color: rgba(255, 255, 255, .9); font-size: clamp(18px, 1.6vw, 20px); line-height: 1.55; }
+.origin-step-3 { margin-top: clamp(8px, 1vw, 14px); padding: clamp(34px, 4vw, 48px) clamp(22px, 3vw, 38px); border-left: 4px solid var(--copper); background: rgba(200, 126, 70, .1); }
+.origin-step-3 p { color: var(--light); font-size: clamp(19px, 1.8vw, 22px); line-height: 1.55; }
+/* Closing pull-quote — the line the whole origin story resolves to. Set in
+   serif italic and given its own air so it reads as a statement, not a
+   fourth rung on the ladder. */
+.origin-pullquote {
+  max-width: 720px;
+  margin: clamp(44px, 5vw, 68px) 0 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.4;
+  color: rgba(255, 255, 255, .88);
+  text-wrap: pretty;
+}
+
+.section.ink + .section.ink,
+.section.ink + .section.trust,
+.section.trust + .section.ink { padding-top: clamp(24px, 3vw, 48px); }
+
+/* Ai vs IA — the load-bearing distinction. Two opposed headings split by a
+   hairline, then the comparison pair. */
+.ia-split h2 { max-width: 960px; margin: 0; font-size: clamp(32px, 4vw, 52px); line-height: 1.1; letter-spacing: -.025em; }
+.ia-split .ia-rule { width: 80px; height: 1px; margin: clamp(18px, 2vw, 28px) 0; border: 0; background: rgba(200, 126, 70, .4); }
+.ia-split .ia-highlight { color: var(--copper); }
+.ia-prose { max-width: 760px; margin-top: clamp(30px, 3vw, 44px); }
+.ia-prose p { margin: 0; color: rgba(255, 255, 255, .88); font-size: clamp(18px, 1.8vw, 22px); line-height: 1.55; text-wrap: pretty; }
+.ia-prose p + p { margin-top: clamp(36px, 4vw, 52px); color: rgba(255, 255, 255, .95); }
+.ia-compare { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2vw, 24px); margin-top: clamp(36px, 4vw, 48px); max-width: 900px; }
+.ia-card { min-width: 0; padding: clamp(28px, 3vw, 38px); border: 1px solid var(--line-dark); }
+.ia-card-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+.ia-mark { font-family: var(--serif); font-size: clamp(22px, 2.2vw, 28px); font-weight: 520; color: rgba(255, 255, 255, .7); }
+.ia-card-head .label { margin: 0; font-size: clamp(12px, .9vw, 13px); color: rgba(255, 255, 255, .7); }
+.ia-stance { margin: 0 0 clamp(18px, 2vw, 24px); font-family: var(--serif); font-style: italic; font-size: clamp(16px, 1.4vw, 18px); color: rgba(255, 255, 255, .88); }
+.ia-card ul { display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0; list-style: none; color: rgba(255, 255, 255, .82); font-size: clamp(15px, 1.3vw, 17px); line-height: 1.5; }
+.ia-card li { display: flex; gap: 12px; }
+.ia-card li::before { content: "\25CF"; flex: 0 0 auto; color: rgba(255, 255, 255, .4); font-size: 8px; line-height: 2.1; }
+.ia-card-strong { border-color: rgba(200, 126, 70, .4); background: rgba(200, 126, 70, .1); }
+.ia-card-strong .ia-mark { color: var(--light); }
+.ia-card-strong .label { color: var(--copper); }
+.ia-card-strong .ia-stance { color: var(--light); }
+.ia-card-strong ul { color: var(--light); }
+.ia-card-strong li::before { color: var(--copper); }
+
+/* Lineage — a century of the same question, on a rail. Interaction is a radio
+   group so it works with no JavaScript; app.js only adds hover and clearing. */
+.lineage-lede { max-width: 720px; margin: 0; color: rgba(255, 255, 255, .92); font-size: clamp(18px, 1.8vw, 22px); line-height: 1.55; text-wrap: pretty; }
+.lineage-claim { max-width: 720px; margin: clamp(20px, 2vw, 28px) 0 0; color: var(--light); font-size: clamp(19px, 2vw, 24px); line-height: 1.55; text-wrap: pretty; }
+.lineage-question {
+  max-width: 820px;
+  margin: clamp(24px, 2.6vw, 34px) 0 0;
+  color: var(--copper);
+  font: italic 500 clamp(22px, 2.4vw, 30px)/1.35 var(--serif);
+  text-wrap: balance;
+}
+.lineage-hint { max-width: 700px; margin: clamp(12px, 1.2vw, 18px) 0 clamp(32px, 3vw, 44px); color: rgba(255, 255, 255, .45); font-size: clamp(15px, 1.2vw, 17px); line-height: 1.55; }
+.lineage-hint .touch-instruction { display: none; }
+.lineage-set { min-width: 0; margin: 0; padding: 0; border: 0; }
+.lineage-set > legend { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.lineage-rail { position: relative; display: flex; align-items: flex-start; padding-top: 4px; }
+.lineage-rail::before {
+  content: ""; position: absolute; left: 24px; right: 24px; top: 28px; height: 1px;
+  background: linear-gradient(90deg, rgba(200,126,70,0), rgba(200,126,70,.5) 8%, rgba(200,126,70,.5) 92%, rgba(200,126,70,0));
+}
+.lineage-node { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; align-items: center; gap: 9px; padding: 13px 8px; cursor: pointer; transition: opacity .2s; }
+.lineage-node > .lineage-dot-wrap { height: 14px; display: flex; align-items: center; justify-content: center; }
+.lineage-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(200, 126, 70, .55); transition: width .2s, height .2s, background .2s, box-shadow .2s; }
+.lineage-year { font-size: 12px; font-weight: 700; letter-spacing: .08em; color: rgba(255, 255, 255, .5); transition: color .2s; }
+.lineage-name { font-family: var(--serif); font-size: clamp(12px, 1.1vw, 15px); font-weight: 520; line-height: 1.3; text-align: center; color: rgba(255, 255, 255, .6); transition: color .2s; }
+.lineage-input { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.lineage-input:focus-visible + .lineage-node { outline: 3px solid var(--copper); outline-offset: 2px; }
+.lineage-node:hover .lineage-name { color: var(--light); }
+
+/* The present entry is marked in white rather than copper: it is the one that
+   resolved, not another attempt. */
+.lineage-node-now .lineage-dot { width: 9px; height: 9px; background: var(--light); }
+.lineage-node-now .lineage-year { letter-spacing: .1em; color: var(--light); }
+.lineage-node-now .lineage-name { font-family: var(--sans); font-size: 13px; font-weight: 650; color: var(--light); }
+
+.lineage-stage { margin-top: 32px; min-height: 220px; }
+.lineage-panel { display: none; padding: clamp(24px, 3vw, 36px) clamp(28px, 3vw, 40px); border: 1px solid rgba(200, 126, 70, .4); background: var(--ink-950); }
+.lineage-panel-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
+.lineage-panel-year { font-size: 13px; font-weight: 700; letter-spacing: .1em; color: var(--copper); }
+.lineage-panel-name { font-family: var(--serif); font-size: clamp(22px, 2.2vw, 28px); font-weight: 520; color: var(--light); }
+.lineage-panel-work { font-size: clamp(14px, 1.2vw, 16px); font-style: italic; color: rgba(255, 255, 255, .5); }
+.lineage-panel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(24px, 3vw, 36px); }
+.lineage-panel-grid h3 { margin: 0 0 10px; font: 700 12px var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--copper); }
+.lineage-panel-grid p { margin: 0; font-size: clamp(14px, 1.2vw, 16px); line-height: 1.6; color: rgba(255, 255, 255, .88); }
+.lineage-panel-grid .lineage-blocked h3 { color: rgba(255, 255, 255, .4); }
+.lineage-panel-grid .lineage-blocked p { color: rgba(255, 255, 255, .55); }
+.lineage-thread { padding: clamp(24px, 3vw, 36px) clamp(28px, 3vw, 40px); border: 1px dashed rgba(200, 126, 70, .35); background: rgba(200, 126, 70, .04); }
+.lineage-thread h3 { margin: 0 0 14px; font: 700 12px var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--copper); }
+.lineage-thread p { margin: 0; max-width: 920px; font-family: var(--serif); font-size: clamp(18px, 2vw, 24px); line-height: 1.7; color: var(--light); text-wrap: pretty; }
+
+/* Reveal: JS drives data-active; the :has() rule is the no-JS path. Both are
+   kept so the rail works whether or not the script loads. */
+.lineage[data-active] .lineage-thread { display: none; }
+.lineage-set:has(.lineage-input:checked) .lineage-thread { display: none; }
+.lineage-input:checked + .lineage-node .lineage-dot,
+.lineage-node[data-selected] .lineage-dot { width: 12px; height: 12px; background: var(--copper); box-shadow: 0 0 0 5px rgba(200, 126, 70, .15); }
+.lineage-input:checked + .lineage-node-now .lineage-dot,
+.lineage-node-now[data-selected] .lineage-dot { background: var(--light); box-shadow: 0 0 0 5px rgba(255, 255, 255, .15); }
+.lineage-input:checked + .lineage-node .lineage-year,
+.lineage-node[data-selected] .lineage-year { color: var(--copper); }
+.lineage-input:checked + .lineage-node-now .lineage-year,
+.lineage-node-now[data-selected] .lineage-year { color: var(--light); }
+.lineage-input:checked + .lineage-node .lineage-name,
+.lineage-node[data-selected] .lineage-name { color: var(--light); }
+.lineage-set:has(.lineage-input:checked) .lineage-node:not([data-selected]) { opacity: .4; }
+.lineage[data-active] .lineage-node:not([data-selected]) { opacity: .4; }
+
+/* Generative Governed Intelligence — the definition, then what it does in
+   practice as a <details> list so every answer is readable without script. */
+.ggi h2 { max-width: 900px; margin: 0; font-size: clamp(36px, 4.5vw, 52px); line-height: 1.08; letter-spacing: -.025em; text-wrap: balance; }
+.ggi-definitions { display: flex; flex-direction: column; gap: clamp(24px, 2.5vw, 32px); margin-top: clamp(36px, 4vw, 52px); max-width: 760px; }
+.ggi-definitions p { margin: 0; color: rgba(255, 255, 255, .95); font-size: clamp(19px, 2vw, 24px); line-height: 1.5; text-wrap: pretty; }
+.ggi-definitions strong { color: var(--light); }
+.ggi-prose { max-width: 760px; margin-top: clamp(32px, 3vw, 44px); }
+.ggi-prose p { margin: 0; color: rgba(255, 255, 255, .92); font-size: clamp(19px, 2vw, 24px); line-height: 1.5; text-wrap: pretty; }
+.ggi-prose p + p { margin-top: clamp(28px, 3vw, 38px); color: var(--light); }
+.ggi-close { margin: clamp(40px, 4vw, 56px) 0 0; max-width: 760px; color: rgba(255, 255, 255, .92); font-size: clamp(19px, 2vw, 24px); line-height: 1.5; text-wrap: pretty; }
+
+.perks { max-width: 760px; margin-top: clamp(28px, 3vw, 38px); }
+.perks summary { min-height: 0; display: block; padding-top: clamp(14px, 1.5vw, 20px); padding-right: 32px; cursor: pointer; list-style: none; color: var(--light); font: 650 clamp(18px, 1.6vw, 21px)/1.3 var(--sans); transition: color .2s; }
+.perks summary::-webkit-details-marker { display: none; }
+.perks summary::before {
+  content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 12px;
+  border-radius: 50%; background: rgba(255, 255, 255, .4); vertical-align: middle; transition: background .2s;
+}
+.perks summary::after {
+  content: "+"; float: right; margin-left: 16px;
+  color: var(--copper-dark); font: 400 22px/1.3 var(--sans);
+  transition: color .2s;
+}
+.perks details[open] > summary::after { content: "−"; color: var(--copper); }
+.perks summary:hover, .perks details[open] > summary { color: var(--copper); }
+.perks summary:hover::before, .perks details[open] > summary::before { background: var(--copper); }
+.perks summary:hover::after { color: var(--copper); }
+.perks details > p { margin: 0; padding-right: 24px; color: rgba(255, 255, 255, .9); font-size: clamp(17px, 1.4vw, 19px); line-height: 1.55; text-wrap: pretty; }
+.ggi-links { display: flex; align-items: center; justify-content: space-between; gap: clamp(24px, 3vw, 40px); margin-top: clamp(48px, 5vw, 64px); flex-wrap: wrap; }
+.ggi-links .text-link { color: var(--copper); font-size: clamp(16px, 1.4vw, 18px); }
+.ggi-links .text-link-quiet { color: rgba(255, 255, 255, .6); font-weight: 600; }
+.ggi-links .text-link-quiet:hover { color: var(--copper); }
+
+/* Section rules between the dark stack, so the pivot reads as one continuous
+   argument rather than five unrelated bands. */
+.rule-faint { border-top: 1px solid rgba(200, 126, 70, .12); }
+.rule-strong { border-top: 1px solid rgba(200, 126, 70, .18); }
+
+@media (hover: none), (pointer: coarse) {
+  .lineage-hint .desktop-instruction { display: none; }
+  .lineage-hint .touch-instruction { display: inline; }
+}
+
+@media (max-width: 900px) {
+  .ia-compare { grid-template-columns: 1fr; }
+  .lineage-rail { flex-wrap: wrap; row-gap: 4px; }
+  .lineage-rail::before { display: none; }
+  .lineage-node { flex: 0 0 33.333%; }
+  .lineage-stage { min-height: 0; }
+}
+
+@media (max-width: 640px) {
+  .hero-top .hero-content { padding-block: clamp(132px, 26svh, 240px) 44px; }
+  .lineage-node { flex: 0 0 50%; }
+  .ggi-links { flex-direction: column; align-items: flex-start; gap: 18px; }
+}
+
+/* Per-entry reveal. Two selectors per panel: the :has() path for a page with
+   no JavaScript, and the data-active path that app.js drives on hover. */
+.lineage-set:has(#ln-1:checked) #lp-1,
+.lineage[data-active="1"] #lp-1 { display: block; }
+.lineage-set:has(#ln-2:checked) #lp-2,
+.lineage[data-active="2"] #lp-2 { display: block; }
+.lineage-set:has(#ln-3:checked) #lp-3,
+.lineage[data-active="3"] #lp-3 { display: block; }
+.lineage-set:has(#ln-4:checked) #lp-4,
+.lineage[data-active="4"] #lp-4 { display: block; }
+.lineage-set:has(#ln-5:checked) #lp-5,
+.lineage[data-active="5"] #lp-5 { display: block; }
+.lineage-set:has(#ln-6:checked) #lp-6,
+.lineage[data-active="6"] #lp-6 { display: block; }
+.lineage-set:has(#ln-7:checked) #lp-7,
+.lineage[data-active="7"] #lp-7 { display: block; }
+.lineage-set:has(#ln-8:checked) #lp-8,
+.lineage[data-active="8"] #lp-8 { display: block; }
+.lineage-set:has(#ln-9:checked) #lp-9,
+.lineage[data-active="9"] #lp-9 { display: block; }
+
+/* Governance pivot — remaining hooks. */
+.visually-hidden-heading { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.invitation-action .cta-note { max-width: 700px; margin: clamp(18px, 2vw, 24px) auto 0; color: rgba(255, 255, 255, .88); font-size: 18px; text-wrap: pretty; }
+
+/* The governance sections run on a single left axis, so they opt out of the
+   v18 centered editorial axis (rule 1 above) rather than weakening it. */
+.section.origin > .shell > h2,
+.section.ia-split > .shell > h2,
+.section.ggi > .shell > h2,
+.section.lineage-section > .shell > .section-number { margin-inline: 0; text-align: left; }
+/* The three pillars and the deployment steps join that left axis. Their
+   bodies are left-aligned blocks, so a centered header above them read as
+   two different axes stacked on one another. */
+.section.pillars-section > .shell > .section-number,
+.section.pillars-section > .shell > h2,
+.section.pillars-section > .shell > .section-lede,
+.section.deployment-section > .shell > .section-number,
+.section.deployment-section > .shell > h2,
+.section.deployment-section > .shell > .section-lede,
+.section.faq-close > .shell > h2,
+.section.faq-close > .shell > .section-lede,
+.section.trust-close > .shell > h2,
+.section.trust-close > .shell > .section-lede { margin-inline: 0; text-align: left; }
+
+/* ── v1.7 arc integration ─────────────────────────────────────────────────
+   Sections restored from the pre-pivot site and rebuilt in the governance
+   build's vocabulary: three pillars, client proof teaser, concise trust,
+   and the five-step deployment that now carries the page's closing CTA. */
+
+/* Three pillars: stacked rather than gridded, because each body is a
+   paragraph and three columns would set them too narrow to read. */
+.pillars { display: flex; flex-direction: column; gap: clamp(28px, 3.4vw, 44px); margin-top: clamp(34px, 4vw, 52px); max-width: 760px; }
+.pillars article { padding-left: clamp(20px, 2.6vw, 34px); border-left: 3px solid rgba(200, 126, 70, .45); }
+.pillar-label { margin: 0 0 10px; color: var(--copper); font-size: clamp(12px, .95vw, 14px); font-weight: 700; letter-spacing: .16em; line-height: 1.4; text-transform: uppercase; }
+.pillars h3 { margin: 0 0 12px; font-size: clamp(23px, 2.1vw, 29px); line-height: 1.2; letter-spacing: -.02em; }
+.pillars p:not(.pillar-label) { margin: 0; color: rgba(255, 255, 255, .93); font-size: clamp(17px, 1.5vw, 19px); line-height: 1.55; text-wrap: pretty; }
+
+/* Client proof teaser. Reuses the ink-tuned .proof-section vocabulary from
+   the pre-pivot build. Two changes for this arc: Larry leads with his name
+   as the heading rather than a kicker, and he carries two quotes instead of
+   one, so the pair is set below the single-quote display size to keep both
+   lines on a comfortable measure. */
+.proof-section .case-feature h3 { margin: 0; font-size: clamp(28px, 3vw, 38px); line-height: 1.1; }
+.case-role { margin: 14px 0 0; font-size: clamp(16px, 1.4vw, 18px); line-height: 1.5; text-wrap: pretty; }
+.case-feature blockquote.quote-pair { font-size: clamp(23px, 2.4vw, 32px); line-height: 1.28; }
+.case-feature blockquote.quote-pair p { margin: 0; color: inherit; }
+.case-feature blockquote.quote-pair p + p { margin-top: 16px; }
+.proof-section .case-grid h3 { margin: 0 0 12px; font-size: clamp(21px, 1.9vw, 26px); }
+
+/* Trust. .canonical-statement had no base rule left in the sheet, only the
+   .trust-scoped alignment override, so it rendered at body size. Given the
+   lede treatment it is meant to carry, here and on the trust page. */
+.canonical-statement { max-width: 760px; margin: 26px 0 0; color: var(--light-soft); font-family: var(--serif); font-weight: 420; font-size: clamp(20px, 1.8vw, 25px); line-height: 1.45; text-wrap: pretty; }
+.trust-more { margin: clamp(38px, 3.4vw, 51px) 0 0; }
+
+/* The base .section-lede carries no top margin; sections that use one add
+   their own, the way .proof-section does. Without this the lede sits flush
+   against the heading above it. */
+.pillars-section > .shell > .section-lede,
+.deployment-section > .shell > .section-lede,
+.faq-close > .shell > .section-lede,
+.trust-close > .shell > .section-lede { margin-top: clamp(20px, 2vw, 30px); }
+
+/* Five-step deployment. The last confidence-builder, and now the page's
+   closing CTA. Reuses .deployment-steps, recoloured for ink the way the
+   pre-pivot .invitation-leadin did, since the standalone invitation section
+   that used to follow it is gone. */
+.deployment-section .deployment-steps { max-width: 760px; margin: clamp(34px, 4vw, 48px) 0 0; text-align: left; }
+.deployment-section .deployment-steps li { border-bottom-color: var(--line-dark); }
+.deployment-section .deployment-steps li > span { color: var(--copper); }
+.deployment-section .deployment-steps h3 { margin: 0 0 8px; font-size: clamp(19px, 2vw, 22px); color: var(--light); text-wrap: balance; }
+.deployment-section .deployment-steps p { max-width: none; margin: 0; color: rgba(255, 255, 255, .88); }
+.deployment-close { margin-top: clamp(40px, 4.5vw, 60px); text-align: center; }
+.deployment-close .cta-note { max-width: 45ch; margin: clamp(18px, 2vw, 25px) auto 0; color: var(--light-soft); font-size: 18px; line-height: 1.5; }
+
+/* The chairs photograph moves with the invitation it belonged to. The
+   Chair background image removed 2026-08-12 per Director ruling — the
+   invite scenes across all pages now close on flat ink so the ask
+   stands on its own without decorative imagery. */
+
+/* Client story pull-quotes. Larry's two anchor quotes, the same lines the
+   homepage proof teaser features. Serif italic against the story column so
+   they read as his voice rather than as body copy. */
+.story-quote { margin: 26px 0; padding-left: clamp(18px, 2vw, 26px); border-left: 3px solid var(--copper-dark); }
+.story-quote p { margin: 0; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(22px, 2.2vw, 30px); line-height: 1.3; text-wrap: balance; }
+.story-dark .story-quote { border-left-color: var(--copper); }
+
+/* FAQ page ---------------------------------------------------------------
+   Hero is a flat dark panel for the same reason the stories hero is: the
+   shared .page-hero base carries a continuity photo this page does not use.
+   Capped so the site-wide 100svh rule cannot leave a viewport of empty
+   field above the questions. */
+.page-hero.faq-hero { background: var(--ink-950); }
+#main > section.page-hero.faq-hero { min-height: 520px; }
+.faq-accordion { max-width: 860px; margin-inline: auto; }
+.faq-section .accordion details > div { color: rgba(255, 255, 255, .92); }
+.faq-section .accordion details { border-top-color: var(--line-dark); }
+.faq-section .accordion details:last-child { border-bottom-color: var(--line-dark); }
+.faq-section .accordion summary { color: var(--light); }
+/* The base accordion collapses paragraph margins, which suits the one-answer
+   entries it was written for. These answers run to two paragraphs. */
+.accordion details > div p + p { margin-top: 16px; }
+.faq-trust-link { max-width: 860px; margin: clamp(38px, 3.4vw, 51px) auto 0; }
+.faq-close .section-lede { color: var(--light-soft); }
+
+/* Trust page. Same flat dark hero as the FAQ, then the long-form treatment
+   the About page already uses for reading-length prose. */
+.page-hero.trust-hero { background: var(--ink-950); }
+#main > section.page-hero.trust-hero { min-height: 560px; }
+.page-hero.trust-hero h1 { max-width: 900px; }
+.trust-page .prose h2 { margin-top: clamp(44px, 4.5vw, 62px); }
+.trust-page .prose > h2:first-child { margin-top: 0; }
+.trust-close .section-lede { color: var(--light-soft); }
+
+/* Category positioning line. Sits between the section heading and the three
+   colon definitions, so it reads as the claim the definitions then unpack.
+   Serif italic in copper: the eyebrow treatment would have put it in the
+   same register as a section label, which is a quieter role than this line
+   is doing. */
+.category-line {
+  max-width: 720px;
+  margin: clamp(18px, 2vw, 26px) 0 0;
+  color: var(--copper);
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(23px, 2.3vw, 31px);
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+/* Footer navigation. /trust has no header entry, so without this the only
+   route to it from any page but the homepage is the back button. The
+   current page keeps its link (so every footer carries the same four) but
+   drops to the muted colour and loses the underline, so it reads as where
+   you already are. */
+.footer-center { flex-direction: column; align-items: center; gap: clamp(18px, 2.4vw, 26px); }
+.footer-nav { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 0; }
+.footer-nav a {
+  padding: 8px 14px;
+  color: rgba(255, 255, 255, .6);
+  font-size: 16px;
+  line-height: 1.4;
+  text-decoration: none;
+}
+.footer-nav a:hover, .footer-nav a:focus-visible { color: var(--light); text-decoration: underline; text-underline-offset: 4px; }
+.footer-nav a[aria-current="page"] { color: rgba(255, 255, 255, .38); }
+.footer-nav a[aria-current="page"]:hover { color: rgba(255, 255, 255, .38); text-decoration: none; }
+/* Middot separators come from CSS so the markup stays a plain list of links
+   and screen readers do not read punctuation between them. */
+.footer-nav a + a::before { content: "·"; margin-left: -14px; padding-right: 14px; color: rgba(255, 255, 255, .3); }
+/* Below the tap-target breakpoint the row wraps to two lines; the dots stop
+   earning their place once items are not on one line, so they come off. */
+@media (max-width: 480px) {
+  .footer-nav { gap: 2px 0; }
+  .footer-nav a { padding: 10px 12px; }
+  .footer-nav a + a::before { content: none; margin-left: 0; padding-right: 0; }
+}
+
+/* Origin lede — explanatory paragraph below the origin heading, replacing
+   the old pullquote with a descriptive passage. */
+.origin-lede {
+  max-width: 760px;
+  margin: clamp(24px, 2.5vw, 34px) 0 0;
+  color: rgba(255, 255, 255, .78);
+  font-size: clamp(18px, 1.8vw, 22px);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+/* GGI category context — supporting line below the copper category-line. */
+.category-context {
+  max-width: 720px;
+  margin: clamp(14px, 1.5vw, 20px) 0 0;
+  color: rgba(255, 255, 255, .65);
+  font-size: clamp(17px, 1.5vw, 20px);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* GGI rule — visual separator between the category text and the definitions. */
+.ggi-rule {
+  width: 80px;
+  height: 1px;
+  margin: clamp(24px, 2.5vw, 34px) 0;
+  border: 0;
+  background: rgba(200, 126, 70, .3);
+}
+
+/* Solo proof — single-client presentation replacing the multi-card grid. */
+.case-feature.case-solo {
+  display: block;
+  padding: clamp(28px, 3.5vw, 44px) clamp(32px, 4vw, 52px);
+  text-align: left;
+}
+.case-intro {
+  margin: 0;
+  color: rgba(255, 255, 255, .78);
+  font-size: clamp(19px, 2vw, 24px);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+.case-intro a {
+  color: var(--light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(200, 126, 70, .5);
+}
+.case-intro a:hover { color: var(--copper); }
+.case-quote {
+  margin: clamp(24px, 2.5vw, 34px) 0 0;
+  padding: 0;
+  border: 0;
+}
+.case-quote p {
+  margin: 0;
+  color: var(--light);
+  font: italic 500 clamp(28px, 3.2vw, 42px)/1.25 var(--serif);
+  text-wrap: balance;
+}
+
+/* Inline client-voice quote — matched-size treatment used as a rhythm
+   element when multiple client quotes stack in a single scene. Each
+   quote reads with equal weight, and together they accumulate into a
+   case. Standing on its own — no border, no framing device. */
+.case-quote-inline {
+  margin: clamp(24px, 2.4vw, 32px) 0 0;
+  padding: 0;
+  border: 0;
+}
+.case-quote-inline p {
+  margin: 0;
+  color: var(--light);
+  font: italic 500 clamp(24px, 2.4vw, 32px)/1.3 var(--serif);
+  text-wrap: pretty;
+}
+.case-quote-inline cite {
+  display: block;
+  margin-top: 8px;
+  color: rgba(255, 255, 255, .62);
+  font: 500 14px/1.5 var(--sans);
+  font-style: normal;
+  letter-spacing: .02em;
+}
+
+/* Trust columns — two-column layout with headed bullet lists. */
+.trust-col h3 {
+  margin: 0 0 clamp(14px, 1.5vw, 20px);
+  font: 650 17px var(--sans);
+  color: var(--copper);
+}
+.trust-col ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.2vw, 16px);
+}
+.trust-col li {
+  display: flex;
+  gap: 12px;
+  color: rgba(255, 255, 255, .75);
+  font-size: clamp(15px, 1.3vw, 17px);
+  line-height: 1.55;
+}
+.trust-col li::before {
+  content: "\25CF";
+  flex: 0 0 auto;
+  color: rgba(200, 126, 70, .5);
+  font-size: 6px;
+  line-height: 2.4;
+}
+
+/* Stories footer — consolidated disclaimer below all client stories. */
+.stories-footer {
+  padding: clamp(28px, 3vw, 40px) 0;
+  border-top: 1px solid rgba(200, 126, 70, .12);
+}
+.stories-footer p {
+  max-width: 760px;
+  margin: 0;
+  color: rgba(255, 255, 255, .45);
+  font-size: clamp(13px, 1.1vw, 15px);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+/* ── BCA Restructure 2026-08 ─────────────────────────────────────────────────
+   New components for the buyer-conversion-architecture homepage sequence:
+   hero persona line, three-column outcome cards, abbreviated 4-node lineage. */
+
+/* Outcomes section — three-column result cards on the ink field. Left-axis
+   header matching the other governance-pivot sections. */
+.outcomes-section > .shell > .section-number,
+.outcomes-section > .shell > h2 { margin-inline: 0; text-align: left; }
+.outcomes-section > .shell > h2 { max-width: 820px; }
+
+.outcomes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+  margin-top: clamp(38px, 4.5vw, 56px);
+}
+
+.outcome-card {
+  padding: clamp(28px, 3vw, 40px);
+  border: 1px solid rgba(200, 126, 70, .2);
+  background: rgba(200, 126, 70, .06);
+}
+
+.outcome-card h3 {
+  margin: 0 0 clamp(12px, 1.4vw, 18px);
+  font-size: clamp(20px, 1.9vw, 26px);
+  line-height: 1.22;
+  color: var(--light);
+}
+
+.outcome-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, .82);
+  font-size: clamp(16px, 1.4vw, 18px);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+@media (max-width: 900px) {
+  .outcomes-grid { grid-template-columns: 1fr; gap: clamp(12px, 2vw, 18px); }
+}
+
+/* Origin section — now labelled "The mechanism" for BCA sequence clarity.
+   The section-number is new; left-axis opt-out matches origin/ggi/ia-split. */
+.section.origin > .shell > .section-number { margin-inline: 0; text-align: left; }
+
+/* Preparation problem — the Licklider measurement set as a standalone statement.
+   The section heading centres by default; this keeps the follow-up line centred
+   with it rather than falling back to the left-aligned body default. */
+.preparation-section > .shell > h2 { max-width: 900px; }
+.preparation-claim {
+  max-width: 660px;
+  margin: clamp(20px, 2vw, 28px) auto 0;
+  color: var(--light);
+  font-size: clamp(19px, 2vw, 24px);
+  line-height: 1.55;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+/* Abbreviated lineage — 4 key figures as a static horizontal timeline.
+   No interaction; the full interactive rail lives on deeper pages. */
+.lineage-condensed-section > .shell > .section-number,
+.lineage-condensed-section > .shell > h2 { margin-inline: 0; text-align: left; }
+.lineage-condensed-section > .shell > .lineage-claim,
+.lineage-condensed-section > .shell > .lineage-question { margin-inline: 0; }
+.lineage-condensed-section > .shell > h2 { max-width: 820px; }
+
+.lineage-four {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: clamp(40px, 5vw, 64px);
+  border-top: 1px solid rgba(200, 126, 70, .25);
+}
+
+.lineage-four-node {
+  padding: clamp(24px, 2.5vw, 34px) clamp(20px, 2.2vw, 28px) clamp(24px, 2.5vw, 34px) 0;
+}
+
+.lineage-four-node + .lineage-four-node {
+  padding-left: clamp(20px, 2.2vw, 28px);
+  border-left: 1px solid rgba(200, 126, 70, .2);
+}
+
+.lineage-four-node:last-child { padding-right: 0; }
+
+.lineage-four-year {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  color: var(--copper);
+}
+
+.lineage-four-name {
+  display: block;
+  margin-bottom: clamp(10px, 1.2vw, 16px);
+  font-family: var(--serif);
+  font-size: clamp(18px, 1.7vw, 22px);
+  font-weight: 520;
+  line-height: 1.25;
+  color: var(--light);
+}
+
+.lineage-four-now .lineage-four-year { color: var(--light); letter-spacing: .1em; }
+.lineage-four-now .lineage-four-name { color: var(--copper); }
+
+.lineage-four-node p {
+  margin: 0;
+  color: rgba(255, 255, 255, .72);
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+@media (max-width: 900px) {
+  .lineage-four { grid-template-columns: repeat(2, 1fr); }
+  .lineage-four-node { padding: clamp(20px, 3vw, 28px) 0; border-left: 0 !important; }
+  .lineage-four-node + .lineage-four-node { padding-left: 0; border-left: 0 !important; }
+  .lineage-four-node:nth-child(even) {
+    padding-left: clamp(20px, 3vw, 28px);
+    border-left: 1px solid rgba(200, 126, 70, .2) !important;
+  }
+  .lineage-four-node:nth-child(n+3) { border-top: 1px solid rgba(200, 126, 70, .2); }
+}
+
+@media (max-width: 640px) {
+  .lineage-four { grid-template-columns: 1fr; }
+  .lineage-four-node,
+  .lineage-four-node:nth-child(even) { padding: clamp(20px, 4vw, 28px) 0; padding-left: 0; border-left: 0 !important; }
+  .lineage-four-node { border-top: 1px solid rgba(200, 126, 70, .2); }
+  .lineage-four-node:first-child { border-top: 0; padding-top: 0; }
+}
