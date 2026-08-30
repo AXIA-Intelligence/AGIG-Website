@@ -51,11 +51,14 @@
   <link rel="stylesheet" href="styles.css?v=132">
   <style>
     .ia-split .ia-close {
-      max-width: 760px;
+      max-width: none;
       margin: clamp(28px, 3vw, 40px) 0 0;
       color: var(--text) !important;
-      font: 520 clamp(22px, 2.2vw, 30px)/1.35 var(--serif);
-      text-wrap: balance;
+      font: 520 clamp(20px, 1.8vw, 26px)/1.35 var(--serif);
+      text-wrap: wrap;
+    }
+    @media (min-width: 901px) {
+      .ia-split .ia-close { white-space: nowrap; }
     }
     .deployment-section .site-cta-support {
       font-size: clamp(17px, 1.4vw, 20px);
