@@ -109,6 +109,25 @@ body { background: var(--ink-950) !important; }
 .proof-section .case-grid > article + article { border-color: var(--line-dark) !important; }
 .proof-actions .text-link { color: var(--copper) !important; }
 
+/* Larry's proof quotes are the focal evidence in the card, not body copy. */
+.proof-section .case-solo .case-quote-inline {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.proof-section .case-solo .case-quote-inline p {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.proof-section .case-solo .case-quote-inline cite {
+  display: block;
+  max-width: 760px;
+  margin: 10px auto 0;
+  text-align: center;
+}
+
 .lineage-condensed-section {
   background: var(--ink-900) !important;
   color: var(--light) !important;
@@ -170,6 +189,32 @@ body { background: var(--ink-950) !important; }
   text-align: left;
 }
 .deployment-section.has-terminal-cta { padding-bottom: 0 !important; }
+
+/* Desktop homepage measure: use more of the 1180px shell without creating
+   full-width body-copy lines. Headings get the widest measure; explanatory
+   prose stays narrower for comfortable scanning. */
+@media (min-width: 901px) {
+  .preparation-section h2,
+  .outcomes-section h2,
+  .origin h2,
+  .ggi h2,
+  .ia-split h2,
+  .lineage-condensed-section h2,
+  .deployment-section h2 {
+    max-width: 1040px !important;
+  }
+
+  .preparation-section .preparation-claim,
+  .origin .origin-lede,
+  .ggi .category-line,
+  .ggi .category-context,
+  .ia-split .ia-prose,
+  .lineage-condensed-section .lineage-question,
+  .deployment-section .section-lede,
+  .deployment-section .deployment-steps {
+    max-width: 900px !important;
+  }
+}
 
 /* One CTA language across Home, About, Client Stories, and FAQ. */
 .site-cta-banner {
