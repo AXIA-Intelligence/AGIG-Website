@@ -24,7 +24,7 @@
 body { background: var(--ink-950) !important; }
 ::selection { background: var(--copper); color: var(--ink-950); }
 
-/* Keep explanatory homepage sections on the established left reading axis. */
+/* Explanatory homepage copy remains left-aligned inside centered editorial shells. */
 .section.ggi > .shell > .section-number,
 .section.ggi > .shell > h2,
 .section.ggi > .shell > .category-line,
@@ -109,9 +109,27 @@ body { background: var(--ink-950) !important; }
 .proof-section .case-grid > article + article { border-color: var(--line-dark) !important; }
 .proof-actions .text-link { color: var(--copper) !important; }
 
-/* Larry's proof quotes are the focal evidence in the card, not body copy. */
-.proof-section .case-solo .case-quote-inline {
+/* Client proof is one centered presentation axis from label through link. */
+.proof-section > .shell > .section-number {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.proof-section .case-solo {
+  display: block;
   max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.proof-section .case-solo .case-intro {
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.proof-section .case-solo .case-quote-inline {
+  max-width: 900px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -125,6 +143,10 @@ body { background: var(--ink-950) !important; }
   display: block;
   max-width: 760px;
   margin: 10px auto 0;
+  text-align: center;
+}
+.proof-section .proof-actions {
+  justify-content: center;
   text-align: center;
 }
 
@@ -189,32 +211,6 @@ body { background: var(--ink-950) !important; }
   text-align: left;
 }
 .deployment-section.has-terminal-cta { padding-bottom: 0 !important; }
-
-/* Desktop homepage measure: use more of the 1180px shell without creating
-   full-width body-copy lines. Headings get the widest measure; explanatory
-   prose stays narrower for comfortable scanning. */
-@media (min-width: 901px) {
-  .preparation-section h2,
-  .outcomes-section h2,
-  .origin h2,
-  .ggi h2,
-  .ia-split h2,
-  .lineage-condensed-section h2,
-  .deployment-section h2 {
-    max-width: 1040px !important;
-  }
-
-  .preparation-section .preparation-claim,
-  .origin .origin-lede,
-  .ggi .category-line,
-  .ggi .category-context,
-  .ia-split .ia-prose,
-  .lineage-condensed-section .lineage-question,
-  .deployment-section .section-lede,
-  .deployment-section .deployment-steps {
-    max-width: 900px !important;
-  }
-}
 
 /* One CTA language across Home, About, Client Stories, and FAQ. */
 .site-cta-banner {
@@ -286,9 +282,10 @@ body { background: var(--ink-950) !important; }
 }
 
 /* Desktop horizontal composition system.
-   Explanatory sections use a centered editorial column with left-aligned copy.
-   Structured grids retain the full 1180px shell. Selected section headers are
-   centered when the structure beneath them is symmetrical. */
+   1. Explanatory sections use a centered editorial column with left-aligned copy.
+   2. Structured grids retain the full 1180px shell.
+   3. Symmetrical structures use centered section headers.
+   4. Proof and CTA moments use a fully centered presentation axis. */
 @media (min-width: 901px) {
   .preparation-section > .shell,
   .origin > .shell,
