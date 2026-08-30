@@ -284,3 +284,65 @@ body { background: var(--ink-950) !important; }
     background: var(--paper) !important;
   }
 }
+
+/* Desktop horizontal composition system.
+   Explanatory sections use a centered editorial column with left-aligned copy.
+   Structured grids retain the full 1180px shell. Selected section headers are
+   centered when the structure beneath them is symmetrical. */
+@media (min-width: 901px) {
+  .preparation-section > .shell,
+  .origin > .shell,
+  .ggi > .shell,
+  .ia-split > .shell,
+  .deployment-section > .shell {
+    max-width: 960px;
+  }
+
+  .preparation-section h2,
+  .origin h2,
+  .ggi h2,
+  .ia-split h2,
+  .deployment-section h2,
+  .preparation-section .preparation-claim,
+  .origin .origin-lede,
+  .ggi .category-line,
+  .ggi .category-context,
+  .ia-split .ia-prose,
+  .deployment-section .section-lede,
+  .deployment-section .deployment-steps {
+    max-width: none !important;
+  }
+
+  .outcomes-section > .shell > .section-number,
+  .outcomes-section > .shell > h2 {
+    max-width: 1040px !important;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .lineage-condensed-section > .shell > .section-number,
+  .lineage-condensed-section > .shell > h2,
+  .lineage-condensed-section > .shell > .lineage-question {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  .lineage-condensed-section > .shell > h2 { max-width: 980px !important; }
+  .lineage-condensed-section > .shell > .lineage-question { max-width: 900px !important; }
+
+  .trust > .shell {
+    max-width: 980px;
+  }
+  .trust > .shell > div:first-child {
+    text-align: center;
+  }
+  .trust > .shell > div:first-child > .section-number,
+  .trust > .shell > div:first-child > h2,
+  .trust > .shell > div:first-child > .canonical-statement {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .trust > .shell > div:first-child > h2 { max-width: 820px; }
+  .trust > .shell > div:first-child > .canonical-statement { max-width: 720px; }
+}
