@@ -24,7 +24,7 @@
 body { background: var(--ink-950) !important; }
 ::selection { background: var(--copper); color: var(--ink-950); }
 
-/* Explanatory homepage copy remains left-aligned inside centered editorial shells. */
+/* Base/mobile explanatory copy remains left-aligned; desktop composition overrides below. */
 .section.ggi > .shell > .section-number,
 .section.ggi > .shell > h2,
 .section.ggi > .shell > .category-line,
@@ -282,10 +282,7 @@ body { background: var(--ink-950) !important; }
 }
 
 /* Desktop horizontal composition system.
-   1. Explanatory sections use a centered editorial column with left-aligned copy.
-   2. Structured grids retain the full 1180px shell.
-   3. Symmetrical structures use centered section headers.
-   4. Proof and CTA moments use a fully centered presentation axis. */
+   Center the proposition, structure the evidence, center the conclusion. */
 @media (min-width: 901px) {
   .preparation-section > .shell,
   .origin > .shell,
@@ -295,19 +292,54 @@ body { background: var(--ink-950) !important; }
     max-width: 960px;
   }
 
-  .preparation-section h2,
-  .origin h2,
-  .ggi h2,
-  .ia-split h2,
-  .deployment-section h2,
-  .preparation-section .preparation-claim,
-  .origin .origin-lede,
-  .ggi .category-line,
-  .ggi .category-context,
-  .ia-split .ia-prose,
-  .deployment-section .section-lede,
-  .deployment-section .deployment-steps {
-    max-width: none !important;
+  .preparation-section > .shell > .section-number,
+  .preparation-section > .shell > h2,
+  .preparation-section > .shell > .preparation-claim,
+  .origin > .shell > .section-number,
+  .origin > .shell > h2,
+  .origin > .shell > .origin-lede,
+  .ggi > .shell > .section-number,
+  .ggi > .shell > h2,
+  .ggi > .shell > .category-line,
+  .ggi > .shell > .category-context,
+  .ia-split > .shell > .section-number,
+  .ia-split > .shell > h2,
+  .ia-split > .shell > .ia-prose,
+  .ia-split > .shell > .ia-close,
+  .deployment-section > .shell > .section-number,
+  .deployment-section > .shell > h2,
+  .deployment-section > .shell > .section-lede {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .preparation-section > .shell > h2,
+  .origin > .shell > h2,
+  .ggi > .shell > h2,
+  .ia-split > .shell > h2,
+  .deployment-section > .shell > h2 {
+    max-width: 920px !important;
+  }
+
+  .preparation-section > .shell > .preparation-claim,
+  .origin > .shell > .origin-lede,
+  .ggi > .shell > .category-line,
+  .ia-split > .shell > .ia-prose,
+  .deployment-section > .shell > .section-lede {
+    max-width: 860px !important;
+  }
+
+  .ggi > .shell > .category-context,
+  .ia-split > .shell > .ia-close {
+    max-width: 900px !important;
+  }
+
+  .deployment-section > .shell > .deployment-steps {
+    max-width: 900px !important;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
   }
 
   .outcomes-section > .shell > .section-number,
