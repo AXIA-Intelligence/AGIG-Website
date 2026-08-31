@@ -24,19 +24,6 @@
 body { background: var(--ink-950) !important; }
 ::selection { background: var(--copper); color: var(--ink-950); }
 
-/* Base/mobile explanatory copy remains left-aligned; desktop composition overrides below. */
-.section.ggi > .shell > .section-number,
-.section.ggi > .shell > h2,
-.section.ggi > .shell > .category-line,
-.section.ggi > .shell > .category-context,
-.section.ia-split > .shell > .section-number,
-.section.ia-split > .shell > h2,
-.section.ia-split > .shell > .ia-prose {
-  margin-left: 0;
-  margin-right: 0;
-  text-align: left;
-}
-
 .site-header {
   background: rgba(18, 19, 21, .94) !important;
   border-bottom-color: var(--line-dark) !important;
@@ -285,57 +272,57 @@ body { background: var(--ink-950) !important; }
    Center the proposition, structure the evidence, center the conclusion. */
 @media (min-width: 901px) {
   .preparation-section > .shell,
-  .origin > .shell,
-  .ggi > .shell,
-  .ia-split > .shell,
-  .deployment-section > .shell {
+  .section.origin > .shell,
+  .section.ggi > .shell,
+  .section.ia-split > .shell,
+  .section.deployment-section > .shell {
     max-width: 960px;
   }
 
   .preparation-section > .shell > .section-number,
   .preparation-section > .shell > h2,
   .preparation-section > .shell > .preparation-claim,
-  .origin > .shell > .section-number,
-  .origin > .shell > h2,
-  .origin > .shell > .origin-lede,
-  .ggi > .shell > .section-number,
-  .ggi > .shell > h2,
-  .ggi > .shell > .category-line,
-  .ggi > .shell > .category-context,
-  .ia-split > .shell > .section-number,
-  .ia-split > .shell > h2,
-  .ia-split > .shell > .ia-prose,
-  .ia-split > .shell > .ia-close,
-  .deployment-section > .shell > .section-number,
-  .deployment-section > .shell > h2,
-  .deployment-section > .shell > .section-lede {
+  .section.origin > .shell > .section-number,
+  .section.origin > .shell > h2,
+  .section.origin > .shell > .origin-lede,
+  .section.ggi > .shell > .section-number,
+  .section.ggi > .shell > h2,
+  .section.ggi > .shell > .category-line,
+  .section.ggi > .shell > .category-context,
+  .section.ia-split > .shell > .section-number,
+  .section.ia-split > .shell > h2,
+  .section.ia-split > .shell > .ia-prose,
+  .section.ia-split > .shell > .ia-close,
+  .section.deployment-section > .shell > .section-number,
+  .section.deployment-section > .shell > h2,
+  .section.deployment-section > .shell > .section-lede {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
   }
 
   .preparation-section > .shell > h2,
-  .origin > .shell > h2,
-  .ggi > .shell > h2,
-  .ia-split > .shell > h2,
-  .deployment-section > .shell > h2 {
+  .section.origin > .shell > h2,
+  .section.ggi > .shell > h2,
+  .section.ia-split > .shell > h2,
+  .section.deployment-section > .shell > h2 {
     max-width: 920px !important;
   }
 
   .preparation-section > .shell > .preparation-claim,
-  .origin > .shell > .origin-lede,
-  .ggi > .shell > .category-line,
-  .ia-split > .shell > .ia-prose,
-  .deployment-section > .shell > .section-lede {
+  .section.origin > .shell > .origin-lede,
+  .section.ggi > .shell > .category-line,
+  .section.ia-split > .shell > .ia-prose,
+  .section.deployment-section > .shell > .section-lede {
     max-width: 860px !important;
   }
 
-  .ggi > .shell > .category-context,
-  .ia-split > .shell > .ia-close {
+  .section.ggi > .shell > .category-context,
+  .section.ia-split > .shell > .ia-close {
     max-width: 900px !important;
   }
 
-  .deployment-section > .shell > .deployment-steps {
+  .section.deployment-section > .shell > .deployment-steps {
     max-width: 900px !important;
     margin-left: auto;
     margin-right: auto;
