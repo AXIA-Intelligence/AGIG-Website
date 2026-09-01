@@ -19,6 +19,9 @@
   --copper-dark: #5E4816;
   --line: rgba(28, 28, 30, .22);
   --line-dark: rgba(242, 240, 234, .18);
+  --home-grid: 1080px;
+  --home-grid-gap: 24px;
+  --home-section-space: clamp(84px, 6vw, 104px);
 }
 
 body { background: var(--ink-950) !important; }
@@ -96,7 +99,7 @@ body { background: var(--ink-950) !important; }
 .proof-section .case-grid > article + article { border-color: var(--line-dark) !important; }
 .proof-actions .text-link { color: var(--copper) !important; }
 
-/* Client proof is one centered presentation axis from label through link. */
+/* Client proof uses one presentation axis from label through link. */
 .proof-section > .shell > .section-number {
   margin-left: auto;
   margin-right: auto;
@@ -268,17 +271,36 @@ body { background: var(--ink-950) !important; }
   }
 }
 
-/* Desktop horizontal composition system.
-   Center the proposition, structure the evidence, center the conclusion. */
+/* Canonical homepage desktop grid.
+   One 1080px centered field, 12 columns, consistent section rhythm. */
 @media (min-width: 901px) {
+  .preparation-section,
+  .proof-section,
+  .outcomes-section,
+  .section.origin,
+  .section.ggi,
+  .section.ia-split,
+  .lineage-condensed-section,
+  .trust,
+  .section.deployment-section {
+    padding-block: var(--home-section-space);
+  }
+
   .preparation-section > .shell,
+  .proof-section > .shell,
+  .outcomes-section > .shell,
   .section.origin > .shell,
   .section.ggi > .shell,
   .section.ia-split > .shell,
+  .lineage-condensed-section > .shell,
+  .trust > .shell,
   .section.deployment-section > .shell {
-    max-width: 960px;
+    width: min(calc(100% - 64px), var(--home-grid));
+    max-width: var(--home-grid);
+    margin-inline: auto;
   }
 
+  /* Thesis sections use the central axis. */
   .preparation-section > .shell > .section-number,
   .preparation-section > .shell > h2,
   .preparation-section > .shell > .preparation-claim,
@@ -292,7 +314,12 @@ body { background: var(--ink-950) !important; }
   .section.ia-split > .shell > .section-number,
   .section.ia-split > .shell > h2,
   .section.ia-split > .shell > .ia-prose,
-  .section.ia-split > .shell > .ia-close {
+  .section.ia-split > .shell > .ia-close,
+  .outcomes-section > .shell > .section-number,
+  .outcomes-section > .shell > h2,
+  .lineage-condensed-section > .shell > .section-number,
+  .lineage-condensed-section > .shell > h2,
+  .lineage-condensed-section > .shell > .lineage-question {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -301,55 +328,42 @@ body { background: var(--ink-950) !important; }
   .preparation-section > .shell > h2,
   .section.origin > .shell > h2,
   .section.ggi > .shell > h2,
-  .section.ia-split > .shell > h2 {
-    max-width: 920px !important;
+  .section.ia-split > .shell > h2,
+  .outcomes-section > .shell > h2,
+  .lineage-condensed-section > .shell > h2 {
+    max-width: 900px !important;
   }
 
   .preparation-section > .shell > .preparation-claim,
   .section.origin > .shell > .origin-lede,
   .section.ggi > .shell > .category-line,
-  .section.ia-split > .shell > .ia-prose {
-    max-width: 860px !important;
+  .section.ia-split > .shell > .ia-prose,
+  .lineage-condensed-section > .shell > .lineage-question {
+    max-width: 820px !important;
   }
 
   .section.ggi > .shell > .category-context,
   .section.ia-split > .shell > .ia-close {
-    max-width: 900px !important;
+    max-width: 880px !important;
   }
 
-  /* Engagement uses a centered editorial column, not centered text. */
-  .section.deployment-section > .shell > .section-number,
-  .section.deployment-section > .shell > h2,
-  .section.deployment-section > .shell > .section-lede,
-  .section.deployment-section > .shell > .deployment-steps {
-    max-width: 900px !important;
+  .outcomes-grid,
+  .lineage-four {
+    width: 100%;
+    max-width: var(--home-grid);
     margin-left: auto;
     margin-right: auto;
-    text-align: left;
   }
 
-  .outcomes-section > .shell > .section-number,
-  .outcomes-section > .shell > h2 {
-    max-width: 1040px !important;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  }
-
-  .lineage-condensed-section > .shell > .section-number,
-  .lineage-condensed-section > .shell > h2,
-  .lineage-condensed-section > .shell > .lineage-question {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  }
-  .lineage-condensed-section > .shell > h2 { max-width: 980px !important; }
-  .lineage-condensed-section > .shell > .lineage-question { max-width: 900px !important; }
-
+  /* Trust: centered thesis, then two equal evidence columns on the same grid. */
   .trust > .shell {
-    max-width: 980px;
+    display: grid !important;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--home-grid-gap);
+    align-items: start;
   }
   .trust > .shell > div:first-child {
+    grid-column: 3 / 11;
     text-align: center;
   }
   .trust > .shell > div:first-child > .section-number,
@@ -358,6 +372,68 @@ body { background: var(--ink-950) !important; }
     margin-left: auto;
     margin-right: auto;
   }
-  .trust > .shell > div:first-child > h2 { max-width: 820px; }
-  .trust > .shell > div:first-child > .canonical-statement { max-width: 720px; }
+  .trust > .shell > div:first-child > h2 { max-width: 760px; }
+  .trust > .shell > div:first-child > .canonical-statement { max-width: 660px; }
+  .trust > .shell > .trust-points {
+    grid-column: 2 / 12;
+    width: 100%;
+    max-width: none;
+    margin: 52px 0 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(48px, 5vw, 72px);
+    text-align: left;
+  }
+  .trust > .shell > .trust-points > .trust-col {
+    min-width: 0;
+  }
+
+  /* Engagement: 5/7 split. Narrative left, process right, CTA below section. */
+  .section.deployment-section > .shell {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--home-grid-gap);
+    align-items: start;
+  }
+  .section.deployment-section > .shell > .section-number,
+  .section.deployment-section > .shell > h2,
+  .section.deployment-section > .shell > .section-lede {
+    grid-column: 1 / 6;
+    width: 100%;
+    max-width: none !important;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+  }
+  .section.deployment-section > .shell > .section-number { grid-row: 1; }
+  .section.deployment-section > .shell > h2 {
+    grid-row: 2;
+    font-size: clamp(40px, 4vw, 56px);
+    text-wrap: balance;
+  }
+  .section.deployment-section > .shell > .section-lede {
+    grid-row: 3;
+    margin-top: 28px;
+    font-size: clamp(18px, 1.45vw, 21px);
+    line-height: 1.55;
+  }
+  .section.deployment-section > .shell > .deployment-steps {
+    grid-column: 7 / 13;
+    grid-row: 1 / 5;
+    width: 100%;
+    max-width: none !important;
+    margin: 0 !important;
+    text-align: left;
+  }
+  .section.deployment-section > .shell > .deployment-steps li:first-child {
+    padding-top: 0;
+  }
+  .section.deployment-section > .shell > .deployment-close {
+    grid-column: 1 / 13;
+    grid-row: 5;
+    margin-bottom: 0;
+  }
+  .section.deployment-section.has-terminal-cta > .shell > .deployment-close {
+    display: none;
+  }
 }
