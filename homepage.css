@@ -25,10 +25,10 @@
   gap: clamp(14px, 1.8vw, 24px);
   text-align: center !important;
   white-space: nowrap;
-  font-size: 12px;
-  font-weight: 720;
-  letter-spacing: .22em;
-  line-height: 1.2;
+  font-size: clamp(13px, .95vw, 14px);
+  font-weight: 740;
+  letter-spacing: .20em;
+  line-height: 1.25;
 }
 
 .preparation-section > .shell > .section-number::before,
@@ -202,8 +202,10 @@
   .section.deployment-section > .shell > .section-number {
     gap: 12px;
     white-space: normal;
-    font-size: 11px;
-    letter-spacing: .18em;
+    font-size: 12px;
+    font-weight: 740;
+    letter-spacing: .17em;
+    line-height: 1.25;
   }
 
   .preparation-section > .shell > .section-number::before,
