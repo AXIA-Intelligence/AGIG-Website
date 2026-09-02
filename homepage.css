@@ -1,0 +1,230 @@
+/* Avant Garde homepage composition module
+   Canonical homepage chapter system + Trust/Engagement grid.
+   Global palette and shared components remain in styles.css. */
+
+:root {
+  --home-chapter-max: 820px;
+}
+
+/* Nine narrative chapter markers. These are section navigation, not metadata. */
+.preparation-section > .shell > .section-number,
+.proof-section > .shell > .section-number,
+.outcomes-section > .shell > .section-number,
+.section.origin > .shell > .section-number,
+.section.ggi > .shell > .section-number,
+.section.ia-split > .shell > .section-number,
+.lineage-condensed-section > .shell > .section-number,
+.trust .section-number,
+.section.deployment-section > .shell > .section-number {
+  width: min(100%, var(--home-chapter-max));
+  max-width: var(--home-chapter-max);
+  margin: 0 auto clamp(30px, 2.8vw, 40px) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 1.8vw, 24px);
+  text-align: center !important;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 720;
+  letter-spacing: .22em;
+  line-height: 1.2;
+}
+
+.preparation-section > .shell > .section-number::before,
+.preparation-section > .shell > .section-number::after,
+.proof-section > .shell > .section-number::before,
+.proof-section > .shell > .section-number::after,
+.outcomes-section > .shell > .section-number::before,
+.outcomes-section > .shell > .section-number::after,
+.section.origin > .shell > .section-number::before,
+.section.origin > .shell > .section-number::after,
+.section.ggi > .shell > .section-number::before,
+.section.ggi > .shell > .section-number::after,
+.section.ia-split > .shell > .section-number::before,
+.section.ia-split > .shell > .section-number::after,
+.lineage-condensed-section > .shell > .section-number::before,
+.lineage-condensed-section > .shell > .section-number::after,
+.trust .section-number::before,
+.trust .section-number::after,
+.section.deployment-section > .shell > .section-number::before,
+.section.deployment-section > .shell > .section-number::after {
+  content: "";
+  flex: 1 1 90px;
+  min-width: 36px;
+  max-width: 220px;
+  height: 1px;
+  background: currentColor;
+  opacity: .38;
+}
+
+@media (min-width: 901px) {
+  /* TRUST & SECURITY
+     One centered thesis and one visibly symmetrical evidence frame. */
+  .trust > .shell {
+    width: min(calc(100% - 64px), var(--home-grid)) !important;
+    max-width: var(--home-grid) !important;
+    margin-inline: auto !important;
+    display: grid !important;
+    grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+    column-gap: var(--home-grid-gap) !important;
+    align-items: start;
+  }
+
+  .trust > .shell > div:first-child {
+    grid-column: 2 / 12 !important;
+    width: 100%;
+    text-align: center !important;
+  }
+
+  .trust > .shell > div:first-child > .section-number {
+    width: min(100%, var(--home-chapter-max));
+  }
+
+  .trust > .shell > div:first-child > h2 {
+    max-width: 760px !important;
+    margin-inline: auto !important;
+    text-align: center !important;
+  }
+
+  .trust > .shell > div:first-child > .canonical-statement {
+    max-width: 660px !important;
+    margin-inline: auto !important;
+    text-align: center !important;
+  }
+
+  .trust > .shell > .trust-points {
+    grid-column: 2 / 12 !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 50px 0 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0 !important;
+    border-top: 1px solid var(--line-dark);
+    border-bottom: 1px solid var(--line-dark);
+    text-align: left !important;
+  }
+
+  .trust > .shell > .trust-points > .trust-col {
+    min-width: 0;
+    padding: 30px clamp(28px, 3vw, 42px) 34px;
+  }
+
+  .trust > .shell > .trust-points > .trust-col + .trust-col {
+    border-left: 1px solid var(--line-dark);
+  }
+
+  .trust > .shell > .trust-points h3 {
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .trust > .shell > .trust-points p {
+    max-width: 42ch;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  /* ENGAGEMENT
+     Full-width chapter marker, then a balanced 6/6 narrative/process split. */
+  .section.deployment-section > .shell {
+    width: min(calc(100% - 64px), var(--home-grid)) !important;
+    max-width: var(--home-grid) !important;
+    margin-inline: auto !important;
+    display: grid !important;
+    grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+    column-gap: var(--home-grid-gap) !important;
+    align-items: start;
+  }
+
+  .section.deployment-section > .shell > .section-number {
+    grid-column: 1 / 13 !important;
+    grid-row: 1 !important;
+    width: min(100%, var(--home-chapter-max));
+  }
+
+  .section.deployment-section > .shell > h2,
+  .section.deployment-section > .shell > .section-lede {
+    grid-column: 1 / 7 !important;
+    width: 100%;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-right: clamp(20px, 2.4vw, 34px);
+    text-align: left !important;
+  }
+
+  .section.deployment-section > .shell > h2 {
+    grid-row: 2 !important;
+    font-size: clamp(38px, 3.45vw, 50px) !important;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  .section.deployment-section > .shell > .section-lede {
+    grid-row: 3 !important;
+    margin-top: 28px !important;
+    font-size: clamp(18px, 1.4vw, 20px);
+    line-height: 1.55;
+  }
+
+  .section.deployment-section > .shell > .deployment-steps {
+    grid-column: 7 / 13 !important;
+    grid-row: 2 / 5 !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding-left: clamp(28px, 3vw, 42px);
+    border-left: 1px solid var(--line);
+    text-align: left !important;
+  }
+
+  .section.deployment-section > .shell > .deployment-steps li:first-child {
+    padding-top: 0 !important;
+  }
+
+  .section.deployment-section > .shell > .deployment-close {
+    grid-column: 1 / 13 !important;
+    grid-row: 5 !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .preparation-section > .shell > .section-number,
+  .proof-section > .shell > .section-number,
+  .outcomes-section > .shell > .section-number,
+  .section.origin > .shell > .section-number,
+  .section.ggi > .shell > .section-number,
+  .section.ia-split > .shell > .section-number,
+  .lineage-condensed-section > .shell > .section-number,
+  .trust .section-number,
+  .section.deployment-section > .shell > .section-number {
+    gap: 12px;
+    white-space: normal;
+    font-size: 11px;
+    letter-spacing: .18em;
+  }
+
+  .preparation-section > .shell > .section-number::before,
+  .preparation-section > .shell > .section-number::after,
+  .proof-section > .shell > .section-number::before,
+  .proof-section > .shell > .section-number::after,
+  .outcomes-section > .shell > .section-number::before,
+  .outcomes-section > .shell > .section-number::after,
+  .section.origin > .shell > .section-number::before,
+  .section.origin > .shell > .section-number::after,
+  .section.ggi > .shell > .section-number::before,
+  .section.ggi > .shell > .section-number::after,
+  .section.ia-split > .shell > .section-number::before,
+  .section.ia-split > .shell > .section-number::after,
+  .lineage-condensed-section > .shell > .section-number::before,
+  .lineage-condensed-section > .shell > .section-number::after,
+  .trust .section-number::before,
+  .trust .section-number::after,
+  .section.deployment-section > .shell > .section-number::before,
+  .section.deployment-section > .shell > .section-number::after {
+    min-width: 20px;
+    max-width: 72px;
+  }
+}
