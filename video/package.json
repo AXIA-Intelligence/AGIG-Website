@@ -1,0 +1,22 @@
+{
+  "name": "avant-garde-brand-video",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Avant Garde International Group brand explainer video (Remotion)",
+  "scripts": {
+    "dev": "remotion studio",
+    "render": "remotion render AvantGardeBrand out/avant-garde-brand-v1.mp4 --codec h264",
+    "still": "remotion still"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.484",
+    "@remotion/google-fonts": "4.0.484",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "remotion": "4.0.484"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.0",
+    "typescript": "5.8.2"
+  }
+}
